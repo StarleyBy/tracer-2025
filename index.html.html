@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRACER 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 375px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            position: relative;
+        }
+
+        .page {
+            display: none;
+            padding: 20px;
+            min-height: 100vh;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-top: 60px;
+        }
+
+        .logo {
+            font-size: 2.5em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+
+        .option-group {
+            margin-bottom: 30px;
+        }
+
+        .option {
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 15px;
+            padding: 18px 20px;
+            margin: 10px 0;
+            width: 100%;
+            text-align: center;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .option.selected {
+            background: linear-gradient(45deg, #ff6b6b, #ffa726);
+            color: white;
+            transform: scale(1.02);
+        }
+
+        .flag {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        .hebrew { background: linear-gradient(45deg, #4fc3f7, #29b6f6); }
+        .english { background: linear-gradient(45deg, #66bb6a, #43a047); }
+        .russian { background: linear-gradient(45deg, #ef5350, #e53935); }
+        .arabic { background: linear-gradient(45deg, #ab47bc, #8e24aa); }
+
+        .position-doctor { background: linear-gradient(45deg, #ff7043, #ff5722); }
+        .position-nurse { background: linear-gradient(45deg, #26c6da, #00acc1); }
+        .position-support { background: linear-gradient(45deg, #66bb6a, #4caf50); }
+
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(45deg, #ffa726, #ff9800);
+            box-shadow: 0 4px 15px rgba(255, 167, 38, 0.4);
+        }
+
+        .btn-danger {
+            background: linear-gradient(45deg, #ef5350, #f44336);
+            box-shadow: 0 4px 15px rgba(239, 83, 80, 0.4);
+        }
+
+        .question-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #667eea;
+        }
+
+        .question {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            color: #2c3e50;
+        }
+
+        .answer {
+            background: linear-gradient(45deg, #e8f5e8, #f0f8f0);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border-left: 4px solid #4caf50;
+            color: #2e7d32;
+            font-size: 1.1em;
+            line-height: 1.4;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dark-theme {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: #ecf0f1;
+        }
+
+        .dark-theme .container {
+            background: rgba(44, 62, 80, 0.95);
+        }
+
+        .dark-theme .option {
+            background: rgba(52, 73, 94, 0.8);
+            color: #ecf0f1;
+        }
+
+        .dark-theme .question-card {
+            background: rgba(52, 73, 94, 0.9);
+            color: #ecf0f1;
+        }
+
+        .dark-theme .answer {
+            background: linear-gradient(45deg, #2c5530, #345838);
+            color: #a5d6a7;
+        }
+
+        .warning {
+            background: linear-gradient(45deg, #ff7043, #ff5722);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.1em;
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .emoji {
+            font-size: 2em;
+            margin: 10px;
+        }
+
+        .upload-area {
+            border: 2px dashed #667eea;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin: 20px 0;
+            background: rgba(102, 126, 234, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .upload-area:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: scale(1.02);
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .progress {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(45deg, #4caf50, #8bc34a);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+
+        <!-- Страница 1: Выбор языка -->
+        <div class="page active" id="page1">
+            <div class="header">
+                <div class="logo">TRACER 2025</div>
+                <div class="subtitle">🏥 Медицинская подготовка</div>
+                <div class="emoji">🩺💊🧬</div>
+            </div>
+            
+            <div class="option-group">
+                <button class="option hebrew" onclick="selectLanguage('he')">
+                    <span class="flag">🇮🇱</span> עברית
+                </button>
+                <button class="option english" onclick="selectLanguage('en')">
+                    <span class="flag">🇺🇸</span> English
+                </button>
+                <button class="option russian" onclick="selectLanguage('ru')">
+                    <span class="flag">🇷🇺</span> Русский
+                </button>
+                <button class="option arabic" onclick="selectLanguage('ar')">
+                    <span class="flag">🇸🇦</span> عربي
+                </button>
+            </div>
+        </div>
+
+        <!-- Страница 2: Загрузка данных -->
+        <div class="page" id="page2">
+            <div class="header">
+                <div class="logo">📚 Загрузка данных</div>
+                <div class="subtitle" id="loadingStatus">Подключение к Google Таблице...</div>
+            </div>
+            
+            <div class="progress" id="uploadProgress">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <div class="emoji">🔄</div>
+                <div id="loadingText">Загружаем актуальные данные...</div>
+                <div style="font-size: 0.9em; color: #666; margin-top: 15px;">
+                    ✅ Врачи: <span id="doctorStatus">⏳ загрузка...</span><br>
+                    ✅ Медсестры: <span id="nurseStatus">⏳ загрузка...</span><br>
+                    ✅ Мл. персонал: <span id="supportStatus">⏳ загрузка...</span>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px; display: none;" id="errorSection">
+                <div class="warning">
+                    <div class="emoji">⚠️</div>
+                    <div>Ошибка загрузки данных</div>
+                </div>
+                <button class="btn" onclick="retryLoadData()">Повторить загрузку</button>
+                <button class="btn btn-secondary" onclick="continueWithoutData()">Использовать примерные данные</button>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px; display: none;" id="successSection">
+                <div class="emoji">🎉</div>
+                <div style="color: #4caf50; font-weight: bold;">Данные успешно загружены!</div>
+                <button class="btn" onclick="goToPage(3)" style="margin-top: 20px;">Продолжить</button>
+            </div>
+        </div>
+
+        <!-- Страница 3: Выбор должности -->
+        <div class="page" id="page3">
+            <div class="header">
+                <div class="logo" id="selectPositionTitle">Выберите должность</div>
+                <div class="emoji">👥</div>
+            </div>
+            
+            <div class="option-group">
+                <button class="option position-doctor" onclick="selectPosition('doctor')">
+                    <span class="emoji">👨‍⚕️</span>
+                    <span id="doctorText">Врач</span>
+                </button>
+                <button class="option position-nurse" onclick="selectPosition('nurse')">
+                    <span class="emoji">👩‍⚕️</span>
+                    <span id="nurseText">Медсестра</span>
+                </button>
+                <button class="option position-support" onclick="selectPosition('support')">
+                    <span class="emoji">🧑‍🔬</span>
+                    <span id="supportText">Младший медперсонал</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Страница 4: Проверка кодовой фразы -->
+        <div class="page" id="page4">
+            <div class="header">
+                <div class="logo" id="codeCheckTitle">Проверка безопасности</div>
+                <div class="emoji">🔐</div>
+                <div class="subtitle" id="codeCheckSubtitle">Выберите верную кодовую фразу:</div>
+            </div>
+            
+            <div class="option-group">
+                <button class="option" onclick="checkCode(false)">
+                    <span id="code1">🍵 Вольфсон это бразильский чай</span>
+                </button>
+                <button class="option" onclick="checkCode(false)">
+                    <span id="code2">🎬 Вольфсон это немецкий актер фильмов для взрослых</span>
+                </button>
+                <button class="option" onclick="checkCode(false)">
+                    <span id="code3">🚇 Вольфсон это название станции метро в Москве</span>
+                </button>
+                <button class="option" onclick="checkCode(true)">
+                    <span id="code4">🏠 Вольфсон это дом</span>
+                </button>
+            </div>
+            
+            <div id="warningMessage" style="display: none;">
+                <div class="warning">
+                    <div class="emoji">🚨</div>
+                    <div id="spyWarning">Подозрение на проникновение шпиона из больницы Ихилов!</div>
+                    <div class="emoji">🕵️‍♂️</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Страница 5: Настройки режима -->
+        <div class="page" id="page5">
+            <div class="header">
+                <div class="logo" id="settingsTitle">Настройки</div>
+                <div class="emoji">⚙️</div>
+            </div>
+            
+            <div class="option-group">
+                <button class="option" onclick="selectMode('sequential')">
+                    <span class="emoji">📋</span>
+                    <span id="sequentialText">Все вопросы подряд</span>
+                </button>
+                <button class="option" onclick="selectMode('random')">
+                    <span class="emoji">🎲</span>
+                    <span id="randomText">Случайный порядок вопросов</span>
+                </button>
+                <button class="option" onclick="selectMode('quiz')">
+                    <span class="emoji">🧠</span>
+                    <span id="quizText">Квиз (ответ виден не сразу)</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Страница 6: Вопросы -->
+        <div class="page" id="page6">
+            <div class="header">
+                <div class="logo" id="questionHeader">Вопрос</div>
+                <div id="questionCounter">1 / 100</div>
+            </div>
+            
+            <div class="question-card">
+                <div class="question" id="currentQuestion">Загрузка вопроса...</div>
+                <div class="answer" id="currentAnswer" style="display: none;">Загрузка ответа...</div>
+                <button class="btn" id="showAnswerBtn" style="display: none;" onclick="showAnswer()">Показать ответ</button>
+            </div>
+
+            <div class="controls">
+                <button class="btn btn-secondary" onclick="goToPage(5)">
+                    <span id="menuText">Меню</span>
+                </button>
+                <button class="btn" onclick="nextQuestion()">
+                    <span id="nextText">Далее</span>
+                </button>
+                <button class="btn btn-danger" onclick="exitApp()">
+                    <span id="exitText">Выйти</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Глобальные переменные
+        let currentLanguage = 'ru';
+        let selectedPosition = '';
+        let selectedMode = '';
+        let isDarkTheme = false;
+        let currentQuestionIndex = 0;
+        let questionsData = {};
+        let currentQuestions = [];
+
+        // URL-адреса Google Sheets
+        const GOOGLE_SHEETS_URLS = {
+            doctor: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSOYOQNAKfJydIub2AQ8usyHphnmgM_WYGy7nhduU_ZkLGKATe-75WQaF0FhpYy4-pkYsHNazHElg5p/pub?gid=366303685&single=true&output=csv',
+            nurse: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSOYOQNAKfJydIub2AQ8usyHphnmgM_WYGy7nhduU_ZkLGKATe-75WQaF0FhpYy4-pkYsHNazHElg5p/pub?gid=1863455630&single=true&output=csv',
+            support: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSOYOQNAKfJydIub2AQ8usyHphnmgM_WYGy7nhduU_ZkLGKATe-75WQaF0FhpYy4-pkYsHNazHElg5p/pub?gid=1339073068&single=true&output=csv'
+        };
+
+        // Переводы
+        const translations = {
+            ru: {
+                selectPositionTitle: 'Выберите должность',
+                doctorText: 'Врач',
+                nurseText: 'Медсестра',
+                supportText: 'Младший медперсонал',
+                codeCheckTitle: 'Проверка безопасности',
+                codeCheckSubtitle: 'Выберите верную кодовую фразу:',
+                code1: '🍵 Вольфсон это бразильский чай',
+                code2: '🎬 Вольфсон это немецкий актер фильмов для взрослых',
+                code3: '🚇 Вольфсон это название станции метро в Москве',
+                code4: '🏠 Вольфсон это дом',
+                spyWarning: 'Подозрение на проникновение шпиона из больницы Ихилов!',
+                settingsTitle: 'Настройки',
+                sequentialText: 'Все вопросы подряд',
+                randomText: 'Случайный порядок вопросов',
+                quizText: 'Квиз (ответ виден не сразу)',
+                questionHeader: 'Вопрос',
+                menuText: 'Меню',
+                nextText: 'Далее',
+                exitText: 'Выйти'
+            },
+            en: {
+                selectPositionTitle: 'Select Position',
+                doctorText: 'Doctor',
+                nurseText: 'Nurse',
+                supportText: 'Support Staff',
+                codeCheckTitle: 'Security Check',
+                codeCheckSubtitle: 'Choose the correct code phrase:',
+                code1: '🍵 Wolfson is Brazilian tea',
+                code2: '🎬 Wolfson is German adult film actor',
+                code3: '🚇 Wolfson is Moscow metro station',
+                code4: '🏠 Wolfson is home',
+                spyWarning: 'Suspected spy infiltration from Ichilov Hospital!',
+                settingsTitle: 'Settings',
+                sequentialText: 'All questions in order',
+                randomText: 'Random order questions',
+                quizText: 'Quiz (answer not visible immediately)',
+                questionHeader: 'Question',
+                menuText: 'Menu',
+                nextText: 'Next',
+                exitText: 'Exit'
+            },
+            he: {
+                selectPositionTitle: 'בחר תפקיד',
+                doctorText: 'רופא',
+                nurseText: 'אחות',
+                supportText: 'צוות מקצועי',
+                codeCheckTitle: 'בדיקת אבטחה',
+                codeCheckSubtitle: 'בחר את הביטוי הנכון:',
+                code1: '🍵 וולפסון זה תה ברזילאי',
+                code2: '🎬 וולפסון זה שחקן גרמני בסרטי מבוגרים',
+                code3: '🚇 וולפסון זה שם של תחנת רכבת תחתית במוסקבה',
+                code4: '🏠 וולפסון זה בית',
+                spyWarning: 'חשד לחדירת מרגל מבית החולים איכילוב!',
+                settingsTitle: 'הגדרות',
+                sequentialText: 'כל השאלות ברצף',
+                randomText: 'סדר אקראי של שאלות',
+                quizText: 'חידון (התשובה לא נראית מיד)',
+                questionHeader: 'שאלה',
+                menuText: 'תפריט',
+                nextText: 'הבא',
+                exitText: 'יציאה'
+            },
+            ar: {
+                selectPositionTitle: 'اختر المنصب',
+                doctorText: 'طبيب',
+                nurseText: 'ممرضة',
+                supportText: 'طاقم مساعد',
+                codeCheckTitle: 'فحص الأمان',
+                codeCheckSubtitle: 'اختر العبارة الصحيحة:',
+                code1: '🍵 وولفسون هو شاي برازيلي',
+                code2: '🎬 وولفسون ممثل ألماني في أفلام البالغين',
+                code3: '🚇 وولفسون اسم محطة مترو في موسكو',
+                code4: '🏠 وولفسون هو البيت',
+                spyWarning: 'اشتباه في تسلل جاسوس من مستشفى إيخيلوف!',
+                settingsTitle: 'الإعدادات',
+                sequentialText: 'جميع الأسئلة بالترتيب',
+                randomText: 'ترتيب عشوائي للأسئلة',
+                quizText: 'اختبار (الإجابة غير مرئية فوراً)',
+                questionHeader: 'سؤال',
+                menuText: 'القائمة',
+                nextText: 'التالي',
+                exitText: 'خروج'
+            }
+        };
+
+        // Примерные данные для демонстрации
+        const sampleData = {
+            doctor: [
+                {
+                    number: '1',
+                    question_he: 'מה הם הסימפטומים הראשוניים של התקף לב?',
+                    answer_he: 'כאב בחזה, קוצר נשימה, בחילות',
+                    question_ru: 'Каковы первичные симптомы инфаркта миокарда?',
+                    answer_ru: 'Боль в груди, одышка, тошнота',
+                    question_en: 'What are the primary symptoms of myocardial infarction?',
+                    answer_en: 'Chest pain, shortness of breath, nausea',
+                    question_ar: 'ما هي الأعراض الأولية لاحتشاء عضلة القلب؟',
+                    answer_ar: 'ألم في الصدر، ضيق في التنفس، غثيان'
+                },
+                {
+                    number: '2',
+                    question_he: 'איך מטפלים בזיהום בדרכי השתן?',
+                    answer_he: 'אנטיביוטיקה, הרבה נוזלים, מנוחה',
+                    question_ru: 'Как лечить инфекцию мочевыводящих путей?',
+                    answer_ru: 'Антибиотики, много жидкости, покой',
+                    question_en: 'How to treat urinary tract infection?',
+                    answer_en: 'Antibiotics, plenty of fluids, rest',
+                    question_ar: 'كيف تعالج عدوى المسالك البولية؟',
+                    answer_ar: 'المضادات الحيوية، الكثير من السوائل، الراحة'
+                }
+            ],
+            nurse: [
+                {
+                    number: '1',
+                    question_he: 'איך מודדים לחץ דם נכון?',
+                    answer_he: 'עם מכשיר לחץ דם תקין, בישיבה, זרוע בגובה הלב',
+                    question_ru: 'Как правильно измерить артериальное давление?',
+                    answer_ru: 'Исправным тонометром, в положении сидя, рука на уровне сердца',
+                    question_en: 'How to measure blood pressure correctly?',
+                    answer_en: 'With a working tonometer, sitting position, arm at heart level',
+                    question_ar: 'كيف تقيس ضغط الدم بشكل صحيح؟',
+                    answer_ar: 'بجهاز قياس ضغط سليم، في وضعية الجلوس، الذراع على مستوى القلب'
+                }
+            ],
+            support: [
+                {
+                    number: '1',
+                    question_he: 'איך מחטאים ידיים נכון?',
+                    answer_he: 'סבון למשך 20 שניות או אלכוהול 70%',
+                    question_ru: 'Как правильно дезинфицировать руки?',
+                    answer_ru: 'Мыло в течение 20 секунд или спирт 70%',
+                    question_en: 'How to disinfect hands correctly?',
+                    answer_en: 'Soap for 20 seconds or 70% alcohol',
+                    question_ar: 'كيف تطهر اليدين بشكل صحيح؟',
+                    answer_ar: 'الصابون لمدة 20 ثانية أو الكحول 70%'
+                }
+            ]
+        };
+
+        // Функции управления страницами
+        function goToPage(pageNumber) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.getElementById(`page${pageNumber}`).classList.add('active');
+        }
+
+        function selectLanguage(lang) {
+            currentLanguage = lang;
+            updateTranslations();
+            // Автоматически загружаем данные из Google Sheets
+            loadDataFromGoogleSheets();
+            goToPage(2);
+        }
+
+        // Загрузка данных из Google Sheets
+        async function loadDataFromGoogleSheets() {
+            document.getElementById('uploadProgress').style.display = 'block';
+            document.getElementById('errorSection').style.display = 'none';
+            document.getElementById('successSection').style.display = 'none';
+            
+            let loadedCount = 0;
+            let totalCount = 3;
+            let hasErrors = false;
+
+            // Загружаем данные для всех типов персонала
+            for (const [type, url] of Object.entries(GOOGLE_SHEETS_URLS)) {
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                    
+                    const csvText = await response.text();
+                    const data = parseCSV(csvText);
+                    questionsData[type] = data;
+                    
+                    // Обновляем статус загрузки
+                    updateLoadingStatus(type, 'success', data.length);
+                    loadedCount++;
+                    
+                } catch (error) {
+                    console.error(`Ошибка загрузки ${type}:`, error);
+                    updateLoadingStatus(type, 'error');
+                    hasErrors = true;
+                }
+                
+                // Обновляем прогресс-бар
+                const progress = (loadedCount / totalCount) * 100;
+                document.getElementById('progressBar').style.width = progress + '%';
+            }
+
+            // Показываем результат загрузки
+            setTimeout(() => {
+                if (hasErrors && loadedCount === 0) {
+                    document.getElementById('errorSection').style.display = 'block';
+                } else {
+                    document.getElementById('successSection').style.display = 'block';
+                    if (hasErrors) {
+                        document.getElementById('loadingText').textContent = 
+                            'Частичная загрузка завершена (некоторые данные недоступны)';
+                    }
+                }
+            }, 500);
+        }
+
+        function updateLoadingStatus(type, status, count = 0) {
+            const statusMap = {
+                doctor: 'doctorStatus',
+                nurse: 'nurseStatus', 
+                support: 'supportStatus'
+            };
+            
+            const element = document.getElementById(statusMap[type]);
+            if (status === 'success') {
+                element.textContent = `✅ загружено ${count} вопросов`;
+                element.style.color = '#4caf50';
+            } else {
+                element.textContent = '❌ ошибка загрузки';
+                element.style.color = '#f44336';
+            }
+        }
+
+        function retryLoadData() {
+            loadDataFromGoogleSheets();
+        }
+
+        function updateTranslations() {
+            const trans = translations[currentLanguage];
+            if (!trans) return;
+
+            Object.keys(trans).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.textContent = trans[key];
+                }
+            });
+        }
+
+        function selectPosition(position) {
+            selectedPosition = position;
+            document.querySelectorAll('.position-doctor, .position-nurse, .position-support').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            event.target.closest('.option').classList.add('selected');
+            setTimeout(() => goToPage(4), 500);
+        }
+
+        function checkCode(isCorrect) {
+            if (isCorrect) {
+                goToPage(5);
+            } else {
+                document.getElementById('warningMessage').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('warningMessage').style.display = 'none';
+                }, 3000);
+            }
+        }
+
+        function selectMode(mode) {
+            selectedMode = mode;
+            document.querySelectorAll('#page5 .option').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            event.target.closest('.option').classList.add('selected');
+            setTimeout(() => {
+                prepareQuestions();
+                goToPage(6);
+            }, 500);
+        }
+
+        function prepareQuestions() {
+            const data = questionsData[selectedPosition] || sampleData[selectedPosition] || [];
+            currentQuestions = [...data];
+            
+            if (selectedMode === 'random' || selectedMode === 'quiz') {
+                // Перемешиваем вопросы
+                for (let i = currentQuestions.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [currentQuestions[i], currentQuestions[j]] = [currentQuestions[j], currentQuestions[i]];
+                }
+            }
+            
+            currentQuestionIndex = 0;
+            showCurrentQuestion();
+        }
+
+        function showCurrentQuestion() {
+            if (currentQuestionIndex >= currentQuestions.length) {
+                alert('Все вопросы пройдены! 🎉');
+                goToPage(5);
+                return;
+            }
+
+            const question = currentQuestions[currentQuestionIndex];
+            const questionKey = `question_${currentLanguage}`;
+            const answerKey = `answer_${currentLanguage}`;
+
+            document.getElementById('currentQuestion').textContent = 
+                question[questionKey] || question.question_ru || 'Вопрос не найден';
+            
+            document.getElementById('currentAnswer').textContent = 
+                question[answerKey] || question.answer_ru || 'Ответ не найден';
+
+            document.getElementById('questionCounter').textContent = 
+                `${currentQuestionIndex + 1} / ${currentQuestions.length}`;
+
+            // Настройка видимости элементов в зависимости от режима
+            if (selectedMode === 'quiz') {
+                document.getElementById('currentAnswer').style.display = 'none';
+                document.getElementById('showAnswerBtn').style.display = 'block';
+            } else {
+                document.getElementById('currentAnswer').style.display = 'block';
+                document.getElementById('showAnswerBtn').style.display = 'none';
+            }
+        }
+
+        function showAnswer() {
+            document.getElementById('currentAnswer').style.display = 'block';
+            document.getElementById('showAnswerBtn').style.display = 'none';
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            showCurrentQuestion();
+        }
+
+        function exitApp() {
+            if (confirm('Вы уверены, что хотите выйти?')) {
+                goToPage(1);
+                resetApp();
+            }
+        }
+
+        function resetApp() {
+            currentLanguage = 'ru';
+            selectedPosition = '';
+            selectedMode = '';
+            currentQuestionIndex = 0;
+            currentQuestions = [];
+            document.querySelectorAll('.option').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+        }
+
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('dark-theme', isDarkTheme);
+            document.querySelector('.theme-toggle').textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+
+        function parseCSV(csv) {
+            const lines = csv.split('\n');
+            const result = [];
+            
+            for (let i = 1; i < lines.length; i++) { // Пропускаем заголовок
+                const line = lines[i].trim();
+                if (!line) continue;
+                
+                const columns = parseCSVLine(line);
+                if (columns.length >= 9) {
+                    // Структура: A=номер, B=вопрос_иврит, C=ответ_иврит, D=вопрос_рус, E=ответ_рус, F=вопрос_англ, G=ответ_англ, H=вопрос_араб, I=ответ_араб
+                    result.push({
+                        number: columns[0] || '',
+                        question_he: columns[1] || '',
+                        answer_he: columns[2] || '',
+                        question_ru: columns[3] || '',
+                        answer_ru: columns[4] || '',
+                        question_en: columns[5] || '',
+                        answer_en: columns[6] || '',
+                        question_ar: columns[7] || '',
+                        answer_ar: columns[8] || ''
+                    });
+                }
+            }
+            
+            return result;
+        }
+
+        function parseCSVLine(line) {
+            const result = [];
+            let current = '';
+            let inQuotes = false;
+            
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+                
+                if (char === '"') {
+                    if (inQuotes && line[i + 1] === '"') {
+                        // Экранированная кавычка
+                        current += '"';
+                        i++; // Пропускаем следующую кавычку
+                    } else {
+                        inQuotes = !inQuotes;
+                    }
+                } else if (char === ',' && !inQuotes) {
+                    result.push(current);
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            
+            result.push(current);
+            return result.map(cell => cell.trim().replace(/^"|"$/g, ''));
+        }
+
+        function continueWithoutData() {
+            questionsData = sampleData;
+            goToPage(3);
+        }
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTranslations();
+        });
+    </script>
+</body>
+</html>
