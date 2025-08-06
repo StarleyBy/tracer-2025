@@ -279,7 +279,7 @@
         <div class="page active" id="page1">
             <div class="header">
                 <div class="logo">TRACER 2025</div>
-                <div class="subtitle">🏥 Медицинская подготовка</div>
+                <div class="subtitle">🏥 Healthcare accreditation</div>
                 <div class="emoji">🩺💊🧬</div>
             </div>
             
@@ -302,8 +302,8 @@
         <!-- Страница 2: Загрузка данных -->
         <div class="page" id="page2">
             <div class="header">
-                <div class="logo">📚 Загрузка данных</div>
-                <div class="subtitle" id="loadingStatus">Подключение к Google Таблице...</div>
+                <div class="logo">📚 Loading data</div>
+                <div class="subtitle" id="loadingStatus">Connecting to the source of questions...</div>
             </div>
             
             <div class="progress" id="uploadProgress">
@@ -312,27 +312,27 @@
 
             <div style="text-align: center; margin-top: 30px;">
                 <div class="emoji">🔄</div>
-                <div id="loadingText">Загружаем актуальные данные...</div>
+                <div id="loadingText">Loading up-to-date data...</div>
                 <div style="font-size: 0.9em; color: #666; margin-top: 15px;">
-                    ✅ Врачи: <span id="doctorStatus">⏳ загрузка...</span><br>
-                    ✅ Медсестры: <span id="nurseStatus">⏳ загрузка...</span><br>
-                    ✅ Мл. персонал: <span id="supportStatus">⏳ загрузка...</span>
+                    ✅ Doctors: <span id="doctorStatus">⏳ loading...</span><br>
+                    ✅ Nurses: <span id="nurseStatus">⏳ loading...</span><br>
+                    ✅ Junior medical staff: <span id="supportStatus">⏳ loading...</span>
                 </div>
             </div>
 
             <div style="text-align: center; margin-top: 40px; display: none;" id="errorSection">
                 <div class="warning">
                     <div class="emoji">⚠️</div>
-                    <div>Ошибка загрузки данных</div>
+                    <div>Error loading data</div>
                 </div>
-                <button class="btn" onclick="retryLoadData()">Повторить загрузку</button>
+                <button class="btn" onclick="retryLoadData()">Retry loading questions</button>
                 <button class="btn btn-secondary" onclick="continueWithoutData()">Использовать примерные данные</button>
             </div>
 
             <div style="text-align: center; margin-top: 30px; display: none;" id="successSection">
                 <div class="emoji">🎉</div>
-                <div style="color: #4caf50; font-weight: bold;">Данные успешно загружены!</div>
-                <button class="btn" onclick="goToPage(3)" style="margin-top: 20px;">Продолжить</button>
+                <div style="color: #4caf50; font-weight: bold;">Data loaded successfully!</div>
+                <button class="btn" onclick="goToPage(3)" style="margin-top: 20px;">Continue</button>
             </div>
         </div>
 
