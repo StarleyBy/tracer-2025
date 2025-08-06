@@ -273,11 +273,54 @@
             width: 0%;
             transition: width 0.3s ease;
         }
+
+        .readme-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.readme-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.readme-content {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 350px;
+    margin: 20px;
+    text-align: left;
+    line-height: 1.5;
+}
+
+.dark-theme .readme-content {
+    background: #2c3e50;
+    color: #ecf0f1;
+}
     </style>
 </head>
 <body>
     <div class="container">
         <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+        <button class="readme-btn" onclick="showReadme()">ℹ️</button>
 
         <!-- Страница 1: Выбор языка -->
         <div class="page active" id="page1">
@@ -443,6 +486,26 @@
                 </button>
             </div>
         </div>
+
+        <!-- README Modal -->
+<div class="readme-modal" id="readmeModal" onclick="hideReadme()">
+    <div class="readme-content" onclick="event.stopPropagation()">
+        <h3 style="margin-bottom: 15px; text-align: center;">📖 About TRACER 2025</h3>
+        <p>Mini application "TRACER 2025" for comfortable preparation for periodic accreditation at the Wolfson Medical Center.</p>
+        <br>
+        <p>I was always a little scared by the huge number of printed sheets of unstructured text that you need to study and remember in a short time.</p>
+        <br>
+        <p>Therefore, it was decided to help myself and colleagues.</p>
+        <br>
+        <p>Light and dark themes, different questions for doctors, nurses and junior medical staff.</p>
+        <br>
+        <p>Translation - using Google Translate, so there may be shortcomings.</p>
+        <br>
+        <p>Amateur work, do not swear too much. Good luck! 🍀</p>
+        <br>
+        <button class="btn" onclick="hideReadme()" style="width: 100%;">Close</button>
+    </div>
+</div>
     </div>
 
     <script>
@@ -873,6 +936,14 @@
             goToPage(3);
         }
 
+        function showReadme() {
+    document.getElementById('readmeModal').style.display = 'flex';
+}
+
+function hideReadme() {
+    document.getElementById('readmeModal').style.display = 'none';
+}
+        
         // Инициализация
         document.addEventListener('DOMContentLoaded', function() {
             updateTranslations();
