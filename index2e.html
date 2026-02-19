@@ -319,7 +319,7 @@ body {
 .ar .lang-badge { background: rgba(106,27,154,0.1); color: var(--ar); }
 
 /* RTL fields */
-.lang-card.he .hl-textarea, .lang-card.ar .hl-textarea { direction: rtl; }
+.lang-card.he textarea, .lang-card.ar textarea { direction: rtl; font-family: 'Inter', sans-serif; }
 
 .lang-card-body { padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; }
 
@@ -332,70 +332,22 @@ body {
     margin-bottom: 5px;
 }
 
-/* ── Highlighted textarea widget ─────────────────────────── */
-.hl-wrap {
-    position: relative;
+textarea {
+    width: 100%;
+    padding: 10px 14px;
     border: 1px solid var(--border);
     border-radius: 8px;
-    background: var(--surface2);
-    transition: border-color 0.15s;
-    overflow: hidden;
-    /* min-height controlled by textarea */
-}
-.hl-wrap:focus-within {
-    border-color: var(--accent);
-    background: #fff;
-}
-
-/* The highlight layer — sits behind, same font/padding as textarea */
-.hl-display {
-    position: absolute;
-    inset: 0;
-    padding: 10px 14px;
     font-size: 0.9em;
     line-height: 1.6;
-    font-family: 'Inter', sans-serif;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    overflow: hidden;
-    pointer-events: none;
-    color: transparent; /* base text invisible — only spans show */
-    border-radius: 8px;
-}
-
-/* Coloured spans inside the highlight layer */
-.hl-display .tc-r  { color: #c0392b; font-weight: 600; background: rgba(192,57,43,0.08); border-radius: 2px; }
-.hl-display .tc-b  { color: #1a6fa8; font-weight: 600; background: rgba(26,111,168,0.08); border-radius: 2px; }
-.hl-display .tc-g  { color: #1e7e34; font-weight: 600; background: rgba(30,126,52,0.08);  border-radius: 2px; }
-.hl-display .tc-y  { color: #8a6200; font-weight: 600; background: rgba(138,98,0,0.08);    border-radius: 2px; }
-.hl-display .tc-bd { color: var(--text); font-weight: 700; }
-/* Raw tag text — show dimly so user can see the tags */
-.hl-display .tc-tag { color: #bbb; font-size: 0.85em; }
-
-/* The real textarea — transparent bg, sits on top */
-.hl-textarea {
-    position: relative;
-    display: block;
-    width: 100%;
-    min-height: 80px;
-    padding: 10px 14px;
-    font-size: 0.9em;
-    line-height: 1.6;
-    font-family: 'Inter', sans-serif;
     color: var(--text);
-    background: transparent;
-    border: none;
-    outline: none;
+    background: var(--surface2);
     resize: vertical;
-    caret-color: var(--accent);
-    /* Make text visible but tags render on top */
-    mix-blend-mode: multiply;
+    min-height: 80px;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.15s;
+    outline: none;
 }
-/* In Chrome/Firefox mix-blend-mode trick makes text transparent where highlighted:
-   fallback — just show text normally, highlights still visible underneath */
-@supports not (mix-blend-mode: multiply) {
-    .hl-textarea { color: var(--text); }
-}
+textarea:focus { border-color: var(--accent); background: #fff; }
 
 /* Media section */
 .media-section {
@@ -828,9 +780,6 @@ function renderEditor(q) {
         </div>
 
     </div>`;
-
-    // Init syntax highlighting for all text fields
-    requestAnimationFrame(initAllHighlights);
 }
 
 function renderLangCard(lang, q) {
@@ -846,12 +795,14 @@ function renderLangCard(lang, q) {
             <div>
                 <div class="field-label">Question</div>
                 <div class="fmt-bar">${fmtBar('q_' + lang.code)}</div>
-                ${hlWrap('q_' + lang.code, data.question || '', lang.dir)}
+                <textarea id="q_${lang.code}" rows="3" dir="${lang.dir}"
+                    oninput="markModified()">${escHtml(data.question || '')}</textarea>
             </div>
             <div>
                 <div class="field-label">Answer</div>
                 <div class="fmt-bar">${fmtBar('a_' + lang.code)}</div>
-                ${hlWrap('a_' + lang.code, data.answer || '', lang.dir)}
+                <textarea id="a_${lang.code}" rows="3" dir="${lang.dir}"
+                    oninput="markModified()">${escHtml(data.answer || '')}</textarea>
             </div>
         </div>
     </div>`;
@@ -998,7 +949,7 @@ function saveCurrentToMemory() {
     const newId = parseInt(document.getElementById('editId')?.value);
     if (newId && newId !== q.id) q.id = newId;
 
-    // Language fields — read from .hl-textarea
+    // Language fields
     LANGS.forEach(l => {
         const qEl = document.getElementById('q_' + l.code);
         const aEl = document.getElementById('a_' + l.code);
@@ -1105,120 +1056,45 @@ function copyJSON() {
 
 // ─── FORMATTING HELPERS ───────────────────────────────────────────────────────
 const COLOR_TAGS = [
-    { tag:'r',    label:'R',  cls:'fmt-r',  title:'Red'    },
-    { tag:'b',    label:'B',  cls:'fmt-b',  title:'Blue'   },
-    { tag:'g',    label:'G',  cls:'fmt-g',  title:'Green'  },
-    { tag:'y',    label:'Y',  cls:'fmt-y',  title:'Yellow' },
-    { tag:'bold', label:'B',  cls:'fmt-bd', title:'Bold'   },
+    { tag:'r',    label:'R', cls:'fmt-r',  title:'Red'    },
+    { tag:'b',    label:'B', cls:'fmt-b',  title:'Blue'   },
+    { tag:'g',    label:'G', cls:'fmt-g',  title:'Green'  },
+    { tag:'y',    label:'Y', cls:'fmt-y',  title:'Yellow' },
+    { tag:'bold', label:'B', cls:'fmt-bd', title:'Bold'   },
 ];
 
 function fmtBar(targetId) {
     const btns = COLOR_TAGS.map(c =>
         `<button class="fmt-btn ${c.cls}" title="${c.title}"
-                 onclick="wrapTag('${targetId}','${c.tag}')">${c.label}</button>`
+                 onclick="wrapTag('${targetId}','${c.tag}')">[${c.tag}] ${c.label}</button>`
     ).join('');
     const clrBtn = `<button class="fmt-btn fmt-clr" title="Remove all tags"
-                            onclick="stripTags('${targetId}')">✕</button>`;
+                            onclick="stripTags('${targetId}')">✕ clear</button>`;
     return btns + clrBtn;
-}
-
-// Build the hl-wrap widget HTML
-function hlWrap(id, value, dir) {
-    return `
-    <div class="hl-wrap" id="wrap_${id}">
-        <div class="hl-display" id="disp_${id}" dir="${dir}" aria-hidden="true"></div>
-        <textarea class="hl-textarea" id="${id}" dir="${dir}" rows="3"
-            oninput="onHlInput(this)" onscroll="syncScroll(this)"
-            onfocus="syncScroll(this)">${escHtml(value)}</textarea>
-    </div>`;
-}
-
-// Called on every keystroke — updates the highlight layer
-function onHlInput(ta) {
-    updateHighlight(ta.id);
-    autoGrow(ta);
-    markModified();
-}
-
-function updateHighlight(id) {
-    const ta   = document.getElementById(id);
-    const disp = document.getElementById('disp_' + id);
-    if (!ta || !disp) return;
-    disp.innerHTML = highlight(ta.value);
-    syncScroll(ta);
-}
-
-// Auto-grow textarea height
-function autoGrow(ta) {
-    ta.style.height = 'auto';
-    ta.style.height = (ta.scrollHeight) + 'px';
-    const wrap = ta.closest('.hl-wrap');
-    if (wrap) wrap.style.height = ta.style.height;
-}
-
-// Keep display layer scrolled in sync with textarea
-function syncScroll(ta) {
-    const disp = document.getElementById('disp_' + ta.id);
-    if (disp) {
-        disp.scrollTop  = ta.scrollTop;
-        disp.scrollLeft = ta.scrollLeft;
-    }
-}
-
-// Convert tagged text → highlighted HTML for the display layer
-function highlight(text) {
-    // Escape HTML first (work on plain text), then replace tags with spans
-    let s = text
-        .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-
-    // Bold
-    s = s.replace(/\[bold\]([\s\S]*?)\[\/bold\]/g,
-        (_, inner) => `<span class="tc-bd">${inner}</span>`);
-
-    // Colours
-    const colorMap = { r:'tc-r', b:'tc-b', g:'tc-g', y:'tc-y' };
-    s = s.replace(/\[(r|b|g|y)\]([\s\S]*?)\[\/\1\]/g,
-        (_, tag, inner) => `<span class="${colorMap[tag]}">${inner}</span>`);
-
-    // Must end with newline so last line renders correctly
-    return s + '\n';
-}
-
-// Initialize all hl-wraps after render
-function initAllHighlights() {
-    document.querySelectorAll('.hl-textarea').forEach(ta => {
-        updateHighlight(ta.id);
-        autoGrow(ta);
-    });
 }
 
 function wrapTag(id, tag) {
     const ta = document.getElementById(id);
     if (!ta) return;
-    const start   = ta.selectionStart;
-    const end     = ta.selectionEnd;
-    const sel     = ta.value.slice(start, end);
-    const before  = ta.value.slice(0, start);
-    const after   = ta.value.slice(end);
-    const open    = `[${tag}]`;
-    const close   = `[/${tag}]`;
+    const start  = ta.selectionStart;
+    const end    = ta.selectionEnd;
+    const sel    = ta.value.slice(start, end);
+    const before = ta.value.slice(0, start);
+    const after  = ta.value.slice(end);
+    const open   = `[${tag}]`;
+    const close  = `[/${tag}]`;
     ta.value = before + open + sel + close + after;
     ta.selectionStart = start + open.length;
     ta.selectionEnd   = start + open.length + sel.length;
     ta.focus();
-    updateHighlight(id);
-    autoGrow(ta);
     markModified();
 }
 
 function stripTags(id) {
     const ta = document.getElementById(id);
     if (!ta) return;
-    ta.value = ta.value
-        .replace(/\[(r|b|g|y|bold)\]([\s\S]*?)\[\/\1\]/g, '$2');
+    ta.value = ta.value.replace(/\[(r|b|g|y|bold)\]([\s\S]*?)\[\/\1\]/g, '$2');
     ta.focus();
-    updateHighlight(id);
-    autoGrow(ta);
     markModified();
 }
 
