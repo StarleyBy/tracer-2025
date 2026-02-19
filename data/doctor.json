@@ -1,0 +1,138 @@
+[
+  {
+    "id": 1,
+    "he": {
+      "question": "מה הם הסימפטומים הראשוניים של התקף לב?",
+      "answer": "כאב בחזה (לעיתים מקרין לזרוע שמאל), קוצר נשימה, בחילות, הזעה קרה."
+    },
+    "ru": {
+      "question": "Каковы первичные симптомы инфаркта миокарда?",
+      "answer": "Боль в груди (иногда иррадиирует в левую руку), одышка, тошнота, холодный пот."
+    },
+    "en": {
+      "question": "What are the primary symptoms of myocardial infarction?",
+      "answer": "Chest pain (may radiate to left arm), shortness of breath, nausea, cold sweat."
+    },
+    "ar": {
+      "question": "ما هي الأعراض الأولية لاحتشاء عضلة القلب؟",
+      "answer": "ألم في الصدر (قد يمتد للذراع اليسرى)، ضيق التنفس، غثيان، تعرق بارد."
+    },
+    "question_media": [],
+    "answer_media": [
+      {
+        "type": "image",
+        "src": "https://raw.githubusercontent.com/StarleyBy/tracer-2025/main/images/doctor/q1_mi_symptoms.png",
+        "alt": "Diagram: MI symptom locations"
+      },
+      {
+        "type": "link",
+        "url": "https://www.heart.org/en/health-topics/heart-attack/warning-signs-of-a-heart-attack",
+        "labels": {
+          "en": "AHA: Heart attack warning signs",
+          "ru": "AHA: Симптомы инфаркта",
+          "he": "AHA: סימני אזהרה להתקף לב",
+          "ar": "AHA: علامات تحذيرية لنوبة قلبية"
+        }
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "he": {
+      "question": "איך מטפלים בזיהום בדרכי השתן?",
+      "answer": "אנטיביוטיקה (לרוב ניטרופורנטואין או טרימתופרים), הרבה נוזלים, מנוחה."
+    },
+    "ru": {
+      "question": "Как лечить инфекцию мочевыводящих путей?",
+      "answer": "Антибиотики (нитрофурантоин или триметоприм), много жидкости, покой."
+    },
+    "en": {
+      "question": "How to treat a urinary tract infection (UTI)?",
+      "answer": "Antibiotics (nitrofurantoin or trimethoprim), plenty of fluids, rest."
+    },
+    "ar": {
+      "question": "كيف تعالج عدوى المسالك البولية؟",
+      "answer": "المضادات الحيوية (نيتروفورانتوين أو تريميثوبريم)، الكثير من السوائل، الراحة."
+    },
+    "question_media": [
+      {
+        "type": "note",
+        "text": {
+          "en": "⚠️ Distinguish upper UTI (pyelonephritis) from lower UTI (cystitis) — treatment duration differs.",
+          "ru": "⚠️ Различайте верхние (пиелонефрит) и нижние (цистит) ИМП — курс лечения разный.",
+          "he": "⚠️ יש להבדיל בין דלקת בדרכי השתן התחתונות לעליונות — משך הטיפול שונה.",
+          "ar": "⚠️ ميّز بين التهاب المسالك العلوية والسفلية — مدة العلاج مختلفة."
+        }
+      }
+    ],
+    "answer_media": []
+  },
+  {
+    "id": 3,
+    "he": {
+      "question": "איך מסדר נכון את האלקטרודות לאק\"ג 12 גמילות?",
+      "answer": "גפיים: אדום-ימין, צהוב-שמאל, ירוק-רגל שמאל, שחור-רגל ימין. חזה: V1–V6 לפי מיקום אנטומי."
+    },
+    "ru": {
+      "question": "Как правильно расставить электроды для 12-канальной ЭКГ?",
+      "answer": "Конечности: красный-правая рука, жёлтый-левая рука, зелёный-левая нога, чёрный-правая нога. Грудные: V1–V6 по анатомическим ориентирам."
+    },
+    "en": {
+      "question": "How to correctly place electrodes for a 12-lead ECG?",
+      "answer": "Limb leads: red-right arm, yellow-left arm, green-left leg, black-right leg. Chest leads: V1–V6 per anatomical landmarks."
+    },
+    "ar": {
+      "question": "كيف توضع أقطاب تخطيط القلب 12 قناة بشكل صحيح؟",
+      "answer": "أطراف: أحمر-يد يمنى، أصفر-يد يسرى، أخضر-رجل يسرى، أسود-رجل يمنى. صدر: V1–V6 حسب المعالم التشريحية."
+    },
+    "question_media": [],
+    "answer_media": [
+      {
+        "type": "image",
+        "src": "https://raw.githubusercontent.com/StarleyBy/tracer-2025/main/images/doctor/q3_ecg_placement.png",
+        "alt": "ECG electrode placement diagram"
+      },
+      {
+        "type": "note",
+        "text": {
+          "en": "💡 Mnemonic for limb leads: Ride Your Green Bicycle (R=Red, Y=Yellow, G=Green, B/Black=right leg ground).",
+          "ru": "💡 Мнемоника: «Красный-Жёлтый-Зелёный-Чёрный» = Правая рука → Левая рука → Левая нога → Правая нога.",
+          "he": "💡 קצר זיכרון: אדום-ימין, צהוב-שמאל, ירוק-שמאל תחתון, שחור-ימין תחתון.",
+          "ar": "💡 لتذكر الترتيب: أحمر يمين، أصفر يسار، أخضر يسار أسفل، أسود يمين أسفل."
+        }
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "he": {
+      "question": "מהם קריטריוני ה-SIRS לאבחון ספסיס?",
+      "answer": "2 מתוך 4: חום >38°C או <36°C; דופק >90; נשימות >20/דקה; WBC >12,000 או <4,000."
+    },
+    "ru": {
+      "question": "Каковы критерии SIRS для диагностики сепсиса?",
+      "answer": "2 из 4: температура >38°C или <36°C; ЧСС >90; ЧД >20/мин; лейкоциты >12 000 или <4 000."
+    },
+    "en": {
+      "question": "What are the SIRS criteria for diagnosing sepsis?",
+      "answer": "2 of 4: Temp >38°C or <36°C; HR >90; RR >20/min; WBC >12,000 or <4,000."
+    },
+    "ar": {
+      "question": "ما هي معايير SIRS لتشخيص الإنتان؟",
+      "answer": "2 من 4: حرارة >38°C أو <36°C؛ نبض >90؛ تنفس >20/دقيقة؛ كريات بيضاء >12,000 أو <4,000."
+    },
+    "question_media": [
+      {
+        "type": "link",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK537286/",
+        "labels": {
+          "en": "NIH: SIRS criteria reference",
+          "ru": "NIH: критерии SIRS",
+          "he": "NIH: קריטריוני SIRS",
+          "ar": "NIH: مرجع معايير SIRS"
+        }
+      }
+    ],
+    "answer_media": []
+  }
+]
