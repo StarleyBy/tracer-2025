@@ -883,6 +883,7 @@ function renderMedia(mediaArray, containerId) {
 // Supported tags: [r]red[/r]  [b]blue[/b]  [g]green[/g]  [y]yellow[/y]
 function formatText(str) {
     return String(str)
+        .replace(/\[bold\]([\s\S]*?)\[\/bold\]/g, '<strong>$1</strong>')
         .replace(/\[r\]([\s\S]*?)\[\/r\]/g, '<span class="tc-r">$1</span>')
         .replace(/\[b\]([\s\S]*?)\[\/b\]/g, '<span class="tc-b">$1</span>')
         .replace(/\[g\]([\s\S]*?)\[\/g\]/g, '<span class="tc-g">$1</span>')
