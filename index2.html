@@ -395,14 +395,36 @@
 
         /* Dark/Light toggle — dark is default, light mode override */
         body.light {
-            --bg: #f0f0f5;
+            --bg: #eef0f7;
             --surface: #ffffff;
-            --surface2: #f5f5fa;
-            --text: #2d2d3a;
-            --text-dim: #9999aa;
-            --border: rgba(124,106,247,0.15);
+            --surface2: #f4f5fb;
+            --accent: #5a48e0;
+            --accent2: #c0392b;
+            --accent3: #1a7f8e;
+            --text: #1a1a2e;
+            --text-dim: #5a5a7a;
+            --green: #1e7e34;
+            --yellow: #8a6200;
+            --border: rgba(90, 72, 224, 0.18);
         }
         body.light .container::before { display: none; }
+        body.light .logo { text-shadow: none; }
+        body.light .option { color: var(--text); }
+        body.light .q-text { color: #1a1a2e; }
+        body.light .a-text { color: var(--green); }
+        body.light .warning { color: var(--accent2); }
+        body.light .topbar { background: var(--surface); border-color: var(--border); }
+        body.light .controls { background: var(--surface); border-color: var(--border); }
+        body.light .counter { color: var(--text-dim); }
+        body.light .q-label { color: var(--accent); }
+        body.light .a-label { color: var(--green); }
+        body.light .load-status { color: var(--text-dim); }
+        body.light .load-status.ok { color: #1e7e34; }
+        body.light .load-status.err { color: var(--accent2); }
+        body.light .media-note { color: var(--yellow); background: rgba(138, 98, 0, 0.08); border-color: rgba(138,98,0,0.25); }
+        body.light .media-link { color: var(--accent3); border-color: rgba(26,127,142,0.3); }
+        body.light .modal-content { background: var(--surface); color: var(--text); }
+        body.light .btn-outline { border-color: var(--accent); color: var(--accent); }
     </style>
 </head>
 <body>
@@ -459,6 +481,7 @@
         <div style="display:none; margin-top:24px; text-align:center;" id="successSection">
             <div style="color:var(--green); margin-bottom:16px;">✅ Data loaded</div>
             <button class="btn" onclick="goToPage(3)">Continue →</button>
+            <button class="btn btn-outline" style="margin-top:8px; display:block; width:100%;" onclick="clearCacheAndReload()">🔄 Force reload from server</button>
         </div>
     </div>
 
@@ -704,7 +727,7 @@ async function loadData() {
         }
 
         try {
-            const res = await fetch(DATA_BASE + pos + '.json');
+            const res = await fetch(DATA_BASE + pos + '.json?v=' + Date.now());
             if (!res.ok) throw new Error('HTTP ' + res.status);
             const data = await res.json();
             questionsData[pos] = data;
@@ -733,6 +756,11 @@ async function loadData() {
 function useSampleData() {
     questionsData = SAMPLE;
     goToPage(3);
+}
+
+function clearCacheAndReload() {
+    ['doctor','nurse','support'].forEach(p => localStorage.removeItem('tracer_' + p));
+    loadData();
 }
 
 // ─── POSITION ────────────────────────────────────────────────────────────────
