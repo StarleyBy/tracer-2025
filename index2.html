@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRACER 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Noto+Sans+Hebrew:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #0d0d14;
+            --surface: #16161f;
+            --surface2: #1e1e2e;
+            --accent: #7c6af7;
+            --accent2: #e06c75;
+            --accent3: #56b6c2;
+            --text: #ced2e0;
+            --text-dim: #6b7089;
+            --green: #98c379;
+            --yellow: #e5c07b;
+            --border: rgba(124, 106, 247, 0.2);
+            --card-shadow: 0 4px 24px rgba(0,0,0,0.4);
+        }
+
+        body {
+            font-family: 'Space Mono', monospace;
+            background: var(--bg);
+            min-height: 100vh;
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+            min-height: 100vh;
+            background: var(--surface);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Scanline overlay */
+        .container::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 50%; transform: translateX(-50%);
+            width: 420px;
+            height: 100vh;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0,0,0,0.05) 2px,
+                rgba(0,0,0,0.05) 4px
+            );
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .page {
+            display: none;
+            padding: 20px;
+            min-height: 100vh;
+            animation: fadeIn 0.3s ease;
+        }
+        .page.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Top bar */
+        .topbar {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 16px;
+            z-index: 100;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .topbar-btn {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            width: 38px; height: 38px;
+            font-size: 1.1em;
+            cursor: pointer;
+            color: var(--text);
+            transition: all 0.2s;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .topbar-btn:hover { border-color: var(--accent); background: rgba(124,106,247,0.1); }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+            padding-top: 80px;
+        }
+
+        .logo {
+            font-size: 2.2em;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: var(--accent);
+            text-shadow: 0 0 30px rgba(124,106,247,0.5);
+            margin-bottom: 8px;
+        }
+
+        .logo-sub {
+            font-size: 0.75em;
+            color: var(--text-dim);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        /* Options */
+        .option-group { display: flex; flex-direction: column; gap: 10px; }
+
+        .option {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px 20px;
+            width: 100%;
+            text-align: left;
+            font-size: 1em;
+            font-family: 'Space Mono', monospace;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: var(--accent);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .option:hover {
+            border-color: var(--accent);
+            background: rgba(124,106,247,0.08);
+            transform: translateX(4px);
+        }
+        .option:hover::before { opacity: 1; }
+
+        .option.selected {
+            border-color: var(--accent);
+            background: rgba(124,106,247,0.15);
+        }
+        .option.selected::before { opacity: 1; }
+
+        /* Language buttons — centred */
+        .option.lang-btn { text-align: center; justify-content: center; }
+        .option.lang-he { border-left-color: #4fc3f7; }
+        .option.lang-he::before { background: #4fc3f7; }
+        .option.lang-en { border-left-color: var(--green); }
+        .option.lang-en::before { background: var(--green); }
+        .option.lang-ru { border-left-color: var(--accent2); }
+        .option.lang-ru::before { background: var(--accent2); }
+        .option.lang-ar { border-left-color: var(--yellow); }
+        .option.lang-ar::before { background: var(--yellow); }
+
+        .flag { font-size: 1.4em; }
+        .opt-label { flex: 1; }
+        .opt-icon { font-size: 1.4em; }
+
+        /* Buttons */
+        .btn {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 13px 24px;
+            font-size: 0.95em;
+            font-family: 'Space Mono', monospace;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn:hover { opacity: 0.85; transform: translateY(-1px); }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+        }
+        .btn-danger { background: var(--accent2); }
+        .btn-secondary { background: var(--accent3); color: #000; }
+        .btn-full { width: 100%; justify-content: center; margin-top: 10px; }
+
+        /* Question card */
+        .question-card {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 16px 0 100px;
+        }
+
+        .q-label {
+            font-size: 0.7em;
+            color: var(--accent);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .q-text {
+            font-size: 1.05em;
+            line-height: 1.7;
+            color: #fff;
+            margin-bottom: 16px;
+        }
+
+        /* Media block inside question */
+        .q-media { margin: 14px 0; }
+
+        .q-media img {
+            max-width: 100%;
+            border-radius: 10px;
+            display: block;
+            border: 1px solid var(--border);
+        }
+
+        .q-media .media-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--accent3);
+            text-decoration: none;
+            font-size: 0.9em;
+            border: 1px solid rgba(86,182,194,0.3);
+            border-radius: 8px;
+            padding: 8px 14px;
+            transition: all 0.2s;
+            margin-top: 8px;
+        }
+        .q-media .media-link:hover { background: rgba(86,182,194,0.1); }
+
+        .q-media .media-note {
+            background: rgba(229,192,123,0.1);
+            border: 1px solid rgba(229,192,123,0.3);
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 0.9em;
+            color: var(--yellow);
+            margin-top: 8px;
+            line-height: 1.5;
+        }
+
+        .answer-block {
+            border-top: 1px solid var(--border);
+            margin-top: 16px;
+            padding-top: 16px;
+        }
+
+        .a-label {
+            font-size: 0.7em;
+            color: var(--green);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .a-text {
+            font-size: 1em;
+            line-height: 1.7;
+            color: var(--green);
+        }
+
+        /* Answer media (same styles, green tint) */
+        .a-media img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 12px;
+            border: 1px solid rgba(152,195,121,0.3);
+        }
+
+        /* Counter badge */
+        .counter {
+            display: inline-block;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 4px 14px;
+            font-size: 0.8em;
+            color: var(--text-dim);
+            margin-bottom: 12px;
+        }
+
+        /* Fixed bottom controls */
+        .controls {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 420px;
+            display: flex;
+            gap: 8px;
+            padding: 14px 16px;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            z-index: 100;
+        }
+        .controls .btn { flex: 1; justify-content: center; font-size: 0.85em; padding: 12px 8px; }
+
+        /* Progress bar */
+        .progress-wrap {
+            background: var(--surface2);
+            border-radius: 4px;
+            height: 4px;
+            margin: 16px 0;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent3));
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        /* Loading status */
+        .load-status { font-size: 0.85em; color: var(--text-dim); margin: 6px 0; }
+        .load-status.ok { color: var(--green); }
+        .load-status.err { color: var(--accent2); }
+
+        /* Warning */
+        .warning {
+            background: rgba(224,108,117,0.15);
+            border: 1px solid var(--accent2);
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+            color: var(--accent2);
+            margin: 16px 0;
+            animation: shake 0.4s ease;
+        }
+        @keyframes shake {
+            0%,100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        .modal-overlay.open { display: flex; }
+
+        .modal-content {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            max-width: 340px;
+            margin: 20px;
+            line-height: 1.7;
+            font-size: 0.9em;
+            color: var(--text);
+        }
+        .modal-content h3 { color: var(--accent); margin-bottom: 12px; }
+
+        /* RTL support */
+        [dir="rtl"] .option { flex-direction: row-reverse; text-align: right; }
+        [dir="rtl"] .option::before { left: auto; right: 0; }
+        [dir="rtl"] .option:hover { transform: translateX(-4px); }
+        [dir="rtl"] .q-text, [dir="rtl"] .a-text { direction: rtl; }
+
+        /* Dark/Light toggle — dark is default, light mode override */
+        body.light {
+            --bg: #f0f0f5;
+            --surface: #ffffff;
+            --surface2: #f5f5fa;
+            --text: #2d2d3a;
+            --text-dim: #9999aa;
+            --border: rgba(124,106,247,0.15);
+        }
+        body.light .container::before { display: none; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="topbar">
+        <button class="topbar-btn" onclick="showModal('readmeModal')" title="About">ℹ️</button>
+        <span style="font-size:0.7em; letter-spacing:0.1em; color:var(--text-dim)">TRACER // 2025</span>
+        <button class="topbar-btn" onclick="toggleTheme()" id="themeBtn" title="Toggle theme">☀️</button>
+    </div>
+
+    <!-- PAGE 1: Language -->
+    <div class="page active" id="page1">
+        <div class="header">
+            <div class="logo">TRACER</div>
+            <div class="logo-sub">Healthcare Accreditation · 2025</div>
+        </div>
+        <div class="option-group">
+            <button class="option lang-btn lang-he" onclick="selectLanguage('he')">
+                <span class="flag">🇮🇱</span>
+                <span class="opt-label">עברית</span>
+            </button>
+            <button class="option lang-btn lang-en" onclick="selectLanguage('en')">
+                <span class="flag">🇺🇸</span>
+                <span class="opt-label">English</span>
+            </button>
+            <button class="option lang-btn lang-ru" onclick="selectLanguage('ru')">
+                <span class="flag">🇷🇺</span>
+                <span class="opt-label">Русский</span>
+            </button>
+            <button class="option lang-btn lang-ar" onclick="selectLanguage('ar')">
+                <span class="flag">🇸🇦</span>
+                <span class="opt-label">عربي</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- PAGE 2: Loading -->
+    <div class="page" id="page2">
+        <div class="header">
+            <div class="logo" style="font-size:1.4em">Loading data</div>
+            <div class="logo-sub" id="loadingStatus">Fetching questions from GitHub…</div>
+        </div>
+        <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+        <div class="load-status" id="doctorStatus">⏳ Doctors…</div>
+        <div class="load-status" id="nurseStatus">⏳ Nurses…</div>
+        <div class="load-status" id="supportStatus">⏳ Support staff…</div>
+
+        <div style="display:none; margin-top:24px;" id="errorSection">
+            <div class="warning">⚠️ Could not load data</div>
+            <button class="btn btn-full" onclick="loadData()">Retry</button>
+            <button class="btn btn-outline btn-full" onclick="useSampleData()">Use demo data</button>
+        </div>
+        <div style="display:none; margin-top:24px; text-align:center;" id="successSection">
+            <div style="color:var(--green); margin-bottom:16px;">✅ Data loaded</div>
+            <button class="btn" onclick="goToPage(3)">Continue →</button>
+        </div>
+    </div>
+
+    <!-- PAGE 3: Position -->
+    <div class="page" id="page3">
+        <div class="header">
+            <div class="logo" style="font-size:1.4em" id="selectPositionTitle">Select role</div>
+        </div>
+        <div class="option-group">
+            <button class="option" onclick="selectPosition('doctor', this)">
+                <span class="opt-icon">👨‍⚕️</span>
+                <span class="opt-label" id="doctorText">Doctor</span>
+            </button>
+            <button class="option" onclick="selectPosition('nurse', this)">
+                <span class="opt-icon">👩‍⚕️</span>
+                <span class="opt-label" id="nurseText">Nurse</span>
+            </button>
+            <button class="option" onclick="selectPosition('support', this)">
+                <span class="opt-icon">🧑‍🔬</span>
+                <span class="opt-label" id="supportText">Support staff</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- PAGE 4: Code check -->
+    <div class="page" id="page4">
+        <div class="header">
+            <div class="logo" style="font-size:1.4em" id="codeCheckTitle">Security check</div>
+            <div class="logo-sub" id="codeCheckSubtitle">Choose the correct phrase:</div>
+        </div>
+        <div class="option-group">
+            <button class="option" onclick="checkCode(false, this)"><span class="opt-label" id="code1">🍵 Wolfson is Brazilian tea</span></button>
+            <button class="option" onclick="checkCode(false, this)"><span class="opt-label" id="code2">🎬 Wolfson is a German actor</span></button>
+            <button class="option" onclick="checkCode(false, this)"><span class="opt-label" id="code3">🚇 Wolfson is a Moscow metro station</span></button>
+            <button class="option" onclick="checkCode(true, this)"><span class="opt-label" id="code4">🏠 Wolfson is home</span></button>
+        </div>
+        <div id="warningMessage" style="display:none;">
+            <div class="warning" id="spyWarning">⚠️ Suspected spy from Ichilov!</div>
+        </div>
+    </div>
+
+    <!-- PAGE 5: Mode -->
+    <div class="page" id="page5">
+        <div class="header">
+            <div class="logo" style="font-size:1.4em" id="settingsTitle">Study mode</div>
+        </div>
+        <div class="option-group">
+            <button class="option" onclick="selectMode('sequential', this)">
+                <span class="opt-icon">📋</span>
+                <span class="opt-label" id="sequentialText">All questions in order</span>
+            </button>
+            <button class="option" onclick="selectMode('random', this)">
+                <span class="opt-icon">🎲</span>
+                <span class="opt-label" id="randomText">Random order</span>
+            </button>
+            <button class="option" onclick="selectMode('quiz', this)">
+                <span class="opt-icon">🧠</span>
+                <span class="opt-label" id="quizText">Quiz (answer hidden)</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- PAGE 6: Questions -->
+    <div class="page" id="page6">
+        <div style="padding-top:66px;">
+            <span class="counter" id="questionCounter">1 / 1</span>
+            <div class="question-card">
+                <div class="q-label" id="questionHeader">QUESTION</div>
+                <div class="q-text" id="currentQuestion">Loading…</div>
+                <div class="q-media" id="questionMedia"></div>
+
+                <div class="answer-block" id="answerBlock">
+                    <div class="a-label">ANSWER</div>
+                    <div class="a-text" id="currentAnswer">Loading…</div>
+                    <div class="a-media" id="answerMedia"></div>
+                </div>
+
+                <button class="btn btn-outline btn-full" id="showAnswerBtn" style="display:none; margin-top:16px;" onclick="showAnswer()">
+                    Show answer
+                </button>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-outline" onclick="goToPage(5)" style="flex:0 0 auto; padding:12px 16px;">
+                <span id="menuText">≡ Menu</span>
+            </button>
+            <button class="btn" onclick="nextQuestion()" style="flex:2;">
+                <span id="nextText">Next →</span>
+            </button>
+            <button class="btn btn-danger" onclick="exitApp()" style="flex:0 0 auto; padding:12px 16px;">
+                <span id="exitText">✕</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- README Modal -->
+    <div class="modal-overlay" id="readmeModal" onclick="closeModal('readmeModal')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h3>📖 About TRACER 2025</h3>
+            <p>A study tool for healthcare accreditation at Wolfson Medical Center.</p>
+            <p style="margin-top:10px">Questions load from JSON files on GitHub. Images, links and notes can be embedded in any question or answer.</p>
+            <p style="margin-top:10px; color:var(--text-dim); font-size:0.85em">Good luck! 🍀</p>
+            <button class="btn btn-full" onclick="closeModal('readmeModal')" style="margin-top:16px;">Close</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+// ─── CONFIG ────────────────────────────────────────────────────────────────
+// Change this to your GitHub raw base URL
+const DATA_BASE = 'https://raw.githubusercontent.com/StarleyBy/tracer-2025/main/data/';
+
+// ─── STATE ─────────────────────────────────────────────────────────────────
+let currentLanguage = 'en';
+let selectedPosition = '';
+let selectedMode = '';
+let isDarkTheme = true;
+let currentQuestionIndex = 0;
+let questionsData = {};
+let currentQuestions = [];
+
+// ─── TRANSLATIONS ───────────────────────────────────────────────────────────
+const T = {
+    ru: {
+        selectPositionTitle:'Выберите должность', doctorText:'Врач', nurseText:'Медсестра', supportText:'Младший персонал',
+        codeCheckTitle:'Проверка безопасности', codeCheckSubtitle:'Выберите верную фразу:',
+        code1:'🍵 Вольфсон — бразильский чай', code2:'🎬 Вольфсон — немецкий актёр', code3:'🚇 Вольфсон — станция метро', code4:'🏠 Вольфсон — это дом',
+        spyWarning:'⚠️ Подозрение на шпиона из Ихилов!',
+        settingsTitle:'Режим обучения', sequentialText:'Все вопросы подряд', randomText:'Случайный порядок', quizText:'Квиз (ответ скрыт)',
+        questionHeader:'ВОПРОС', menuText:'≡ Меню', nextText:'Далее →', exitText:'✕'
+    },
+    en: {
+        selectPositionTitle:'Select role', doctorText:'Doctor', nurseText:'Nurse', supportText:'Support staff',
+        codeCheckTitle:'Security check', codeCheckSubtitle:'Choose the correct phrase:',
+        code1:'🍵 Wolfson is Brazilian tea', code2:'🎬 Wolfson is a German actor', code3:'🚇 Wolfson is a Moscow metro station', code4:'🏠 Wolfson is home',
+        spyWarning:'⚠️ Suspected spy from Ichilov!',
+        settingsTitle:'Study mode', sequentialText:'All questions in order', randomText:'Random order', quizText:'Quiz (answer hidden)',
+        questionHeader:'QUESTION', menuText:'≡ Menu', nextText:'Next →', exitText:'✕'
+    },
+    he: {
+        selectPositionTitle:'בחר תפקיד', doctorText:'רופא', nurseText:'אחות', supportText:'צוות מקצועי',
+        codeCheckTitle:'בדיקת אבטחה', codeCheckSubtitle:'בחר את הביטוי הנכון:',
+        code1:'🍵 וולפסון זה תה ברזילאי', code2:'🎬 וולפסון שחקן גרמני', code3:'🚇 וולפסון תחנת רכבת תחתית', code4:'🏠 וולפסון זה בית',
+        spyWarning:'⚠️ חשד לחדירת מרגל מאיכילוב!',
+        settingsTitle:'מצב לימוד', sequentialText:'כל השאלות ברצף', randomText:'סדר אקראי', quizText:'חידון (תשובה מוסתרת)',
+        questionHeader:'שאלה', menuText:'≡ תפריט', nextText:'הבא ←', exitText:'✕'
+    },
+    ar: {
+        selectPositionTitle:'اختر المنصب', doctorText:'طبيب', nurseText:'ممرضة', supportText:'طاقم مساعد',
+        codeCheckTitle:'فحص الأمان', codeCheckSubtitle:'اختر العبارة الصحيحة:',
+        code1:'🍵 وولفسون شاي برازيلي', code2:'🎬 وولفسون ممثل ألماني', code3:'🚇 وولفسون محطة مترو', code4:'🏠 وولفسون هو البيت',
+        spyWarning:'⚠️ اشتباه في تسلل جاسوس من إيخيلوف!',
+        settingsTitle:'وضع الدراسة', sequentialText:'جميع الأسئلة بالترتيب', randomText:'ترتيب عشوائي', quizText:'اختبار (الإجابة مخفية)',
+        questionHeader:'سؤال', menuText:'≡ القائمة', nextText:'← التالي', exitText:'✕'
+    }
+};
+
+// ─── SAMPLE DATA (fallback) ─────────────────────────────────────────────────
+const SAMPLE = {
+    doctor: [
+        {
+            id: 1,
+            he: { question:'מה הם הסימפטומים הראשוניים של התקף לב?', answer:'כאב בחזה, קוצר נשימה, בחילות' },
+            ru: { question:'Каковы первичные симптомы инфаркта?', answer:'Боль в груди, одышка, тошнота' },
+            en: { question:'What are the primary symptoms of MI?', answer:'Chest pain, shortness of breath, nausea' },
+            ar: { question:'ما هي الأعراض الأولية لاحتشاء القلب؟', answer:'ألم في الصدر، ضيق في التنفس، غثيان' }
+        }
+    ],
+    nurse: [
+        {
+            id: 1,
+            he: { question:'איך מודדים לחץ דם נכון?', answer:'עם מכשיר תקין, בישיבה, זרוע בגובה הלב' },
+            ru: { question:'Как правильно измерить АД?', answer:'Исправным тонометром, сидя, рука на уровне сердца' },
+            en: { question:'How to measure blood pressure correctly?', answer:'Working tonometer, sitting, arm at heart level' },
+            ar: { question:'كيف تقيس ضغط الدم بشكل صحيح؟', answer:'بجهاز سليم، جلوس، الذراع على مستوى القلب' }
+        }
+    ],
+    support: [
+        {
+            id: 1,
+            he: { question:'איך מחטאים ידיים נכון?', answer:'סבון 20 שניות או אלכוהול 70%' },
+            ru: { question:'Как дезинфицировать руки?', answer:'Мыло 20 секунд или спирт 70%' },
+            en: { question:'How to disinfect hands?', answer:'Soap 20 seconds or 70% alcohol' },
+            ar: { question:'كيف تطهر اليدين؟', answer:'صابون 20 ثانية أو كحول 70%' }
+        }
+    ]
+};
+
+// ─── NAVIGATION ─────────────────────────────────────────────────────────────
+function goToPage(n) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page' + n).classList.add('active');
+}
+
+// ─── LANGUAGE ───────────────────────────────────────────────────────────────
+function selectLanguage(lang) {
+    currentLanguage = lang;
+    const dir = (lang === 'he' || lang === 'ar') ? 'rtl' : 'ltr';
+    document.documentElement.setAttribute('dir', dir);
+    applyTranslations();
+    loadData();
+    goToPage(2);
+}
+
+function applyTranslations() {
+    const t = T[currentLanguage];
+    if (!t) return;
+    Object.keys(t).forEach(k => {
+        const el = document.getElementById(k);
+        if (el) el.textContent = t[k];
+    });
+}
+
+// ─── DATA LOADING ────────────────────────────────────────────────────────────
+async function loadData() {
+    ['errorSection','successSection'].forEach(id => document.getElementById(id).style.display = 'none');
+    document.getElementById('progressBar').style.width = '0%';
+
+    const positions = ['doctor','nurse','support'];
+    const statusIds = { doctor:'doctorStatus', nurse:'nurseStatus', support:'supportStatus' };
+    let loaded = 0, errors = 0;
+
+    for (const pos of positions) {
+        const statusEl = document.getElementById(statusIds[pos]);
+
+        // Check localStorage cache (24h)
+        const cacheKey = `tracer_${pos}`;
+        const cached = localStorage.getItem(cacheKey);
+        if (cached) {
+            try {
+                const { data, ts } = JSON.parse(cached);
+                if (Date.now() - ts < 86400000) {
+                    questionsData[pos] = data;
+                    loaded++;
+                    statusEl.textContent = `✅ ${data.length} questions (cached)`;
+                    statusEl.className = 'load-status ok';
+                    document.getElementById('progressBar').style.width = (loaded / 3 * 100) + '%';
+                    continue;
+                }
+            } catch(e) {}
+        }
+
+        try {
+            const res = await fetch(DATA_BASE + pos + '.json');
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            const data = await res.json();
+            questionsData[pos] = data;
+            localStorage.setItem(cacheKey, JSON.stringify({ data, ts: Date.now() }));
+            loaded++;
+            statusEl.textContent = `✅ ${data.length} questions`;
+            statusEl.className = 'load-status ok';
+        } catch(e) {
+            errors++;
+            statusEl.textContent = `❌ Error loading`;
+            statusEl.className = 'load-status err';
+        }
+
+        document.getElementById('progressBar').style.width = ((loaded + errors) / 3 * 100) + '%';
+    }
+
+    setTimeout(() => {
+        if (errors === 3) {
+            document.getElementById('errorSection').style.display = 'block';
+        } else {
+            document.getElementById('successSection').style.display = 'block';
+        }
+    }, 400);
+}
+
+function useSampleData() {
+    questionsData = SAMPLE;
+    goToPage(3);
+}
+
+// ─── POSITION ────────────────────────────────────────────────────────────────
+function selectPosition(pos, el) {
+    selectedPosition = pos;
+    document.querySelectorAll('#page3 .option').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+    setTimeout(() => goToPage(4), 400);
+}
+
+// ─── CODE CHECK ──────────────────────────────────────────────────────────────
+function checkCode(correct, el) {
+    document.querySelectorAll('#page4 .option').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+    if (correct) {
+        setTimeout(() => goToPage(5), 400);
+    } else {
+        const w = document.getElementById('warningMessage');
+        w.style.display = 'block';
+        setTimeout(() => { w.style.display = 'none'; el.classList.remove('selected'); }, 2500);
+    }
+}
+
+// ─── MODE & QUESTIONS ────────────────────────────────────────────────────────
+function selectMode(mode, el) {
+    selectedMode = mode;
+    document.querySelectorAll('#page5 .option').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+    setTimeout(() => { prepareQuestions(); goToPage(6); }, 400);
+}
+
+function prepareQuestions() {
+    const data = questionsData[selectedPosition] || SAMPLE[selectedPosition] || [];
+    currentQuestions = [...data];
+    if (selectedMode !== 'sequential') {
+        for (let i = currentQuestions.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [currentQuestions[i], currentQuestions[j]] = [currentQuestions[j], currentQuestions[i]];
+        }
+    }
+    currentQuestionIndex = 0;
+    showCurrentQuestion();
+}
+
+function showCurrentQuestion() {
+    if (currentQuestionIndex >= currentQuestions.length) {
+        alert('All questions done! 🎉');
+        goToPage(5);
+        return;
+    }
+
+    const q = currentQuestions[currentQuestionIndex];
+    const lang = q[currentLanguage] || q['en'] || {};
+
+    document.getElementById('currentQuestion').textContent = lang.question || '—';
+    document.getElementById('currentAnswer').textContent = lang.answer || '—';
+    document.getElementById('questionCounter').textContent =
+        `${currentQuestionIndex + 1} / ${currentQuestions.length}`;
+
+    // Render media
+    renderMedia(q.question_media, 'questionMedia');
+    renderMedia(q.answer_media, 'answerMedia');
+
+    const ansBlock = document.getElementById('answerBlock');
+    const showBtn  = document.getElementById('showAnswerBtn');
+    if (selectedMode === 'quiz') {
+        ansBlock.style.display = 'none';
+        showBtn.style.display = 'block';
+    } else {
+        ansBlock.style.display = 'block';
+        showBtn.style.display = 'none';
+    }
+}
+
+// ─── MEDIA RENDERER ──────────────────────────────────────────────────────────
+function renderMedia(mediaArray, containerId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+    if (!mediaArray || !mediaArray.length) return;
+
+    mediaArray.forEach(item => {
+        if (item.type === 'image') {
+            const img = document.createElement('img');
+            img.src = item.src;
+            img.alt = item.alt || '';
+            img.loading = 'lazy';
+            container.appendChild(img);
+
+        } else if (item.type === 'link') {
+            const a = document.createElement('a');
+            a.href = item.url;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.className = 'media-link';
+            a.textContent = '🔗 ' + (item.labels?.[currentLanguage] || item.labels?.en || item.url);
+            container.appendChild(a);
+
+        } else if (item.type === 'note') {
+            const div = document.createElement('div');
+            div.className = 'media-note';
+            div.textContent = item.text?.[currentLanguage] || item.text?.en || '';
+            container.appendChild(div);
+        }
+    });
+}
+
+function showAnswer() {
+    document.getElementById('answerBlock').style.display = 'block';
+    document.getElementById('showAnswerBtn').style.display = 'none';
+}
+
+function nextQuestion() {
+    currentQuestionIndex++;
+    showCurrentQuestion();
+}
+
+function exitApp() {
+    if (confirm('Exit to start?')) {
+        selectedPosition = '';
+        selectedMode = '';
+        currentQuestions = [];
+        currentQuestionIndex = 0;
+        goToPage(1);
+    }
+}
+
+// ─── THEME ───────────────────────────────────────────────────────────────────
+function toggleTheme() {
+    isDarkTheme = !isDarkTheme;
+    document.body.classList.toggle('light', !isDarkTheme);
+    document.getElementById('themeBtn').textContent = isDarkTheme ? '☀️' : '🌙';
+}
+
+// ─── MODAL ───────────────────────────────────────────────────────────────────
+function showModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+// ─── INIT ────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+    applyTranslations();
+});
+</script>
+</body>
+</html>
