@@ -460,7 +460,31 @@ textarea:focus { border-color: var(--accent); background: #fff; }
 .toast.error { background: var(--danger); }
 .toast.info { background: var(--accent); }
 
-/* Stats bar */
+/* Formatting toolbar */
+.fmt-bar {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+}
+.fmt-btn {
+    padding: 3px 10px;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    font-size: 0.78em;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Space Mono', monospace;
+    transition: all 0.12s;
+    line-height: 1.6;
+}
+.fmt-btn:hover { filter: brightness(0.9); border-color: #aaa; }
+.fmt-r { color: #c0392b; border-color: rgba(192,57,43,0.3); background: rgba(192,57,43,0.06); }
+.fmt-b { color: #1a6fa8; border-color: rgba(26,111,168,0.3); background: rgba(26,111,168,0.06); }
+.fmt-g { color: #1e7e34; border-color: rgba(30,126,52,0.3);  background: rgba(30,126,52,0.06);  }
+.fmt-y { color: #8a6200; border-color: rgba(138,98,0,0.3);   background: rgba(138,98,0,0.06);   }
+.fmt-clr { color: var(--text-dim); }
 .stats-bar {
     display: flex;
     gap: 16px;
@@ -768,11 +792,13 @@ function renderLangCard(lang, q) {
         <div class="lang-card-body">
             <div>
                 <div class="field-label">Question</div>
+                <div class="fmt-bar">${fmtBar('q_' + lang.code)}</div>
                 <textarea id="q_${lang.code}" rows="3" dir="${lang.dir}"
                     oninput="markModified()">${escHtml(data.question || '')}</textarea>
             </div>
             <div>
                 <div class="field-label">Answer</div>
+                <div class="fmt-bar">${fmtBar('a_' + lang.code)}</div>
                 <textarea id="a_${lang.code}" rows="3" dir="${lang.dir}"
                     oninput="markModified()">${escHtml(data.answer || '')}</textarea>
             </div>
@@ -1024,6 +1050,49 @@ function copyJSON() {
         document.body.removeChild(ta);
         toast('JSON copied to clipboard', 'success');
     });
+}
+
+// ─── FORMATTING HELPERS ───────────────────────────────────────────────────────
+const COLOR_TAGS = [
+    { tag:'r', label:'R', cls:'fmt-r', title:'Red'    },
+    { tag:'b', label:'B', cls:'fmt-b', title:'Blue'   },
+    { tag:'g', label:'G', cls:'fmt-g', title:'Green'  },
+    { tag:'y', label:'Y', cls:'fmt-y', title:'Yellow' },
+];
+
+function fmtBar(targetId) {
+    const btns = COLOR_TAGS.map(c =>
+        `<button class="fmt-btn ${c.cls}" title="${c.title}"
+                 onclick="wrapTag('${targetId}','${c.tag}')">[${c.tag}] ${c.label}</button>`
+    ).join('');
+    const clrBtn = `<button class="fmt-btn fmt-clr" title="Remove colour tags"
+                            onclick="stripTags('${targetId}')">✕ clear</button>`;
+    return btns + clrBtn;
+}
+
+function wrapTag(id, tag) {
+    const ta = document.getElementById(id);
+    if (!ta) return;
+    const start = ta.selectionStart;
+    const end   = ta.selectionEnd;
+    const sel   = ta.value.slice(start, end);
+    const before = ta.value.slice(0, start);
+    const after  = ta.value.slice(end);
+    const wrapped = `[${tag}]${sel}[/${tag}]`;
+    ta.value = before + wrapped + after;
+    // restore cursor inside the tag
+    ta.selectionStart = start + tag.length + 2;
+    ta.selectionEnd   = start + tag.length + 2 + sel.length;
+    ta.focus();
+    markModified();
+}
+
+function stripTags(id) {
+    const ta = document.getElementById(id);
+    if (!ta) return;
+    ta.value = ta.value.replace(/\[(r|b|g|y)\]([\s\S]*?)\[\/\1\]/g, '$2');
+    ta.focus();
+    markModified();
 }
 
 // ─── UTILS ────────────────────────────────────────────────────────────────────

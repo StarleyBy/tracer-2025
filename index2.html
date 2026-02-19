@@ -325,6 +325,16 @@
         }
         .controls .btn { flex: 1; justify-content: center; font-size: 0.85em; padding: 12px 8px; }
 
+        /* ── Colour tags ─────────────────────────────────────────── */
+        .tc-r { color: #ff5f6d; font-weight: 600; }
+        .tc-b { color: #56b6e8; font-weight: 600; }
+        .tc-g { color: #5fd987; font-weight: 600; }
+        .tc-y { color: #f0c060; font-weight: 600; }
+        body.light .tc-r { color: #c0392b; }
+        body.light .tc-b { color: #1a6fa8; }
+        body.light .tc-g { color: #1e7e34; }
+        body.light .tc-y { color: #8a6200; }
+
         /* Progress bar */
         .progress-wrap {
             background: var(--surface2);
@@ -815,8 +825,8 @@ function showCurrentQuestion() {
     const q = currentQuestions[currentQuestionIndex];
     const lang = q[currentLanguage] || q['en'] || {};
 
-    document.getElementById('currentQuestion').textContent = lang.question || '—';
-    document.getElementById('currentAnswer').textContent = lang.answer || '—';
+    document.getElementById('currentQuestion').innerHTML = formatText(lang.question || '—');
+    document.getElementById('currentAnswer').innerHTML   = formatText(lang.answer   || '—');
     document.getElementById('questionCounter').textContent =
         `${currentQuestionIndex + 1} / ${currentQuestions.length}`;
 
@@ -865,6 +875,16 @@ function renderMedia(mediaArray, containerId) {
             container.appendChild(div);
         }
     });
+}
+
+// ─── TEXT FORMATTER ───────────────────────────────────────────────────────────
+// Supported tags: [r]red[/r]  [b]blue[/b]  [g]green[/g]  [y]yellow[/y]
+function formatText(str) {
+    return String(str)
+        .replace(/\[r\]([\s\S]*?)\[\/r\]/g, '<span class="tc-r">$1</span>')
+        .replace(/\[b\]([\s\S]*?)\[\/b\]/g, '<span class="tc-b">$1</span>')
+        .replace(/\[g\]([\s\S]*?)\[\/g\]/g, '<span class="tc-g">$1</span>')
+        .replace(/\[y\]([\s\S]*?)\[\/y\]/g, '<span class="tc-y">$1</span>');
 }
 
 function showAnswer() {
