@@ -1056,19 +1056,19 @@
   {
     "id": 88,
     "he": {
-      "question": "מתן דם 💉📊 למטופל נלקחו סימנים חיוניים לפני/בסוף מתן דם ומוצריו והם כוללים: חום, דופק, לחץ דם",
-      "answer": "סימנים חיוניים נלקחים:,• לפני התחלת עירוי,• 15 דקות לאחר התחלה,• בסיום עירוי,• בסמוך להעברה/שחרור,כולל: חום, דופק, לחץ דם"
+      "question": "מתן דם 💉📊 \nלמטופל נלקחו סימנים חיוניים לפני/בסוף מתן דם ומוצריו והם כוללים: חום, דופק, לחץ דם",
+      "answer": "סימנים חיוניים נלקחים:\n• [g]לפני[/g] התחלת עירוי\n• [g]15 דקות[/g] לאחר התחלה\n• [y]בסיום[/y] עירוי\n• בסמוך [g]להעברה[/g]/שחרור\nכולל: חום, דופק, לחץ דם"
     },
     "en": {
-      "question": "Blood Administration 💉📊 Vital signs were taken for the patient before/end of blood and blood products administration and they include: temperature, pulse, blood pressure",
-      "answer": "Vital signs are taken:,• Before starting transfusion,• 15 minutes after start,• At the end of transfusion,• Close to transfer/discharge,Including: temperature, pulse, blood pressure"
+      "question": "Blood Administration 💉📊 \nVital signs were taken for the patient before/end of blood and blood products administration and they include: temperature, pulse, blood pressure",
+      "answer": "Vital signs are taken:\n• [y]Before[/y] starting transfusion\n• [y]15 minutes after[/y] start\n• [y]At the end[/y] of transfusion\n• Close to[y] transfer[/y]/discharge\nIncluding: temperature, pulse, blood pressure"
     },
     "ru": {
-      "question": "Переливание крови 💉📊 Жизненно важные показатели снимались до/после переливания крови и её компонентов и включают: температура, пульс, артериальное давление",
-      "answer": "Жизненно важные показатели снимаются:,• Перед началом трансфузии,• Через 15 минут после начала,• В конце трансфузии,• Близко к переводу/выписке,Включая: температура, пульс, артериальное давление"
+      "question": "Переливание крови 💉📊 \nЖизненно важные показатели снимались до/после переливания крови и её компонентов и включают: температура, пульс, артериальное давление",
+      "answer": "Жизненно важные показатели снимаются:\n• [g]Перед[/g] началом трансфузии\n• Через [g]15 минут[/g] после начала\n• В [y]конце[/y] трансфузии\n• Близко к [b]переводу[/b]/выписке\nВключая: \n📊 температура\n📊 пульс\n📊 артериальное давление"
     },
     "ar": {
-      "question": "إعطاء الدم 💉📊 تم أخذ العلامات الحيوية للمريض قبل/نهاية إعطاء الدم ومشتقاته وتشمل: درجة الحرارة، النبض، ضغط الدم",
+      "question": "إعطاء الدم 💉📊\n تم أخذ العلامات الحيوية للمريض قبل/نهاية إعطاء الدم ومشتقاته وتشمل: درجة الحرارة، النبض، ضغط الدم",
       "answer": "تؤخذ العلامات الحيوية:,• قبل بداية النقل,• بعد 15 دقيقة من البداية,• في نهاية النقل,• قريباً من النقل/الخروج,تشمل: درجة الحرارة، النبض، ضغط الدم"
     },
     "question_media": [],
@@ -1077,32 +1077,20 @@
   {
     "id": 89,
     "he": {
-      "question": "חמצן 💨📝❔ מטופל מקבל חמצן - האם קיימת הוראה כתובה למתן חמצן?",
-      "answer": [
-        "למבוגרים – רופא או אחות מוסמכת (זרימה נמוכה)",
-        "לילדים – רופא בלבד"
-      ]
+      "question": "חמצן 💨📝\n מטופל מקבל [b]חמצן [/b]- האם קיימת הוראה כתובה למתן חמצן?",
+      "answer": "💨 ל[bold]מבוגרים[/bold] – [g]רופא[/g] או [y]אחות[/y] מוסמכת (זרימה נמוכה)\n💨 [bold]לילדים[/bold] – [b]רופא [/b][r]בלבד[/r]"
     },
     "en": {
-      "question": "Oxygen 💨📝❔ Patient receiving oxygen – is there a written order for oxygen administration?",
-      "answer": [
-        "For adults – physician or qualified nurse (low flow)",
-        "For children – physician only"
-      ]
+      "question": "Oxygen 💨📝\nPatient receiving [b]oxygen[/b] – is there a written order for oxygen administration?",
+      "answer": "💨 For [bold]adults[/bold] – [b]physician[/b] or qualified [y]nurse[/y] (low flow)\n💨 For [bold]children[/bold] – [b]physician[/b] [r]only[/r]"
     },
     "ru": {
-      "question": "Кислород 💨📝❔ Пациент получает кислород — есть ли письменное назначение на введение кислорода?",
-      "answer": [
-        "Для взрослых – врач или квалифицированная медсестра (низкий поток)",
-        "Для детей – только врач"
-      ]
+      "question": "Кислород 💨📝\nПациент получает [b]кислород[/b] — есть ли письменное назначение на введение кислорода?",
+      "answer": "💨 Для [bold]взрослых[/bold] – [g]врач[/g] или квалифицированная [y]медсестра[/y] (низкий поток)\n💨 Для [bold]детей[/bold] – [r]только[/r][g] врач[/g]"
     },
     "ar": {
-      "question": "الأكسجين 💨📝❔ مريض يتلقى أكسجين - هل توجد تعليمة مكتوبة لإعطاء الأكسجين؟",
-      "answer": [
-        "للبالغين – طبيب أو ممرضة مؤهلة (تدفق منخفض)",
-        "للأطفال – الطبيب فقط"
-      ]
+      "question": "الأكسجين 💨📝\n مريض يتلقى أكسجين - هل توجد تعليمة مكتوبة لإعطاء الأكسجين؟",
+      "answer": "للبالغين – طبيب أو ممرضة مؤهلة (تدفق منخفض),للأطفال – الطبيب فقط"
     },
     "question_media": [],
     "answer_media": []
@@ -1110,32 +1098,20 @@
   {
     "id": 90,
     "he": {
-      "question": "הנשמה 🏥💨❔ מטופל מונשם – מהי תדירות התיעוד של מדדי הנשמה? מה הם מרכיבי מדדי הנשמה?",
-      "answer": [
-        "תיעוד אחת למשמרת",
-        "מרכיבים: שיטת הנשמה, מספר נשימות, נפח, PIP, PEEP, FiO₂, סטורציה, ETCO₂ (מומלץ)"
-      ]
+      "question": "הנשמה 🏥💨\n מטופל [y]מונשם[/y] – מהי תדירות התיעוד של מדדי הנשמה? מה הם מרכיבי מדדי הנשמה?",
+      "answer": "🏥 תיעוד [r]אחת[/r] למשמרת\nמרכיבים: \n💨 שיטת הנשמה\n💨 מספר נשימות\n💨 נפח\n💨 PIP\n💨 PEEP\n💨 FiO₂\n💨 סטורציה\n💨 ETCO₂ (מומלץ)"
     },
     "en": {
-      "question": "Ventilation 🏥💨❔ Ventilated patient – what is the frequency of documentation of ventilation parameters? What are the components of ventilation parameters?",
-      "answer": [
-        "Documentation once per shift",
-        "Components: ventilation mode, number of breaths, tidal volume, PIP, PEEP, FiO₂, saturation, ETCO₂ (recommended)"
-      ]
+      "question": "Ventilation 🏥💨\n[r]Ventilated[/r] patient – what is the frequency of documentation of ventilation parameters? What are the components of ventilation parameters?",
+      "answer": "🏥 Documentation [r]once[/r] per shift\nComponents: \n💨 ventilation mode\n💨 number of breaths\n💨 tidal volume\n💨 PIP\n💨 PEEP\n💨 FiO₂\n💨 saturation\n💨 ETCO₂ (recommended)"
     },
     "ru": {
-      "question": "ИВЛ 🏥💨❔ Пациент на ИВЛ — какова частота документирования параметров вентиляции? Каковы компоненты параметров вентиляции?",
-      "answer": [
-        "Документирование один раз за смену",
-        "Компоненты: режим вентиляции, количество дыханий, дыхательный объём, PIP, PEEP, FiO₂, сатурация, ETCO₂ (рекомендуется)"
-      ]
+      "question": "ИВЛ 🏥💨\nПациент на [y][bold]ИВЛ[/bold][/y] — какова частота документирования параметров вентиляции? Каковы компоненты параметров вентиляции?",
+      "answer": "🏥 Документирование [r]1[/r] раз за смену\n[g]Компоненты[/g]: \n💨 режим вентиляции\n💨 количество дыханий\n💨 дыхательный объём\n💨 PIP\n💨 PEEP\n💨 FiO₂\n💨 сатурация\n💨 ETCO₂ (рекомендуется)"
     },
     "ar": {
-      "question": "التنفس الصناعي 🏥💨❔ مريض مُنفس – ما هي تكرار توثيق معايير التنفس الصناعي؟ ما هي مكونات معايير التنفس الصناعي؟",
-      "answer": [
-        "توثيق مرة في الوردية",
-        "المكونات: طريقة التنفس الصناعي، عدد التنفسات، حجم التنفس، PIP، PEEP، FiO₂، التشبع، ETCO₂ (موصى به)"
-      ]
+      "question": "التنفس الصناعي 🏥💨\n مريض مُنفس – ما هي تكرار توثيق معايير التنفس الصناعي؟ ما هي مكونات معايير التنفس الصناعي؟",
+      "answer": "توثيق مرة في الوردية,المكونات: طريقة التنفس الصناعي، عدد التنفسات، حجم التنفس، PIP، PEEP، FiO₂، التشبع، ETCO₂ (موصى به)"
     },
     "question_media": [],
     "answer_media": []
@@ -1143,40 +1119,20 @@
   {
     "id": 92,
     "he": {
-      "question": "הגבלות פיזיות 🚧👨‍⚕️❔ למי הסמכות למתן הוראה להגבלה פיזית של מטופל/התרת חופש תנועה ומה תוקפה?",
-      "answer": [
-        "רופא במחלקה או אחות מוסמכת אחראית משמרת",
-        "הוראה כל 8 שעות, אישור רפואי לאחר 24 שעות",
-        "אומדן גפיים כל שעתיים",
-        "אין הגבלה רצופה מעל 24 שעות ללא אישור מנהל מחלקה"
-      ]
+      "question": "הגבלות פיזיות 🚧👨‍⚕️\nלמי הסמכות למתן הוראה [r]להגבלה פיזית[/r] של מטופל/התרת חופש תנועה ומה תוקפה?",
+      "answer": "🚧 [b]רופא[/b] במחלקה או [b]אחות מוסמכת אחראית[/b] משמרת\n🚧 הוראה כל [y]8 שעות[/y]\n🚧 [r]אישור רפואי[/r] ל[y]אחר 24 שעות[/y]\n🚧 [g]אומדן גפיים[/g] כל [y]שעתיים[/y]\n🚧 [r]אין[/r] הגבלה רצופה [r]מעל 24 שעות[/r] [b]ללא אישור מנהל מחלקה[/b]"
     },
     "en": {
-      "question": "Physical Restraints 🚧👨‍⚕️❔ Who has the authority to give an order for physical restraint of a patient / release of freedom of movement and what is its validity?",
-      "answer": [
-        "Department physician or qualified nurse responsible for the shift",
-        "Order every 8 hours, medical approval after 24 hours",
-        "Limb assessment every two hours",
-        "No continuous restraint over 24 hours without department head approval"
-      ]
+      "question": "Physical Restraints 🚧👨‍⚕️\nWho has the authority to give an order for physical restraint of a patient / release of freedom of movement and what is its validity?",
+      "answer": "🚧 [b]Department physician[/b] or [b]qualified nurse[/b] responsible for the shift\n🚧 Order every [y]8 hours[/y], medical approval after [y]24 hours[/y]\n🚧 [r]Limb[/r] assessment every [y]two hours[/y]\n🚧 [r]No[/r] [b]continuous restraint[/b] over [y]24 hours[/y] [r]without department head approval[/r]"
     },
     "ru": {
-      "question": "Физические ограничения 🚧👨‍⚕️❔ У кого есть полномочия давать назначение на физическое ограничение пациента / освобождение свободы передвижения и каков срок его действия?",
-      "answer": [
-        "Врач отделения или квалифицированная медсестра, ответственная за смену",
-        "Назначение каждые 8 часов, медицинское одобрение после 24 часов",
-        "Оценка конечностей каждые два часа",
-        "Нельзя непрерывно ограничивать более 24 часов без одобрения заведующего отделением"
-      ]
+      "question": "Физические ограничения 🚧👨‍⚕️\nУ кого есть полномочия давать назначение на [r]физическое ограничение[/r] пациента / освобождение свободы передвижения и каков срок его действия?",
+      "answer": "🚧 [b]Врач[/b] отделения или [b]квалифицированная медсестра[/b], ответственная за смену\n🚧 Назначение [y]каждые 8 часов[/y], медицинское [r]одобрение[/r] [y]после 24 часов[/y]\n🚧 Оценка [b]конечностей[/b] [y]каждые 2 часа[/y]\n🚧 [r]Нельзя[/r] непрерывно ограничивать [y]более 24 часов[/y] [b][bold]без одобрения заведующего отделением[/bold][/b]"
     },
     "ar": {
-      "question": "القيود الجسدية 🚧👨‍⚕️❔ من لديه الصلاحية لإعطاء تعليمة لتقييد جسدي للمريض/إطلاق حرية الحركة وما هي صلاحيتها؟",
-      "answer": [
-        "طبيب القسم أو ممرضة مؤهلة مسؤولة عن الوردية",
-        "تعليمة كل 8 ساعات، موافقة طبية بعد 24 ساعة",
-        "تقييم الأطراف كل ساعتين",
-        "لا تقييد مستمر أكثر من 24 ساعة بدون موافقة مدير القسم"
-      ]
+      "question": "القيود الجسدية 🚧👨‍⚕️\n من لديه الصلاحية لإعطاء تعليمة لتقييد جسدي للمريض/إطلاق حرية الحركة وما هي صلاحيتها؟",
+      "answer": "طبيب القسم أو ممرضة مؤهلة مسؤولة عن الوردية,تعليمة كل 8 ساعات، موافقة طبية بعد 24 ساعة,تقييم الأطراف كل ساعتين,لا تقييد مستمر أكثر من 24 ساعة بدون موافقة مدير القسم"
     },
     "question_media": [],
     "answer_media": []
@@ -1184,28 +1140,20 @@
   {
     "id": 93,
     "he": {
-      "question": "אוכלוסיות מיוחדות 👨‍👩‍👧‍👦⚠️❔ מיהם המטופלים המשתייכים לאוכלוסיות מיוחדות...",
-      "answer": [
-        "קשישים מרותקים, ילדים ומתבגרים, סוף חיים, פסיכיאטריים, נשים בהריון בסיכון, יולדות, דיאליזה, כימותרפיה, מונשמים, מוגבלים, נרקומנים, מדוכאי חיסון, זיהומיים, כאב כרוני ועוד"
-      ]
+      "question": "אוכלוסיות מיוחדות 👨‍👩‍👧‍👦⚠️\nמיהם המטופלים המשתייכים לאוכלוסיות מיוחדות...",
+      "answer": "⚠️ קשישים מרותקים\n⚠️ ילדים ומתבגרים\n⚠️ סוף חיים\n⚠️ פסיכיאטריים\n⚠️ נשים בהריון בסיכון, יולדות\n⚠️ דיאליזה\n⚠️ כימותרפיה\n⚠️ מונשמים\n⚠️ מוגבלים\n⚠️ נרקומנים\n⚠️ מדוכאי חיסון\n⚠️ זיהומיים\n⚠️ כאב כרוני ועוד"
     },
     "en": {
-      "question": "Special Populations 👨‍👩‍👧‍👦⚠️❔ Who are the patients belonging to special populations that require unique assessments...",
-      "answer": [
-        "Bedridden elderly, children & adolescents, end-of-life, psychiatric, high-risk pregnant, laboring, dialysis, chemotherapy, ventilated, physically/cognitively impaired, addicts, immunosuppressed, infectious, chronic pain etc."
-      ]
+      "question": "Special Populations 👨‍👩‍👧‍👦⚠️\nWho are the patients belonging to special populations that require unique assessments...",
+      "answer": "⚠️ bedridden elderly\n⚠️ children & adolescents\n⚠️ end-of-life\n⚠️ psychiatric\n⚠️ high-risk pregnant, laboring\n⚠️ dialysis, chemotherapy\n⚠️ ventilated\n⚠️ physically/cognitively impaired\n⚠️ addicts\n⚠️ immunosuppressed\n⚠️ infectious\n⚠️ chronic pain etc."
     },
     "ru": {
-      "question": "Особые группы населения 👨‍👩‍👧‍👦⚠️❔ Кто пациенты, относящиеся к особым группам населения, которым требуются уникальные оценки...",
-      "answer": [
-        "Прикованные к постели пожилые, дети и подростки, терминальные, психиатрические, беременные высокого риска, роженицы, диализ, химиотерапия, на ИВЛ, с физическими/когнитивными нарушениями, наркоманы, иммуносупрессия, инфекционные, хроническая боль и др."
-      ]
+      "question": "Особые группы населения 👨‍👩‍👧‍👦⚠️\nПациенты, относящиеся к особым группам населения, которым требуются уникальные оценки...",
+      "answer": "⚠️ прикованные к постели пожилые\n⚠️ дети и подростки\n⚠️ терминальные\n⚠️ психиатрические\n⚠️ беременные высокого риска, роженицы\n⚠️ диализ\n⚠️ химиотерапия\n⚠️ на ИВЛ\n⚠️с физическими/когнитивными нарушениями\n⚠️ наркоманы\n⚠️ иммуносупрессия\n⚠️ инфекционные\n⚠️ хроническая боль и др."
     },
     "ar": {
-      "question": "الفئات الخاصة 👨‍👩‍👧‍👦⚠️❔ من هم المرضى الذين ينتمون إلى الفئات الخاصة والذين يتطلبون تقييمات فريدة...",
-      "answer": [
-        "كبار السن المقيدين بالسرير، الأطفال والمراهقون، نهاية الحياة، نفسيون، حوامل عاليات الخطورة، والدات، دياليزة، كيميائي، مُنفسون، معاقون جسدياً/معرفياً، مدمنون، مثبطو مناعة، معديون، ألم مزمن وغيرهم"
-      ]
+      "question": "الفئات الخاصة 👨‍👩‍👧‍👦⚠️\n من هم المرضى الذين ينتمون إلى الفئات الخاصة والذين يتطلبون تقييمات فريدة...",
+      "answer": "كبار السن المقيدين بالسرير، الأطفال والمراهقون، نهاية الحياة، نفسيون، حوامل عاليات الخطورة، والدات، دياليزة، كيميائي، مُنفسون، معاقون جسدياً/معرفياً، مدمنون، مثبطو مناعة، معديون، ألم مزمن وغيرهم"
     },
     "question_media": [],
     "answer_media": []
@@ -1213,57 +1161,47 @@
   {
     "id": 96,
     "he": {
-      "question": "חולה מדרדר 🏥⚠️ הצוות הסיעודי מכיר היטב את נוהל החולה המדרדר...",
-      "answer": [
-        "אין צורך בתשובה – תצפית והערכה"
-      ]
+      "question": "חולה מדרדר 🏥⚠️\nהצוות הסיעודי מכיר היטב את נוהל החולה המדרדר...",
+      "answer": "אין צורך בתשובה – תצפית והערכה"
     },
     "en": {
-      "question": "Deteriorating Patient 🏥⚠️ The nursing staff is well familiar with the deteriorating patient procedure...",
-      "answer": [
-        "No answer needed – observation and evaluation"
-      ]
+      "question": "Deteriorating Patient 🏥⚠️ \nThe nursing staff is well familiar with the deteriorating patient procedure...",
+      "answer": "No answer needed – observation and evaluation"
     },
     "ru": {
-      "question": "Пациент с ухудшением состояния 🏥⚠️ Сестринский персонал хорошо знаком с процедурой пациента с ухудшением состояния...",
-      "answer": [
-        "Ответ не требуется – наблюдение и оценка"
-      ]
+      "question": "Пациент с ухудшением состояния 🏥⚠️\nСестринский персонал хорошо знаком с процедурой пациента с ухудшением состояния...",
+      "answer": "Ответ не требуется – наблюдение и оценка"
     },
     "ar": {
-      "question": "المريض المتدهور 🏥⚠️ الطاقم التمريضي على معرفة جيدة بإجراء المريض المتدهور...",
-      "answer": [
-        "لا حاجة للإجابة – الملاحظة والتقييم"
-      ]
+      "question": "المريض المتدهور 🏥⚠️ \nالطاقم التمريضي على معرفة جيدة بإجراء المريض المتدهور...",
+      "answer": "لا حاجة للإجابة – الملاحظة والتقييم"
     },
     "question_media": [],
-    "answer_media": []
+    "answer_media": [
+      {
+        "type": "image",
+        "src": "images/doctor/nabl8.jpeg",
+        "alt": ""
+      }
+    ]
   },
   {
     "id": 98,
     "he": {
-      "question": "סדציה 😴👨‍⚕️❔ בידי מי הסמכות לביצוע סדציה?",
-      "answer": [
-        "רופא מורשה סדציה (לא מרדים) בליווי מטפל נוסף"
-      ]
+      "question": "סדציה 😴👨‍⚕️\n בידי מי הסמכות לביצוע סדציה?",
+      "answer": "[b]רופא[/b] מורשה סדציה (לא מרדים) [y]בליווי מטפל נוסף[/y]"
     },
     "en": {
-      "question": "Sedation 😴👨‍⚕️❔ Who has the authority to perform sedation?",
-      "answer": [
-        "Sedation-authorized physician (not anesthesiologist) accompanied by an additional caregiver"
-      ]
+      "question": "Sedation 😴👨‍⚕️\nWho has the authority to perform sedation?",
+      "answer": "[r]Sedation-authorized physicia[/r]n (not anesthesiologist) [y]accompanied by an additional caregiver[/y]"
     },
     "ru": {
-      "question": "Седация 😴👨‍⚕️❔ У кого есть полномочия выполнять седацию?",
-      "answer": [
-        "Врач, уполномоченный на седацию (не анестезиолог) в сопровождении дополнительного медицинского работника"
-      ]
+      "question": "Седация 😴👨‍⚕️\nУ кого есть полномочия выполнять седацию?",
+      "answer": "[b]Врач[/b], уполномоченный на седацию (не анестезиолог) в сопровождении [y]дополнительного[/y] медицинского работника"
     },
     "ar": {
-      "question": "التسكين 😴👨‍⚕️❔ من لديه الصلاحية لإجراء التسكين؟",
-      "answer": [
-        "طبيب مرخص للتسكين (غير مخدر) برفقة مقدم رعاية إضافي"
-      ]
+      "question": "التسكين 😴👨‍⚕️\n من لديه الصلاحية لإجراء التسكين؟",
+      "answer": "طبيب مرخص للتسكين (غير مخدر) برفقة مقدم رعاية إضافي"
     },
     "question_media": [],
     "answer_media": []
@@ -1271,32 +1209,20 @@
   {
     "id": 100,
     "he": {
-      "question": "סדציה 😴👨‍⚕️❔ מיהו רופא מורשה סדציה?",
-      "answer": [
-        "רופא (מומחה/מתמחה) ששמו מופיע כמבצע ראשי",
-        "בוגר ACLS/PALS + הכשרה ייעודית בסדציה"
-      ]
+      "question": "סדציה 😴👨‍⚕️\n מיהו רופא מורשה [r]סדציה[/r]?",
+      "answer": "[b]רופא[/b] (מומחה/מתמחה) ששמו מופיע כמבצע ראשי,בוגר [b]ACLS[/b]/[g]PALS[/g] + [y]הכשרה ייעודית בסדציה[/y]"
     },
     "en": {
-      "question": "Sedation 😴👨‍⚕️❔ Who is a sedation-authorized physician?",
-      "answer": [
-        "Physician (specialist/resident) whose name appears as primary performer",
-        "Graduate of ACLS/PALS + dedicated sedation training"
-      ]
+      "question": "Sedation 😴👨‍⚕️\nWho is a [b]sedation-authorized physician[/b]?",
+      "answer": "[b]Physician[/b] (specialist/resident) whose name appears as primary performer\n    Graduate of [g]ACLS[/g]/[b]PALS[/b] + [r]dedicated sedation trainin[/r]g"
     },
     "ru": {
-      "question": "Седация 😴👨‍⚕️❔ Кто такой врач, уполномоченный на седацию?",
-      "answer": [
-        "Врач (специалист/ординатор), имя которого указано как основной исполнитель",
-        "Выпускник ACLS/PALS + специальная подготовка по седации"
-      ]
+      "question": "Седация 😴👨‍⚕️\nКто такой [b]врач, уполномоченный на седацию[/b]?",
+      "answer": "😴 [b]Врач[/b] (специалист/ординатор), имя которого указано как основной исполнитель\n      😴 Выпускник [b]ACLS[/b]/[g]PALS[/g] + 😴 специальная подготовка по [r]седации[/r]"
     },
     "ar": {
-      "question": "التسكين 😴👨‍⚕️❔ من هو الطبيب المرخص للتسكين؟",
-      "answer": [
-        "طبيب (مختص/مقيم) اسمه يظهر كمنفذ رئيسي",
-        "خريج ACLS/PALS + تدريب مخصص في التسكين"
-      ]
+      "question": "التسكين 😴👨‍⚕️\n من هو الطبيب المرخص للتسكين؟",
+      "answer": "طبيب (مختص/مقيم) اسمه يظهر كمنفذ رئيسي,خريج ACLS/PALS + تدريب مخصص في التسكين"
     },
     "question_media": [],
     "answer_media": []
@@ -1304,28 +1230,20 @@
   {
     "id": 102,
     "he": {
-      "question": "סדציה 😴👩‍⚕️❔ מי יכול להיות מטפל נוסף בסדציה?",
-      "answer": [
-        "רופא או אחות מוסמכת – בוגרי ACLS/PALS + הכשרה ייעודית בסדציה"
-      ]
+      "question": "סדציה 😴👩‍⚕️\nמי יכול להיות [b]מטפל נוסף[/b] ב[r]סדציה[/r]?",
+      "answer": "[b]רופא[/b] או [b]אחות[/b] מוסמכת – בוגרי [g]ACLS[/g]/[b]PALS[/b] + [r]הכשרה ייעודית בסדציה[/r]"
     },
     "en": {
-      "question": "Sedation 😴👩‍⚕️❔ Who can be the additional caregiver in sedation?",
-      "answer": [
-        "Physician or qualified nurse – graduates of ACLS/PALS + dedicated sedation training"
-      ]
+      "question": "Sedation 😴👩‍⚕️\nWho can be the [b]additional caregiver[/b] in [r]sedation[/r]?",
+      "answer": "[b]Physician[/b] or [b]qualified nurse[/b] – graduates of [g]ACLS[/g]/[b]PALS[/b] + [r]dedicated sedation training[/r]"
     },
     "ru": {
-      "question": "Седация 😴👩‍⚕️❔ Кто может быть дополнительным медицинским работником при седации?",
-      "answer": [
-        "Врач или квалифицированная медсестра – выпускники ACLS/PALS + специальная подготовка по седации"
-      ]
+      "question": "Седация 😴👩‍⚕️\nКто может быть [g]дополнительным медицинским работником[/g] при [r]седации[/r]?",
+      "answer": "[b]Врач[/b] или [g]квалифицированная медсестра[/g] – выпускники [g]ACLS[/g]/[b]PALS[/b] + [r]специальная подготовка по седации[/r]"
     },
     "ar": {
-      "question": "التسكين 😴👩‍⚕️❔ من يمكن أن يكون مقدم الرعاية الإضافي في التسكين؟",
-      "answer": [
-        "طبيب أو ممرضة مؤهلة – خريجو ACLS/PALS + تدريب مخصص في التسكين"
-      ]
+      "question": "التسكين 😴👩‍⚕️\n من يمكن أن يكون مقدم الرعاية الإضافي في التسكين؟",
+      "answer": "طبيب أو ممرضة مؤهلة – خريجو [g]ACLS[/g]/[b]PALS[/b] + تدريب مخصص في التسكين"
     },
     "question_media": [],
     "answer_media": []
@@ -1333,32 +1251,20 @@
   {
     "id": 103,
     "he": {
-      "question": "סדציה 😴✅❔ אם החולה עבר פעולה בסדציה, האם קיימת הסכמה לסדציה?",
-      "answer": [
-        "כן – טופס הסכמה ייעודי לסדציה (בנוסף להסכמה לפעולה)",
-        "כולל הסבר על סיכונים, צום, תזונה"
-      ]
+      "question": "סדציה 😴✅\n אם החולה עבר פעולה בסדציה, האם קיימת [y]הסכמה[/y] לסדציה?",
+      "answer": "[r]כן [/r]– טופס הסכמה ייעודי לסדציה (בנוסף להסכמה לפעולה)\nכולל הסבר על סיכונים, צום, תזונה"
     },
     "en": {
-      "question": "Sedation 😴✅❔ If the patient underwent a procedure under sedation, is there consent for sedation?",
-      "answer": [
-        "Yes – dedicated sedation consent form (in addition to consent for the procedure)",
-        "Includes explanation of risks, fasting, diet"
-      ]
+      "question": "Sedation 😴✅\n If the patient underwent a procedure under sedation, is there [y]consent[/y] for sedation?",
+      "answer": "[r]Yes[/r] – dedicated sedation consent form (in addition to consent for the procedure)\nIncludes explanation of risks, fasting, diet"
     },
     "ru": {
-      "question": "Седация 😴✅❔ Если пациент перенёс процедуру под седацией, есть ли согласие на седацию?",
-      "answer": [
-        "Да – специальная форма согласия на седацию (в дополнение к согласию на процедуру)",
-        "Включает объяснение рисков, голодания, диеты"
-      ]
+      "question": "Седация 😴✅\nЕсли пациент перенёс процедуру под седацией, есть ли [y]согласие[/y] на седацию?",
+      "answer": "[r]Да[/r] – специальная форма согласия на седацию (в дополнение к согласию на процедуру)\nВключает объяснение рисков, голодания, диеты"
     },
     "ar": {
-      "question": "التسكين 😴✅❔ إذا خضع المريض لإجراء تحت التسكين، هل توجد موافقة على التسكين؟",
-      "answer": [
-        "نعم – نموذج موافقة مخصص للتسكين (بالإضافة إلى الموافقة على الإجراء)",
-        "يشمل شرح المخاطر، الصيام، النظام الغذائي"
-      ]
+      "question": "التسكين 😴✅\n إذا خضع المريض لإجراء تحت التسكين، هل توجد موافقة على التسكين؟",
+      "answer": "نعم – نموذج موافقة مخصص للتسكين (بالإضافة إلى الموافقة على الإجراء),يشمل شرح المخاطر، الصيام، النظام الغذائي"
     },
     "question_media": [],
     "answer_media": []
@@ -1366,40 +1272,20 @@
   {
     "id": 104,
     "he": {
-      "question": "סדציה 😴📊 למטופל שעבר סדציה נלקחו סימנים חיוניים במהלך הפעולה ותועדו בגיליון הרפואי על פי הנוהל:",
-      "answer": [
-        "ניטור רציף: מצב הכרה, צבע, תנועות חזה, קצב נשימה",
-        "דופק וסטורציה – ניטור רציף",
-        "לחץ דם כל 5 דקות",
-        "תיעוד אחת ל-10 דקות לפחות על ידי אחות מוסמכת"
-      ]
+      "question": "סדציה 😴📊\nלמטופל [y]שעבר[/y] [r]סדציה [/r]נלקחו סימנים חיוניים במהלך הפעולה ותועדו בגיליון הרפואי על פי הנוהל:",
+      "answer": "ניטור רציף: \n📊 מצב הכרה\n📊 צבע\n📊 תנועות חזה\n📊 קצב נשימה\n📊 דופק וסטורציה – ניטור רציף\n📊 לחץ דם כל [y]5 דקות[/y]\nתיעוד אחת ל-[g]10 דקות[/g] לפחות על ידי [b]אחות[/b] מוסמכת"
     },
     "en": {
-      "question": "Sedation 😴📊 For a patient who underwent sedation, vital signs were taken during the procedure and documented in the medical chart according to the procedure:",
-      "answer": [
-        "Continuous monitoring: level of consciousness, color, chest movements, respiratory rate",
-        "Pulse and saturation – continuous monitoring",
-        "Blood pressure every 5 minutes",
-        "Documentation at least every 10 minutes by qualified nurse"
-      ]
+      "question": "Sedation 😴📊 \nFor a patient who [y]underwent[/y] [r]sedation[/r], vital signs were taken during the procedure and documented in the medical chart according to the procedure:",
+      "answer": "Continuous monitoring: \n📊 level of consciousness\n📊 color, chest movements\n📊 respiratory rate\n📊 pulse and saturation – continuous monitoring\n📊 blood pressure every [y]5 minutes[/y]\nDocumentation at least every [g]10 minutes[/g] by qualified [b]nurse[/b]"
     },
     "ru": {
-      "question": "Седация 😴📊 У пациента, перенёсшего седацию, были сняты жизненно важные показатели во время процедуры и задокументированы в карте согласно процедуре:",
-      "answer": [
-        "Непрерывный мониторинг: уровень сознания, цвет, движения грудной клетки, частота дыхания",
-        "Пульс и сатурация – непрерывный мониторинг",
-        "Артериальное давление каждые 5 минут",
-        "Документирование не реже одного раза в 10 минут квалифицированной медсестрой"
-      ]
+      "question": "Седация 😴📊 \nУ пациента, [y]перенёсшего[/y] [r]седацию[/r], были сняты жизненно важные показатели во время процедуры и задокументированы в карте согласно процедуре:",
+      "answer": "Непрерывный мониторинг: \n📊 уровень сознания\n📊 цвет\n📊 движения грудной клетки\n📊 частота дыхания\n📊 пульс и сатурация – непрерывный мониторинг\n📊 артериальное давление каждые [y]5 минут[/y]\nДокументирование не реже одного раза в [g]10 минут[/g] квалифицированной [b]медсестрой[/b]"
     },
     "ar": {
-      "question": "التسكين 😴📊 لمريض خضع للتسكين تم أخذ العلامات الحيوية أثناء الإجراء وتم توثيقها في السجل الطبي وفقاً للإجراء:",
-      "answer": [
-        "مراقبة مستمرة: مستوى الوعي، اللون، حركات الصدر، معدل التنفس",
-        "النبض والتشبع – مراقبة مستمرة",
-        "ضغط الدم كل 5 دقائق",
-        "توثيق مرة واحدة على الأقل كل 10 دقائق من قبل ممرضة مؤهلة"
-      ]
+      "question": "التسكين 😴📊 \nلمريض خضع للتسكين تم أخذ العلامات الحيوية أثناء الإجراء وتم توثيقها في السجل الطبي وفقاً للإجراء:",
+      "answer": "مراقبة مستمرة: مستوى الوعي، اللون، حركات الصدر، معدل التنفس,النبض والتشبع – مراقبة مستمرة,ضغط الدم كل 5 دقائق,توثيق مرة واحدة على الأقل كل 10 دقائق من قبل ممرضة مؤهلة"
     },
     "question_media": [],
     "answer_media": []
@@ -1407,32 +1293,20 @@
   {
     "id": 105,
     "he": {
-      "question": "סדציה 😴📊 למטופל שעבר סדציה נלקחו סימנים חיוניים במהלך התאוששות/התעוררות ותועדו בגיליון הרפואי על פי הנוהל:",
-      "answer": [
-        "ילדים: ניטור רציף דופק וסטורציה + תיעוד כל 15 דקות, מצב הכרה כל 15 דקות",
-        "מבוגרים: לחץ דם, דופק, סטורציה, מצב הכרה, אומדן כאב – לפחות בקבלה ולפני שחרור"
-      ]
+      "question": "סדציה 😴📊\nלמטופל [y]שעבר[/y] [r]סדציה [/r]נלקחו סימנים חיוניים במהלך התאוששות/התעוררות ותועדו בגיליון הרפואי על פי הנוהל:",
+      "answer": "😴 ילדים: \n   📊 ניטור רציף דופק וסטורציה + תיעוד כל [y]15 דקות[/y]\n   📊 מצב הכרה כל [y]15 דקות[/y]\n😴 מבוגרים: \n   📊 לחץ דם\n   📊 דופק\n   📊 סטורציה\n   📊 מצב הכרה\n   📊 אומדן כאב – לפחות בקבלה ולפני שחרור"
     },
     "en": {
-      "question": "Sedation 😴📊 For a patient who underwent sedation, vital signs were taken during recovery/awakening and documented in the medical chart according to the procedure:",
-      "answer": [
-        "Children: continuous pulse and saturation monitoring + documentation every 15 minutes, level of consciousness every 15 minutes",
-        "Adults: blood pressure, pulse, saturation, level of consciousness, pain assessment – at least on admission and before discharge"
-      ]
+      "question": "Sedation 😴📊 \nFor a patient who [y]underwent[/y] [r]sedation[/r], vital signs were taken during recovery/awakening and documented in the medical chart according to the procedure:",
+      "answer": "😴 Children: \n  📊 continuous pulse and saturation monitoring + documentation every [y]15 minutes[/y]\n  📊 level of consciousness every[y] 15 minutes[/y]\n😴 Adults: \n  📊 blood pressure\n  📊 pulse, saturation\n  📊 level of consciousness\n  📊 pain assessment – at least on admission and before discharge"
     },
     "ru": {
-      "question": "Седация 😴📊 У пациента, перенёсшего седацию, были сняты жизненно важные показатели во время восстановления/пробуждения и задокументированы в карте согласно процедуре:",
-      "answer": [
-        "Дети: непрерывный мониторинг пульса и сатурации + документирование каждые 15 минут, уровень сознания каждые 15 минут",
-        "Взрослые: артериальное давление, пульс, сатурация, уровень сознания, оценка боли – минимум при поступлении и перед выпиской"
-      ]
+      "question": "Седация 😴📊 \nУ пациента, [y]перенёсшего[/y] [r]седацию[/r], были сняты жизненно важные показатели во время восстановления/пробуждения и задокументированы в карте согласно процедуре:",
+      "answer": "😴 Дети: \n  📊 непрерывный мониторинг пульса и сатурации + документирование каждые [y]15 минут[/y]\n  📊 уровень сознания каждые [y]15 минут[/y]\n😴 Взрослые: \n  📊 артериальное давление\n  📊 пульс\n  📊 сатурация\n  📊 уровень сознания\n  📊 оценка боли – минимум при поступлении и перед выпиской"
     },
     "ar": {
-      "question": "التسكين 😴📊 لمريض خضع للتسكين تم أخذ العلامات الحيوية أثناء التعافي/الاستيقاظ وتم توثيقها في السجل الطبي وفقاً للإجراء:",
-      "answer": [
-        "الأطفال: مراقبة مستمرة للنبض والتشبع + توثيق كل 15 دقيقة، مستوى الوعي كل 15 دقيقة",
-        "البالغون: ضغط الدم، النبض، التشبع، مستوى الوعي، تقييم الألم – على الأقل عند القبول وقبل الخروج"
-      ]
+      "question": "التسكين 😴📊\n لمريض خضع للتسكين تم أخذ العلامات الحيوية أثناء التعافي/الاستيقاظ وتم توثيقها في السجل الطبي وفقاً للإجراء:",
+      "answer": "الأطفال: مراقبة مستمرة للنبض والتشبع + توثيق كل 15 دقيقة، مستوى الوعي كل 15 دقيقة,البالغون: ضغط الدم، النبض، التشبع، مستوى الوعي، تقييم الألم – على الأقل عند القبول وقبل الخروج"
     },
     "question_media": [],
     "answer_media": []
@@ -1440,28 +1314,20 @@
   {
     "id": 106,
     "he": {
-      "question": "סדציה 😴📋 בדיקת גיליון סדציה ע\"פ הרכיבים הבאים:",
-      "answer": [
-        "הכנת ציוד, רשימת תיוג, ASA, MALLAMPATI, סיבוכים במהלך ואחרי, חתימת צוות"
-      ]
+      "question": "סדציה 😴📋\nבדיקת [g]גיליון [/g][r]סדציה[/r] ע\"פ הרכיבים הבאים:",
+      "answer": "📋 הכנת ציוד\n📋 רשימת תיוג\n📋 ASA\n📋 MALLAMPATI\n📋 סיבוכים במהלך ואחרי\n📋 חתימת צוות"
     },
     "en": {
-      "question": "Sedation 😴📋 Checking the sedation chart according to the following components:",
-      "answer": [
-        "Equipment preparation, checklist, ASA, MALLAMPATI, complications during and after, team signature"
-      ]
+      "question": "Sedation 😴📋 \nChecking the [r]sedation[/r] [g]chart[/g] according to the following components:",
+      "answer": "📋 Equipment preparation\n📋 checklist\n📋 ASA\n📋 MALLAMPATI\n📋 complications during and after\n📋 team signature"
     },
     "ru": {
-      "question": "Седация 😴📋 Проверка карты седации согласно следующим компонентам:",
-      "answer": [
-        "Подготовка оборудования, чек-лист, ASA, MALLAMPATI, осложнения во время и после, подпись команды"
-      ]
+      "question": "Седация 😴📋 \nПроверка [b]карты[/b] [r]седации[/r] согласно следующим компонентам:",
+      "answer": "📋 Подготовка оборудования\n📋 чек-лист\n📋 ASA\n📋 MALLAMPATI\n📋 осложнения во время и после\n📋 подпись команды"
     },
     "ar": {
-      "question": "التسكين 😴📋 فحص سجل التسكين وفقاً للمكونات التالية:",
-      "answer": [
-        "تحضير المعدات، قائمة التحقق، ASA، MALLAMPATI، المضاعفات أثناء وبعد، توقيع الفريق"
-      ]
+      "question": "التسكين 😴📋 \nفحص سجل التسكين وفقاً للمكونات التالية:",
+      "answer": "تحضير المعدات، قائمة التحقق، ASA، MALLAMPATI، المضاعفات أثناء وبعد، توقيع الفريق"
     },
     "question_media": [],
     "answer_media": []
@@ -1469,40 +1335,20 @@
   {
     "id": 107,
     "he": {
-      "question": "סדציה 😴🔄❔ מה כולל שחרור מטופל מהתאוששות/התעוררות?",
-      "answer": [
-        "שחרור על פי הוראת רופא וסולם Aldrete/MPADS",
-        "מצב הכרה תקין, יציבות המודינמית ונשימתית, יכולת שתייה ללא הקאה",
-        "ילדים – ללא כאב ובליווי מבוגר",
-        "הסבר על השפעות מתמשכות ואיסור נהיגה"
-      ]
+      "question": "סדציה 😴🔄\nמה כולל שחרור מטופל מהתאוששות/התעוררות?",
+      "answer": "שחרור על פי הוראת רופא וסולם [b]Aldrete[/b]/[y]MPADS[/y]\n🔄 מצב הכרה תקין\n🔄 יציבות המודינמית ונשימתית\n🔄 יכולת שתייה ללא הקאה\n😴 ילדים – [r]ללא כאב[/r] ו[g]בליווי מבוגר[/g]\nהסבר על השפעות מתמשכות ו[r]איסור נהיגה[/r]"
     },
     "en": {
-      "question": "Sedation 😴🔄❔ What does patient discharge from recovery/awakening include?",
-      "answer": [
-        "Discharge according to physician order and Aldrete/MPADS scale",
-        "Appropriate level of consciousness, hemodynamic and respiratory stability, ability to drink without vomiting",
-        "Children – pain-free and accompanied by adult only",
-        "Explanation of prolonged effects and driving prohibition"
-      ]
+      "question": "Sedation 😴🔄\nWhat does patient[g] discharge[/g] from recovery/awakening include?",
+      "answer": "Discharge according to physician order and [b]Aldrete[/b]/[y]MPADS[/y] scale\n🔄 appropriate level of consciousness\n🔄 hemodynamic and respiratory stability\n🔄 ability to drink without vomiting\n😴 Children – [r]pain-free[/r] and [y]accompanied by adult only[/y]\nExplanation of prolonged effects and [r]driving prohibition[/r]"
     },
     "ru": {
-      "question": "Седация 😴🔄❔ Что включает выписку пациента из восстановления/пробуждения?",
-      "answer": [
-        "Выписка по назначению врача и по шкале Aldrete/MPADS",
-        "Адекватный уровень сознания, гемодинамическая и респираторная стабильность, способность пить без рвоты",
-        "Дети – без боли и только в сопровождении взрослого",
-        "Объяснение пролонгированных эффектов и запрета на вождение"
-      ]
+      "question": "Седация 😴🔄\nЧто включает [y]выписку[/y] пациента из восстановления/пробуждения?",
+      "answer": "Выписка по назначению врача и по шкале [b]Aldrete[/b]/[y]MPADS[/y]\n🔄 адекватный уровень сознания\n🔄 гемодинамическая и респираторная стабильность\n🔄 способность пить без рвоты\n😴 Дети – [r]без боли[/r] и только в [b]сопровождении взрослого[/b]\nОбъяснение пролонгированных эффектов и [r]запрета на вождение[/r]"
     },
     "ar": {
-      "question": "التسكين 😴🔄❔ ما الذي يشمله خروج المريض من التعافي/الاستيقاظ؟",
-      "answer": [
-        "الخروج وفق تعليمة الطبيب ومقياس Aldrete/MPADS",
-        "مستوى وعي مناسب، استقرار ديناميكي تنفسي، القدرة على الشرب بدون قيء",
-        "الأطفال – بدون ألم وبرفقة بالغ فقط",
-        "شرح التأثيرات المطولة وحظر القيادة"
-      ]
+      "question": "التسكين 😴🔄\n ما الذي يشمله خروج المريض من التعافي/الاستيقاظ؟",
+      "answer": "الخروج وفق تعليمة الطبيب ومقياس [b]Aldrete[/b]/[y]MPADS[/y],مستوى وعي مناسب، استقرار ديناميكي تنفسي، القدرة على الشرب بدون قيء,الأطفال – بدون ألم وبرفقة بالغ فقط,شرح التأثيرات المطولة وحظر القيادة"
     },
     "question_media": [],
     "answer_media": []
@@ -1510,36 +1356,20 @@
   {
     "id": 108,
     "he": {
-      "question": "סדציה 😴⏱️❔ מה משך זמן ההשגחה הנדרש לאחר סדציה?",
-      "answer": [
-        "אמבולטורי עם ליווי – שעה לפחות",
-        "אמבולטורי ללא ליווי – שעתיים לפחות",
-        "מאושפז – 30 דקות לפחות מהתעוררות"
-      ]
+      "question": "סדציה 😴⏱️\n מה [y]משך זמן[/y] ההשגחה הנדרש לאחר [r]סדציה[/r]?",
+      "answer": "⏱️ אמבולטורי עם ליווי – [y]שעה[/y] לפחות\n⏱️ אמבולטורי ללא ליווי – [y]שעתיים[/y] לפחות\n⏱️ מאושפז – [y]30 דקות[/y] לפחות מהתעוררות"
     },
     "en": {
-      "question": "Sedation 😴⏱️❔ What is the required supervision time after sedation?",
-      "answer": [
-        "Ambulatory with accompaniment – at least one hour",
-        "Ambulatory without accompaniment – at least two hours",
-        "Hospitalized – at least 30 minutes from awakening"
-      ]
+      "question": "Sedation 😴⏱️\nWhat is the required [y]supervision time[/y] after [r]sedation[/r]?",
+      "answer": "⏱️ Ambulatory with accompaniment – at least [y]one hour[/y]\n⏱️ Ambulatory without accompaniment – at least [y]two hours[/y]\n⏱️ Hospitalized – at least [y]30 minutes[/y] from awakening"
     },
     "ru": {
-      "question": "Седация 😴⏱️❔ Какова требуемая продолжительность наблюдения после седации?",
-      "answer": [
-        "Амбулаторный с сопровождением – минимум один час",
-        "Амбулаторный без сопровождения – минимум два часа",
-        "Госпитализированный – минимум 30 минут с момента пробуждения"
-      ]
+      "question": "Седация 😴⏱️\nКакова требуемая [g]продолжительность наблюдения[/g] после [r]седации[/r]?",
+      "answer": "⏱️ Амбулаторный с сопровождением – минимум [y]1 час[/y]\n⏱️ Амбулаторный без сопровождения – минимум [y]2 часа[/y]\n⏱️ Госпитализированный – минимум [y]30 минут[/y] с момента пробуждения"
     },
     "ar": {
-      "question": "التسكين 😴⏱️❔ ما هو مدة الإشراف المطلوبة بعد التسكين؟",
-      "answer": [
-        "خارجي برفقة – ساعة واحدة على الأقل",
-        "خارجي بدون رفقة – ساعتين على الأقل",
-        "مقيم – 30 دقيقة على الأقل من الاستيقاظ"
-      ]
+      "question": "التسكين 😴⏱️\n ما هو مدة الإشراف المطلوبة بعد التسكين؟",
+      "answer": "خارجي برفقة – ساعة واحدة على الأقل,خارجي بدون رفقة – ساعتين على الأقل,مقيم – 30 دقيقة على الأقل من الاستيقاظ"
     },
     "question_media": [],
     "answer_media": []
@@ -1547,61 +1377,47 @@
   {
     "id": 109,
     "he": {
-      "question": "צנתרים 💉📅 קיים תיעוד הכנסת הצנתר התוך ורידי (פרפרי) ושהיית הצנתר בווריד אינה חורגת מ-4-5 ימים",
-      "answer": [
-        "אין צורך בתשובה – תצפית והערכה"
-      ]
+      "question": "צנתרים 💉📅\nקיים תיעוד הכנסת הצנתר התוך ורידי ([g]פרפרי[/g]) ושהיית הצנתר בווריד אינה חורגת מ-[y]4-5 ימים[/y]",
+      "answer": "אין צורך בתשובה – תצפית והערכה"
     },
     "en": {
-      "question": "Catheters 💉📅 There is documentation of insertion of the intravenous catheter (butterfly) and the catheter dwell time in the vein does not exceed 4-5 days",
-      "answer": [
-        "No answer needed – observation and evaluation"
-      ]
+      "question": "Catheters 💉📅 \nThere is documentation of insertion of the intravenous catheter ([y]butterfly[/y]) and the catheter dwell time in the vein does not exceed [y]4-5 days[/y]",
+      "answer": "No answer needed – observation and evaluation"
     },
     "ru": {
-      "question": "Катетеры 💉📅 Имеется документирование установки внутривенного катетера (бабочка) и время пребывания катетера в вене не превышает 4-5 дней",
-      "answer": [
-        "Ответ не требуется – наблюдение и оценка"
-      ]
+      "question": "Катетеры 💉📅 \nИмеется документирование установки внутривенного катетера ([g]бабочка[/g]) и время пребывания катетера в вене не превышает [y]4-5 дней[/y]",
+      "answer": "Ответ не требуется – наблюдение и оценка"
     },
     "ar": {
-      "question": "القسطريات 💉📅 يوجد توثيق لإدخال القسطرة الوريدية (فراشة) ومدة بقاء القسطرة في الوريد لا تتجاوز 4-5 أيام",
-      "answer": [
-        "لا حاجة للإجابة – الملاحظة والتقييم"
-      ]
+      "question": "القسطريات 💉📅\n يوجد توثيق لإدخال القسطرة الوريدية (فراشة) ومدة بقاء القسطرة في الوريد لا تتجاوز 4-5 أيام",
+      "answer": "لا حاجة للإجابة – الملاحظة والتقييم"
     },
     "question_media": [],
-    "answer_media": []
+    "answer_media": [
+      {
+        "type": "image",
+        "src": "images/doctor/nabl1.jpeg",
+        "alt": ""
+      }
+    ]
   },
   {
     "id": 119,
     "he": {
       "question": "אירועים חריגים 🚨📌❔ מה ההגדרה של אירוע חריג?",
-      "answer": [
-        "אירוע החורג מהשגרה במהלך הטיפול הרפואי",
-        "עלול היה לגרום או גרם לנזק / סיבוך בלתי רצוי (נכות, נזק נפשי, מוות, שהות ממושכת)"
-      ]
+      "answer": "אירוע החורג מהשגרה במהלך הטיפול הרפואי,עלול היה לגרום או גרם לנזק / סיבוך בלתי רצוי (נכות, נזק נפשי, מוות, שהות ממושכת)"
     },
     "en": {
       "question": "Adverse Events 🚨📌❔ What is the definition of an adverse event?",
-      "answer": [
-        "Any event that deviates from the routine during medical treatment",
-        "Could have caused or caused harm / unwanted complication (disability, mental damage, death, prolonged stay)"
-      ]
+      "answer": "Any event that deviates from the routine during medical treatment,Could have caused or caused harm / unwanted complication (disability, mental damage, death, prolonged stay)"
     },
     "ru": {
       "question": "Неблагоприятные события 🚨📌❔ Каково определение неблагоприятного события?",
-      "answer": [
-        "Любое событие, отклоняющееся от рутины во время медицинского лечения",
-        "Могло причинить или причинило вред / нежелательное осложнение (инвалидность, психический ущерб, смерть, длительная госпитализация)"
-      ]
+      "answer": "Любое событие, отклоняющееся от рутины во время медицинского лечения,Могло причинить или причинило вред / нежелательное осложнение (инвалидность, психический ущерб, смерть, длительная госпитализация)"
     },
     "ar": {
       "question": "الأحداث الضارة 🚨📌❔ ما هو تعريف الحدث الضار؟",
-      "answer": [
-        "أي حدث يخرج عن الروتين أثناء العلاج الطبي",
-        "كان من الممكن أن يسبب أو تسبب في ضرر / مضاعفة غير مرغوبة (إعاقة، ضرر نفسي، وفاة، إقامة طويلة)"
-      ]
+      "answer": "أي حدث يخرج عن الروتين أثناء العلاج الطبي,كان من الممكن أن يسبب أو تسبب في ضرر / مضاعفة غير مرغوبة (إعاقة، ضرر نفسي، وفاة، إقامة طويلة)"
     },
     "question_media": [],
     "answer_media": []
