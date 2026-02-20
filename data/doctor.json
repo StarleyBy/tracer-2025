@@ -695,7 +695,7 @@
     "answer_media": [
       {
         "type": "image",
-        "src": "images/doctor/nabl4.jpeg",
+        "src": "images/doctor/nabl5.jpeg",
         "alt": ""
       }
     ]
@@ -703,49 +703,47 @@
   {
     "id": 50,
     "he": {
-      "question": "נרקוטיקה 💊🗑️ עודף נרקוטיקה מושמד, מתועד וחתום...",
+      "question": "נרקוטיקה 💊🗑️ \nעודף נרקוטיקה מושמד, מתועד וחתום...",
       "answer": "אין צורך בתשובה – תצפית והערכה"
     },
     "en": {
-      "question": "Narcotics 💊🗑️ Excess narcotics are destroyed, documented and signed...",
+      "question": "Narcotics 💊🗑️ \nExcess narcotics are destroyed, documented and signed...",
       "answer": "No answer needed – observation and evaluation"
     },
     "ru": {
-      "question": "Наркотические средства 💊🗑️ Излишки наркотических средств уничтожаются, документируются и подписываются...",
+      "question": "Наркотические средства 💊🗑️ \nИзлишки наркотических средств уничтожаются, документируются и подписываются...",
       "answer": "Ответ не требуется – наблюдение и оценка"
     },
     "ar": {
-      "question": "المخدرات 💊🗑️ يتم تدمير الفائض من المخدرات وتوثيقه وتوقيعه...",
+      "question": "المخدرات 💊🗑️\n يتم تدمير الفائض من المخدرات وتوثيقه وتوقيعه...",
       "answer": "لا حاجة للإجابة – الملاحظة والتقييم"
     },
     "question_media": [],
-    "answer_media": []
+    "answer_media": [
+      {
+        "type": "image",
+        "src": "images/doctor/nabl7.jpeg",
+        "alt": ""
+      }
+    ]
   },
   {
     "id": 69,
     "he": {
-      "question": "פסולת תרופתית 💊🗑️❔ איזה פסולת תרופתית יש להשליך לפח הייעודי?",
-      "answer": [
-        "פסולת תרופתית (שאלות פתוחות – בדיקה לפי הנוהל)"
-      ]
+      "question": "פסולת תרופתית 💊🗑️\nאיזה פסולת תרופתית יש להשליך לפח הייעודי?",
+      "answer": "[bold]טיפול בפסולת תרופתית:[/bold]\n.1 תרופות שפג תוקפן ותרופות מיושנות שפרק הזמן שנקבע לאחר הפתיחה פג, ייחשבו\nכפסולת רפואית מסוכנת. יש לאספם במיכל ייעודי מסומן. הפסולת תיאסף על ידי עובד\nתברואה אשר יעבירה במרוכז ובאופן בטיחותי להשמדה כפסולת רפואית מסוכנת.\n.2 כדורים/קפסולות שנעשה בהם שימוש חלקי )חצאי כדורים(, פלקונים עם שאריות\nתרופה, יוכנסו גם הם למיכל הייעודי ויטופלו בצורה דומה לפסולת רפואית.\n.3 שאריות תרופות ציטוטוקסיות:\nכל פריט הבא במגע ישיר עם תכשיר ציטוטוקסי, יושלך למיכל ייעודי המסומן\nבתווית ציטוטוקסיקה.\n פריטים חדים שנעשה בהם שימוש בתכשירים ציטוטוקסיים יושלכו למיכל איסוף\nפסולת חדה המסומן בתווית ציטוטוקסיקה.\n.4 שאריות סמים מסוכנים :\nשאריות סם )אמפולות / טבליות( יש להשליך למיכל פסולת חדה בנוכחות אחות נוספת.\nשאריות סם מדולל בנפח העולה על 10 מ\"ל, יש לרוקן את נפח הסם לפח פסולת\nתרופתית.\n5. תברואנית בית החולים תבטיח העברת הפסולת למרכז לסילוק פסולת."
     },
     "en": {
-      "question": "Pharmaceutical Waste 💊🗑️❔ Which pharmaceutical waste should be disposed of in the designated bin?",
-      "answer": [
-        "Pharmaceutical waste (open questions – check according to procedure)"
-      ]
+      "question": "Pharmaceutical Waste 💊🗑️\nWhich pharmaceutical waste should be disposed of in the designated bin?",
+      "answer": "Treatment of pharmaceutical waste:\n1. Expired medicines and outdated medicines whose expiry date has expired will be considered\nas hazardous medical waste. They must be collected in a designated, marked container. The waste will be collected by a sanitation worker who will transport it centrally and safely for disposal as hazardous medical waste.\n2. Partially used pills/capsules (half pills), vials with medicine residue, will also be placed in the designated container and treated in a similar manner to medical waste.\n3. Cytotoxic drug residue:\n🗑️ Any item that comes into direct contact with a cytotoxic preparation will be disposed of in a designated container marked with a cytotoxicity label.\n🗑️ Sharp items that have been used with cytotoxic preparations will be disposed of in a sharps collection container marked with a cytotoxicity label.\n4. Hazardous drug residue:\nDrug residue (ampoules/tablets) must be disposed of in a sharps container in the presence of [y]another nurse[/y].\nDiluted drug residue in a volume exceeding [r]10 ml[/r], the drug volume must be emptied into a medical waste bin.\n5. The hospital sanitation officer will ensure that the waste is transferred to the waste disposal center."
     },
     "ru": {
-      "question": "Фармацевтические отходы 💊🗑️❔ Какие фармацевтические отходы следует выбрасывать в специальный контейнер?",
-      "answer": [
-        "Фармацевтические отходы (открытые вопросы – проверка по процедуре)"
-      ]
+      "question": "Фармацевтические отходы 💊🗑️\nКакие фармацевтические отходы следует выбрасывать в специальный контейнер?",
+      "answer": "[bold]Обработка фармацевтических отходов[/bold]:\n1. Лекарственные препараты с истекшим сроком годности и просроченные лекарства считаются опасными медицинскими отходами. Их необходимо собирать в специально отведенный, обозначенный контейнер. Сбор отходов будет осуществляться работником санитарной службы, который обеспечит их централизованную и безопасную утилизацию в качестве опасных медицинских отходов.\n2. Частично использованные таблетки/капсулы (половинки таблеток), флаконы с остатками лекарства также помещаются в специально отведенный контейнер и обрабатываются аналогично медицинским отходам.\n3. Остатки цитотоксических препаратов:\n🗑️ Любой предмет, непосредственно контактировавший с цитотоксическим препаратом, утилизируется в специально отведенном контейнере с маркировкой, указывающей на цитотоксичность.\n🗑️ Острые предметы, использованные с цитотоксическими препаратами, утилизируются в контейнере для сбора острых предметов с маркировкой, указывающей на цитотоксичность.\n4. Остатки опасных лекарственных препаратов:\nОстатки лекарственных препаратов (ампулы/таблетки) должны утилизироваться в контейнере для острых предметов в [g]присутствии другой медицинской сестры[/g].\nПри разведении остатков лекарственного препарата в объеме, превышающем [y]10 мл[/y], этот объем необходимо вылить в контейнер для медицинских отходов.\n5. Сотрудник санитарной службы больницы обеспечит передачу отходов в центр утилизации отходов."
     },
     "ar": {
-      "question": "نفايات الأدوية 💊🗑️❔ أي نفايات دوائية يجب التخلص منها في الصندوق المخصص؟",
-      "answer": [
-        "نفايات الأدوية (أسئلة مفتوحة – فحص وفق الإجراء)"
-      ]
+      "question": "نفايات الأدوية 💊🗑️\n أي نفايات دوائية يجب التخلص منها في الصندوق المخصص؟",
+      "answer": "معالجة النفايات الصيدلانية:\n1. تُعتبر الأدوية منتهية الصلاحية والأدوية التي انتهت صلاحيتها نفايات طبية خطرة. يجب جمعها في حاوية مخصصة ومُعلّمة. يقوم عامل النظافة بجمع هذه النفايات ونقلها مركزياً وبشكل آمن للتخلص منها كنفايات طبية خطرة.\n\n2. تُوضع الأقراص/الكبسولات المستخدمة جزئياً (نصف قرص)، والقوارير التي تحتوي على بقايا دواء، في الحاوية المخصصة وتُعالج بطريقة مماثلة للنفايات الطبية.\n\n3. بقايا الأدوية السامة للخلايا:\n- تُتخلص من أي مادة تلامس مستحضراً ساماً للخلايا مباشرةً في حاوية مخصصة تحمل علامة السمية الخلوية.\n\n- تُتخلص من الأدوات الحادة المستخدمة مع المستحضرات السامة للخلايا في حاوية مخصصة للأدوات الحادة تحمل علامة السمية الخلوية.\n\n4. بقايا الأدوية الخطرة:\nيجب التخلص من بقايا الأدوية (الأمبولات/الأقراص) في حاوية مخصصة للأدوات الحادة بحضور ممرضة أخرى.\n\nفي حال تجاوز حجم بقايا الدواء المخفف 10 مل، يجب تفريغها في حاوية النفايات الطبية.\n\n5. يتولى مسؤول النظافة في المستشفى مسؤولية نقل النفايات إلى مركز التخلص من النفايات."
     },
     "question_media": [],
     "answer_media": []
@@ -753,44 +751,20 @@
   {
     "id": 70,
     "he": {
-      "question": "הסברים 📢👩‍⚕️ יש לקבל הסבר מפורט מהאחות בנושא איכות ברכיבים הבאים:",
-      "answer": [
-        "1. מיקום תיקיית האיכות",
-        "2. מדדי איכות לאומיים רלוונטיים – יעד ועמידה",
-        "3. פרויקט שיפור האיכות המחלקתי (PDSA)",
-        "4. צוות רב-מקצועי בפרויקט",
-        "5. נאמני איכות – עדכון והדרכה סדירה של הצוות"
-      ]
+      "question": "הסברים 📢👩‍⚕️ \nיש לקבל הסבר מפורט מהאחות בנושא איכות ברכיבים הבאים:",
+      "answer": "1. מיקום תיקיית האיכות\n2. מדדי איכות לאומיים רלוונטיים – יעד ועמידה\n3. פרויקט שיפור האיכות המחלקתי (PDSA)\n4. צוות רב-מקצועי בפרויקט\n5. נאמני איכות – עדכון והדרכה סדירה של הצוות"
     },
     "en": {
-      "question": "Explanations 📢👩‍⚕️ Receive a detailed explanation from the nurse on quality in the following components:",
-      "answer": [
-        "1. Location of the quality folder",
-        "2. Relevant national quality indicators – target and compliance",
-        "3. Departmental quality improvement project (PDSA)",
-        "4. Multidisciplinary team in the project",
-        "5. Quality champions – regular updates and training of staff"
-      ]
+      "question": "Explanations 📢👩‍⚕️ \nReceive a detailed explanation from the nurse on quality in the following components:",
+      "answer": "1. Location of the quality folder\n2. Relevant national quality indicators – target and compliance\n3. Departmental quality improvement project (PDSA)\n4. Multidisciplinary team in the project\n5. Quality champions – regular updates and training of staff"
     },
     "ru": {
-      "question": "Разъяснения 📢👩‍⚕️ Получить подробное объяснение от медсестры по качеству в следующих компонентах:",
-      "answer": [
-        "1. Местонахождение папки качества",
-        "2. Релевантные национальные индикаторы качества – цель и соответствие",
-        "3. Проект улучшения качества отделения (PDSA)",
-        "4. Междисциплинарная команда в проекте",
-        "5. Чемпионы качества – регулярные обновления и обучение персонала"
-      ]
+      "question": "Разъяснения 📢👩‍⚕️ \nПолучить подробное объяснение от медсестры по качеству в следующих компонентах:",
+      "answer": "1. Местонахождение папки качества\n2. Релевантные национальные индикаторы качества – цель и соответствие\n3. Проект улучшения качества отделения (PDSA)\n4. Междисциплинарная команда в проекте\n5. Чемпионы качества – регулярные обновления и обучение персонала"
     },
     "ar": {
-      "question": "التوضيحات 📢👩‍⚕️ تلقي شرح مفصل من الممرضة حول الجودة في المكونات التالية:",
-      "answer": [
-        "1. موقع مجلد الجودة",
-        "2. مؤشرات الجودة الوطنية ذات الصلة – الهدف والامتثال",
-        "3. مشروع تحسين الجودة القسمي (PDSA)",
-        "4. فريق متعدد التخصصات في المشروع",
-        "5. أبطال الجودة – تحديث وتدريب منتظم للطاقم"
-      ]
+      "question": "التوضيحات 📢👩‍⚕️\n تلقي شرح مفصل من الممرضة حول الجودة في المكونات التالية:",
+      "answer": "1. موقع مجلد الجودة\n2. مؤشرات الجودة الوطنية ذات الصلة – الهدف والامتثال\n3. مشروع تحسين الجودة القسمي (PDSA)\n4. فريق متعدد التخصصات في المشروع\n5. أبطال الجودة – تحديث وتدريب منتظم للطاقم"
     },
     "question_media": [],
     "answer_media": []
@@ -798,36 +772,20 @@
   {
     "id": 72,
     "he": {
-      "question": "קבלת מטופל 🏥⏱️❔ תוך כמה זמן מקבלת המטופל יש לבצע קבלה רפואית?",
-      "answer": [
-        "מחלקה: סמוך ככל הניתן ולא יאוחר מ-4 שעות",
-        "אמבולטורי: סמוך לקבלתו ולא יאוחר מביקורו הראשון",
-        "טיפול נמרץ: עד 24 שעות"
-      ]
+      "question": "קבלת מטופל 🏥⏱️\n תוך כמה זמן מקבלת המטופל יש לבצע קבלה רפואית?",
+      "answer": "⏱️ מחלקה: סמוך ככל הניתן ו[r]לא יאוחר מ-4 שעות[/r]\n⏱️ אמבולטורי: סמוך לקבלתו ו[y]לא יאוחר מביקורו הראשון[/y]\n⏱️ טיפול נמרץ: [g]עד 24 שעות[/g]"
     },
     "en": {
-      "question": "Patient Admission 🏥⏱️❔ Within how much time from patient admission must a medical admission be performed?",
-      "answer": [
-        "Department: as soon as possible and no later than 4 hours",
-        "Ambulatory: close to admission and no later than first visit",
-        "Intensive care: up to 24 hours"
-      ]
+      "question": "Patient Admission 🏥⏱️\nWithin how much time from patient admission must a medical admission be performed?",
+      "answer": "⏱️ Department: as soon as possible and [r]no later than 4 hours[/r]\n⏱️ Ambulatory: close to admission and [y]no later than first visit[/y]\n⏱️ Intensive care: [g]up to 24 hours[/g]"
     },
     "ru": {
-      "question": "Приём пациента 🏥⏱️❔ В течение какого времени с момента поступления пациента должна быть выполнена медицинская приёмка?",
-      "answer": [
-        "Отделение: как можно скорее и не позднее 4 часов",
-        "Амбулаторно: близко к поступлению и не позднее первого визита",
-        "Интенсивная терапия: до 24 часов"
-      ]
+      "question": "Приём пациента 🏥⏱️\nВ течение какого времени с момента поступления пациента должно быть выполнено оформление пациента?",
+      "answer": "⏱️ Отделение: как можно скорее и [r]не позднее 4 часов[/r]\n⏱️ Амбулаторно: близко к поступлению и [y]не позднее первого визита[/y]\n⏱️ Интенсивная терапия: [g]до 24 часов[/g]"
     },
     "ar": {
-      "question": "قبول المريض 🏥⏱️❔ خلال كم من الوقت من قبول المريض يجب إجراء قبول طبي؟",
-      "answer": [
-        "القسم: في أقرب وقت ممكن ولا يتجاوز 4 ساعات",
-        "الخارجي: قريباً من القبول ولا يتجاوز الزيارة الأولى",
-        "العناية المركزة: حتى 24 ساعة"
-      ]
+      "question": "قبول المريض 🏥⏱️\n خلال كم من الوقت من قبول المريض يجب إجراء قبول طبي؟",
+      "answer": "القسم: في أقرب وقت ممكن ولا يتجاوز 4 ساعات,الخارجي: قريباً من القبول ولا يتجاوز الزيارة الأولى,العناية المركزة: حتى 24 ساعة"
     },
     "question_media": [],
     "answer_media": []
@@ -835,36 +793,20 @@
   {
     "id": 74,
     "he": {
-      "question": "הסכמה מדעת 📝✅❔ במידה ורלוונטי למטופל, האם קיימת הסכמה מלאה לפעולה/ניתוח/בדיקה פולשנית והאם היא בתוקף וחתומה כנדרש?",
-      "answer": [
-        "נדרשת הסכמה מדעת חתומה לניתוחים (למעט כירורגיה זעירה), צנתורים, דיאליזה, כימותרפיה, דם, סדציה וכו'",
-        "תוקף: חודש ימים (חידוש שנתי בטיפולים כרוניים)",
-        "יש לוודא חתימה, תאריך, העתק למטופל"
-      ]
+      "question": "הסכמה מדעת 📝✅\nבמידה ורלוונטי למטופל, האם קיימת הסכמה מלאה לפעולה/ניתוח/בדיקה פולשנית והאם היא בתוקף וחתומה כנדרש?",
+      "answer": "נדרשת הסכמה מדעת חתומה לניתוחים (למעט כירורגיה זעירה), צנתורים, דיאליזה, כימותרפיה, דם, סדציה וכו'\nתוקף: [y]חודש[/y] ימים (חידוש שנתי בטיפולים כרוניים)\nיש לוודא חתימה, תאריך, העתק למטופל"
     },
     "en": {
-      "question": "Informed Consent 📝✅❔ If relevant to the patient, is there full informed consent for the procedure/surgery/invasive test and is it valid and signed as required?",
-      "answer": [
-        "Signed informed consent required for surgeries (except minor), catheterizations, dialysis, chemotherapy, blood, sedation etc.",
-        "Validity: one month (annual renewal for chronic treatments)",
-        "Verify signature, date, copy given to patient"
-      ]
+      "question": "Informed Consent 📝✅\nIf relevant to the patient, is there full informed consent for the procedure/surgery/invasive test and is it valid and signed as required?",
+      "answer": "Signed informed consent required for surgeries (except minor), catheterizations, dialysis, chemotherapy, blood, sedation etc.\nValidity: [r]one month[/r] (annual renewal for chronic treatments)\nVerify signature, date, copy given to patient"
     },
     "ru": {
-      "question": "Информированное согласие 📝✅❔ Если актуально для пациента, имеется ли полное информированное согласие на процедуру/операцию/инвазивное исследование и действительно ли оно и подписано как требуется?",
-      "answer": [
-        "Требуется подписанное информированное согласие на операции (кроме малых), катетеризации, диализ, химиотерапию, кровь, седацию и т.д.",
-        "Срок действия: один месяц (ежегодное продление при хронических лечениях)",
-        "Проверить подпись, дату, копию пациенту"
-      ]
+      "question": "Информированное согласие 📝✅\nЕсли актуально для пациента, имеется ли полное информированное согласие на процедуру/операцию/инвазивное исследование и действительно ли оно и подписано как требуется?",
+      "answer": "Требуется подписанное информированное согласие на операции (кроме малых), катетеризации, диализ, химиотерапию, кровь, седацию и т.д.\nСрок действия: [y]один месяц[/y] (ежегодное продление при хронических лечениях)\nПроверить подпись, дату, копию пациента."
     },
     "ar": {
-      "question": "الموافقة المستنيرة 📝✅❔ إذا كان ذلك ذا صلة بالمريض، هل توجد موافقة مستنيرة كاملة للإجراء/الجراحة/الفحص الغازي وهل هي سارية المفعول وموقعة كما هو مطلوب؟",
-      "answer": [
-        "مطلوب موافقة مستنيرة موقعة للجراحات (باستثناء الجراحة الصغيرة)، القسطرة، الدياليزة، الكيميائي، الدم، التسكين إلخ",
-        "الصلاحية: شهر واحد (تجديد سنوي للعلاجات المزمنة)",
-        "التحقق من التوقيع، التاريخ، نسخة للمريض"
-      ]
+      "question": "الموافقة المستنيرة 📝✅\n إذا كان ذلك ذا صلة بالمريض، هل توجد موافقة مستنيرة كاملة للإجراء/الجراحة/الفحص الغازي وهل هي سارية المفعول وموقعة كما هو مطلوب؟",
+      "answer": "مطلوب موافقة مستنيرة موقعة للجراحات (باستثناء الجراحة الصغيرة)، القسطرة، الدياليزة، الكيميائي، الدم، التسكين إلخ,الصلاحية: شهر واحد (تجديد سنوي للعلاجات المزمنة),التحقق من التوقيع، التاريخ، نسخة للمريض"
     },
     "question_media": [],
     "answer_media": []
@@ -872,32 +814,20 @@
   {
     "id": 75,
     "he": {
-      "question": "הסכמה מדעת 📝🖨️❔ טופס הסכמה מדעת – האם מטופל קיבל צילום של טופס מקורי?",
-      "answer": [
-        "כן – העתק חתום נמסר למטופל לאחר הטיפול או בשחרור",
-        "ברשומה חייב להיות רשום \"נמסר העתק חתום למטופל\""
-      ]
+      "question": "הסכמה מדעת 📝🖨️\nטופס הסכמה מדעת – האם מטופל קיבל צילום של טופס מקורי?",
+      "answer": "כן – העתק חתום נמסר למטופל לאחר הטיפול או בשחרור\nברשומה חייב להיות רשום \"[y]נמסר העתק חתום למטופל[/y]\""
     },
     "en": {
-      "question": "Informed Consent 📝🖨️❔ Informed consent form – did the patient receive a photocopy of the original form?",
-      "answer": [
-        "Yes – signed copy is given to the patient after the procedure or upon discharge",
-        "The record must state “Signed copy given to the patient”"
-      ]
+      "question": "Informed Consent 📝🖨️\nInformed consent form – did the patient receive a photocopy of the original form?",
+      "answer": "Yes – signed copy is given to the patient after the procedure or upon discharge\nThe record must state “[y]Signed copy given to the patient[/y]”"
     },
     "ru": {
-      "question": "Информированное согласие 📝🖨️❔ Форма информированного согласия — получил ли пациент фотокопию оригинальной формы?",
-      "answer": [
-        "Да – подписанная копия выдаётся пациенту после процедуры или при выписке",
-        "В записи должно быть указано «Подписанная копия выдана пациенту»"
-      ]
+      "question": "Информированное согласие 📝🖨️\nФорма информированного согласия — получил ли пациент копию оригинальной формы?",
+      "answer": "Да – подписанная копия выдаётся пациенту после процедуры или при выписке\nВ записи должно быть указано «[y]Подписанная копия выдана пациенту[/y]»"
     },
     "ar": {
-      "question": "الموافقة المستنيرة 📝🖨️❔ نموذج الموافقة المستنيرة – هل تلقى المريض نسخة مصورة من النموذج الأصلي؟",
-      "answer": [
-        "نعم – نسخة موقعة تُسلم للمريض بعد الإجراء أو عند الخروج",
-        "يجب أن يكون مكتوباً في السجل \"تم تسليم نسخة موقعة للمريض\""
-      ]
+      "question": "الموافقة المستنيرة 📝🖨️\n نموذج الموافقة المستنيرة – هل تلقى المريض نسخة مصورة من النموذج الأصلي؟",
+      "answer": "نعم – نسخة موقعة تُسلم للمريض بعد الإجراء أو عند الخروج,يجب أن يكون مكتوباً في السجل \"تم تسليم نسخة موقعة للمريض\""
     },
     "question_media": [],
     "answer_media": []
@@ -905,32 +835,20 @@
   {
     "id": 76,
     "he": {
-      "question": "קבלת מטופל 🏥⏱️❔ בתוך כמה זמן מקבלת החולה בוצעה קבלה סיעודית?",
-      "answer": [
-        "מחלקה: סמוך ככל הניתן ולא יאוחר משעה (תיעוד עד תום המשמרת)",
-        "אמבולטורי: סמוך לקבלתו ולא יאוחר מביקורו הראשון"
-      ]
+      "question": "קבלת מטופל 🏥⏱️\nבתוך כמה זמן מקבלת החולה בוצעה קבלה סיעודית?",
+      "answer": "⏱️ מחלקה: סמוך ככל הניתן ו[r]לא יאוחר משעה[/r] (תיעוד עד תום המשמרת)\n⏱️ אמבולטורי: סמוך לקבלתו ו[y]לא יאוחר מביקורו הראשון[/y]"
     },
     "en": {
-      "question": "Patient Admission 🏥⏱️❔ Within how much time from patient admission was the nursing admission performed?",
-      "answer": [
-        "Department: as soon as possible and no later than one hour (documentation by end of shift)",
-        "Ambulatory: close to admission and no later than first visit"
-      ]
+      "question": "Patient Admission 🏥⏱️\nWithin how much time from patient admission was the nursing admission performed?",
+      "answer": "⏱️ Department: as soon as possible and [r]no later than one hour[/r] (documentation by end of shift)\n⏱️ Ambulatory: close to admission and [y]no later than first visit[/y]"
     },
     "ru": {
-      "question": "Приём пациента 🏥⏱️❔ В течение какого времени с момента поступления пациента была выполнена сестринская приёмка?",
-      "answer": [
-        "Отделение: как можно скорее и не позднее одного часа (документирование до конца смены)",
-        "Амбулаторно: близко к поступлению и не позднее первого визита"
-      ]
+      "question": "Приём пациента 🏥⏱️\nВ течение какого времени с момента поступления пациента была выполнена сестринская приёмка?",
+      "answer": "⏱️ Отделение: как можно скорее и [r]не позднее одного часа[/r] (документирование до конца смены)\n⏱️ Амбулаторно: близко к поступлению и [y]не позднее первого визита[/y]"
     },
     "ar": {
-      "question": "قبول المريض 🏥⏱️❔ خلال كم من الوقت من قبول المريض تم إجراء القبول التمريضي؟",
-      "answer": [
-        "القسم: في أقرب وقت ممكن ولا يتجاوز ساعة واحدة (التوثيق حتى نهاية الوردية)",
-        "الخارجي: قريباً من القبول ولا يتجاوز الزيارة الأولى"
-      ]
+      "question": "قبول المريض 🏥⏱️\n خلال كم من الوقت من قبول المريض تم إجراء القبول التمريضي؟",
+      "answer": "القسم: في أقرب وقت ممكن ولا يتجاوز ساعة واحدة (التوثيق حتى نهاية الوردية),الخارجي: قريباً من القبول ولا يتجاوز الزيارة الأولى"
     },
     "question_media": [],
     "answer_media": []
@@ -938,36 +856,20 @@
   {
     "id": 77,
     "he": {
-      "question": "קבלת מטופל 🏥🔄❔ כיצד יש לנהוג בקבלת מטופל במסגרת מרפאת חוץ/אמבולטורי ובמידה וחלפו מעל 30 ימים...",
-      "answer": [
-        "אם חלפו יותר מ-30 יום – ביצוע הערכה חוזרת: היסטוריה, בדיקה גופנית, אומדנים",
-        "תיעוד השינויים ברשומה",
-        "אם פחות מ-30 יום – ציון שינויים משמעותיים בלבד"
-      ]
+      "question": "קבלת מטופל 🏥🔄\nכיצד יש לנהוג בקבלת מטופל במסגרת מרפאת חוץ/אמבולטורי ובמידה וחלפו מעל 30 ימים...",
+      "answer": "אם חלפו יותר מ-30 יום – ביצוע [g]הערכה חוזרת[/g]: היסטוריה, בדיקה גופנית, אומדנים\nתיעוד השינויים ברשומה\nאם פחות מ-30 יום – ציון שינויים משמעותיים בלבד"
     },
     "en": {
-      "question": "Patient Admission 🏥🔄❔ How to act upon admission of a patient in the outpatient clinic/ambulatory setting and if more than 30 days have passed...",
-      "answer": [
-        "If more than 30 days have passed – repeat evaluation: history, physical examination, assessments",
-        "Document changes in the record",
-        "If less than 30 days – note only significant changes"
-      ]
+      "question": "Patient Admission 🏥🔄\nHow to act upon admission of a patient in the outpatient clinic/ambulatory setting and if [y]more than 30 days have passed[/y]...",
+      "answer": "If more than [r]30 days[/r] have passed – [r]repeat evaluation[/r]: history, physical examination, assessments\nDocument changes in the record\nIf less than 30 days – note only significant changes"
     },
     "ru": {
-      "question": "Приём пациента 🏥🔄❔ Как действовать при поступлении пациента в амбулаторную клинику и если прошло более 30 дней...",
-      "answer": [
-        "Если прошло более 30 дней – повторная оценка: анамнез, физикальный осмотр, оценки",
-        "Документировать изменения в записи",
-        "Если менее 30 дней – отметить только значимые изменения"
-      ]
+      "question": "Приём пациента 🏥🔄\nКак действовать при поступлении пациента в амбулаторную клинику и если прошло [g]более 30 дней[/g]...",
+      "answer": "Если прошло более 30 дней – [y]повторная оценка[/y]: анамнез, физикальный осмотр.\nДокументировать изменения в записи.\nЕсли менее 30 дней – отметить только значимые изменения"
     },
     "ar": {
-      "question": "قبول المريض 🏥🔄❔ كيفية التصرف عند قبول مريض في عيادة خارجية/خارجي وبعد مرور أكثر من 30 يوماً...",
-      "answer": [
-        "إذا مر أكثر من 30 يوم – إجراء تقييم متكرر: التاريخ، الفحص الجسدي، التقييمات",
-        "توثيق التغييرات في السجل",
-        "إذا أقل من 30 يوم – ذكر التغييرات الجوهرية فقط"
-      ]
+      "question": "قبول المريض 🏥🔄\n كيفية التصرف عند قبول مريض في عيادة خارجية/خارجي وبعد مرور أكثر من 30 يوماً...",
+      "answer": "إذا مر أكثر من 30 يوم – إجراء تقييم متكرر: التاريخ، الفحص الجسدي، التقييمات,توثيق التغييرات في السجل,إذا أقل من 30 يوم – ذكر التغييرات الجوهرية فقط"
     },
     "question_media": [],
     "answer_media": []
@@ -975,32 +877,20 @@
   {
     "id": 78,
     "he": {
-      "question": "קבלת מטופל 🏥🔄❔ מתי תעודכן הקבלה הרפואית והסיעודית לגבי מטופל אמבולטורי?",
-      "answer": [
-        "בכל ביקור – בירור שינויים במצב",
-        "עדכון הקבלה הרפואית לפחות פעם בשנה ובכל שינוי משמעותי"
-      ]
+      "question": "קבלת מטופל 🏥🔄\nמתי תעודכן הקבלה הרפואית והסיעודית לגבי מטופל אמבולטורי?",
+      "answer": "בכל ביקור – בירור שינויים במצב\nעדכון הקבלה הרפואית [g]לפחות פעם בשנה[/g] וב[b]כל שינוי משמעותי[/b]"
     },
     "en": {
-      "question": "Patient Admission 🏥🔄❔ When will the medical and nursing admission be updated for an ambulatory patient?",
-      "answer": [
-        "In every visit – inquiry about changes in condition",
-        "Update of medical admission at least once a year and in every significant change"
-      ]
+      "question": "Patient Admission 🏥🔄\nWhen will the medical and nursing admission be updated for an ambulatory patient?",
+      "answer": "In every visit – inquiry about changes in condition\nUpdate of medical admission [g]at least once a year[/g] and in every [b]significant change[/b]"
     },
     "ru": {
-      "question": "Приём пациента 🏥🔄❔ Когда будет обновлена медицинская и сестринская приёмка для амбулаторного пациента?",
-      "answer": [
-        "При каждом визите – уточнение изменений в состоянии",
-        "Обновление медицинской приёмки не реже одного раза в год и при каждом значимом изменении"
-      ]
+      "question": "Приём пациента 🏥🔄\nКогда будет обновлена медицинский и сестринский приём для амбулаторного пациента?",
+      "answer": "При каждом визите – уточнение изменений в состоянии\nОбновление медицинской приёмки [g]не реже одного раза в год[/g] [bold]и[/bold] [b]при каждом значимом изменении[/b]"
     },
     "ar": {
-      "question": "قبول المريض 🏥🔄❔ متى سيتم تحديث القبول الطبي والتمريضي لمريض خارجي؟",
-      "answer": [
-        "في كل زيارة – استفسار عن التغييرات في الحالة",
-        "تحديث القبول الطبي مرة واحدة على الأقل في السنة وفي كل تغيير جوهري"
-      ]
+      "question": "قبول المريض 🏥🔄\nمتى سيتم تحديث القبول الطبي والتمريضي لمريض خارجي؟",
+      "answer": "في كل زيارة – استفسار عن التغييرات في الحالة,تحديث القبول الطبي مرة واحدة على الأقل في السنة وفي كل تغيير جوهري"
     },
     "question_media": [],
     "answer_media": []
@@ -1008,40 +898,20 @@
   {
     "id": 79,
     "he": {
-      "question": "ניטור כאב 🤕⏱️❔ מהי תדירות הביצוע של אומדן כאב?",
-      "answer": [
-        "בקבלה",
-        "אחת למשמרת",
-        "כאשר המטופל מדווח על כאב",
-        "אומדן חוזר עד 60 דקות לאחר מתן טיפול נגד כאב"
-      ]
+      "question": "ניטור כאב 🤕⏱️\n מהי תדירות הביצוע של אומדן [r]כאב[/r]?",
+      "answer": "⏱️ בקבלה\n⏱️ אחת למשמרת\n⏱️ כאשר המטופל מדווח על כאב\n⏱️ אומדן חוזר עד 60 דקות לאחר מתן טיפול נגד כאב"
     },
     "en": {
-      "question": "Pain Monitoring 🤕⏱️❔ What is the frequency of performing pain assessment?",
-      "answer": [
-        "On admission",
-        "Once per shift",
-        "When the patient reports pain",
-        "Repeated assessment up to 60 minutes after pain treatment"
-      ]
+      "question": "Pain Monitoring 🤕⏱️\nWhat is the frequency of performing [r]pain[/r] assessment?",
+      "answer": "⏱️ On admission\n⏱️ Once per shift\n⏱️ When the patient reports pain\n⏱️ Repeated assessment up to 60 minutes after pain treatment"
     },
     "ru": {
-      "question": "Мониторинг боли 🤕⏱️❔ Какова частота выполнения оценки боли?",
-      "answer": [
-        "При поступлении",
-        "Один раз за смену",
-        "Когда пациент сообщает о боли",
-        "Повторная оценка не позднее 60 минут после обезболивания"
-      ]
+      "question": "Мониторинг боли 🤕⏱️\nКакова частота выполнения оценки [r]боли[/r]?",
+      "answer": "⏱️ При поступлении\n⏱️ Один раз за смену\n⏱️ Когда пациент сообщает о боли\n⏱️ Повторная оценка не позднее 60 минут после обезболивания"
     },
     "ar": {
-      "question": "مراقبة الألم 🤕⏱️❔ ما هي تكرار إجراء تقييم الألم؟",
-      "answer": [
-        "عند القبول",
-        "مرة واحدة في الوردية",
-        "عندما يبلغ المريض عن ألم",
-        "تقييم متكرر حتى 60 دقيقة بعد إعطاء علاج ضد الألم"
-      ]
+      "question": "مراقبة الألم 🤕⏱️\n ما هي تكرار إجراء تقييم الألم؟",
+      "answer": "عند القبول,مرة واحدة في الوردية,عندما يبلغ المريض عن ألم,تقييم متكرر حتى 60 دقيقة بعد إعطاء علاج ضد الألم"
     },
     "question_media": [],
     "answer_media": []
@@ -1049,36 +919,20 @@
   {
     "id": 80,
     "he": {
-      "question": "ניטור סוכר 🩸📊❔ באיזו תדירות/כמה פעמים ביממה יש למדוד סוכר למטופל סוכרתי? ומתי?",
-      "answer": [
-        "טיפול פומי – 3 פעמים ביום ראשון, לאחר מכן פעם אחת אם תקין",
-        "טיפול באינסולין – לפני ארוחות ולפני מתן אינסולין",
-        "בצום – 4 פעמים ביום"
-      ]
+      "question": "ניטור סוכר 🩸📊\nבאיזו תדירות/כמה פעמים ביממה יש למדוד סוכר למטופל סוכרתי?\nומתי?",
+      "answer": "📊 טיפול פומי – [r]3[/r] פעמים ביום ראשון, לאחר מכן [y]פעם אחת[/y] אם תקין\n📊 טיפול באינסולין – לפני ארוחות ולפני מתן אינסולין\n📊 בצום – [y]4[/y] פעמים ביום"
     },
     "en": {
-      "question": "Glucose Monitoring 🩸📊❔ At what frequency / how many times a day should glucose be measured for a diabetic patient? And when?",
-      "answer": [
-        "Oral treatment – 3 times on first day, then once daily if normal",
-        "Insulin treatment – before meals and before insulin administration",
-        "Fasting – 4 times a day"
-      ]
+      "question": "Glucose Monitoring 🩸📊\nAt what frequency / how many times a day should glucose be measured for a diabetic patient? \nAnd when?",
+      "answer": "📊 Oral treatment – [r]3[/r] times on first day, then [y]once[/y] daily if normal\n📊 Insulin treatment – before meals and before insulin administration\n📊 Fasting – [g]4[/g] times a day"
     },
     "ru": {
-      "question": "Мониторинг глюкозы 🩸📊❔ С какой частотой / сколько раз в сутки следует измерять глюкозу у пациента с сахарным диабетом? И когда?",
-      "answer": [
-        "Пероральная терапия – 3 раза в первый день, затем 1 раз в сутки если норма",
-        "Инсулинотерапия – перед едой и перед введением инсулина",
-        "Натощак – 4 раза в сутки"
-      ]
+      "question": "Мониторинг глюкозы 🩸📊 \nС какой частотой/сколько раз в сутки следует измерять глюкозу у пациента с сахарным диабетом? \nИ когда?",
+      "answer": "📊 Пероральная терапия – [r]3[/r] раза в первый день, затем [y]1[/y] раз в сутки если норма\n📊 Инсулинотерапия – перед едой и перед введением инсулина\n📊 Натощак – [g]4[/g] раза в сутки"
     },
     "ar": {
-      "question": "مراقبة السكر 🩸📊❔ بأي تكرار/كم مرة في اليوم يجب قياس السكر لمريض مصاب بالسكري؟ ومتى؟",
-      "answer": [
-        "علاج فموي – 3 مرات في اليوم الأول، ثم مرة واحدة يومياً إذا طبيعي",
-        "علاج بالإنسولين – قبل الوجبات وقبل إعطاء الإنسولين",
-        "صائم – 4 مرات في اليوم"
-      ]
+      "question": "مراقبة السكر 🩸📊\n بأي تكرار/كم مرة في اليوم يجب قياس السكر لمريض مصاب بالسكري؟ ومتى؟",
+      "answer": "علاج فموي – 3 مرات في اليوم الأول، ثم مرة واحدة يومياً إذا طبيعي,علاج بالإنسولين – قبل الوجبات وقبل إعطاء الإنسولين,صائم – 4 مرات في اليوم"
     },
     "question_media": [],
     "answer_media": []
@@ -1086,65 +940,62 @@
   {
     "id": 81,
     "he": {
-      "question": "פצעי לחץ 🛌⚠️❔ מתי יש לבצע אומדן לסיכון התפתחות פצעי לחץ (Norton/Braden) וביצוע תכנית התערבות?",
-      "answer": [
-        "לכל מטופל עד 8 שעות מקבלתו ובכל שינוי מצב",
-        "מבוגרים: Norton ≤17 – תכנית התערבות יומית + ביצוע אחת למשמרת",
-        "ילדים: Braden/Braden Q ≤15 – תכנית התערבות יומית + ביצוע אחת למשמרת"
-      ]
+      "question": "פצעי לחץ 🛌⚠️\nמתי יש לבצע אומדן לסיכון התפתחות פצעי לחץ ([g]Norton[/g]/[b]Braden[/b]) וביצוע תכנית התערבות?",
+      "answer": "⚠️ לכל מטופל עד [b]8 שעות[/b] מקבלתו ו[b]בכל שינוי מצב[/b]\n⚠️ מבוגרים: [r]Norton ≤17[/r] – תכנית התערבות יומית + ביצוע אחת למשמרת\n⚠️ ילדים: [r]Braden/Braden Q ≤15[/r] – תכנית התערבות יומית + ביצוע אחת למשמרת"
     },
     "en": {
-      "question": "Pressure Ulcers 🛌⚠️❔ When should a risk assessment for pressure ulcer development (Norton/Braden) be performed and an intervention plan implemented?",
-      "answer": [
-        "For every patient up to 8 hours from admission and in every change of condition",
-        "Adults: Norton ≤17 – daily intervention plan + once per shift",
-        "Children: Braden/Braden Q ≤15 – daily intervention plan + once per shift"
-      ]
+      "question": "Pressure Ulcers 🛌⚠️\nWhen should a risk assessment for pressure ulcer development ([b]Norton[/b]/[g]Braden[/g]) be performed and an intervention plan implemented?",
+      "answer": "⚠️ [r] For every patient up to [b]8 hours[/b] from admission and in [b]every change of condition[/b]\n⚠️ Adults: [r]Norton ≤17[/r] – daily intervention plan + once per shift\n⚠️ Children:[b] Braden[/b]/[y]Braden Q[/y] [r]≤15[/r] – daily intervention plan + once per shift"
     },
     "ru": {
-      "question": "Пролежни 🛌⚠️❔ Когда следует выполнять оценку риска развития пролежней (Norton/Braden) и внедрять план вмешательства?",
-      "answer": [
-        "Каждому пациенту не позднее 8 часов с поступления и при каждом изменении состояния",
-        "Взрослые: Norton ≤17 – ежедневный план вмешательства + один раз за смену",
-        "Дети: Braden/Braden Q ≤15 – ежедневный план вмешательства + один раз за смену"
-      ]
+      "question": "Пролежни 🛌⚠️\nКогда следует выполнять оценку риска развития пролежней ([b]Norton[/b]/[g]Braden[/g]) и внедрять план вмешательства?",
+      "answer": "⚠️ Каждому пациенту[g] не позднее 8 часов[/g] с поступления и при каждом [y]изменении состояния[/y]\n⚠️ Взрослые: [b]Norton[/b] [r]≤17[/r] – ежедневный план вмешательства + один раз за смену\n⚠️ Дети: [g]Braden[/g]/[y]Braden Q[/y] [r]≤15[/r] – ежедневный план вмешательства + один раз за смену"
     },
     "ar": {
-      "question": "قرح الضغط 🛌⚠️❔ متى يجب إجراء تقييم لخطر تطور قرح الضغط (Norton/Braden) وتنفيذ خطة التدخل؟",
-      "answer": [
-        "لكل مريض حتى 8 ساعات من قبوله وفي كل تغيير في الحالة",
-        "البالغون: Norton ≤17 – خطة تدخل يومية + تنفيذ مرة في الوردية",
-        "الأطفال: Braden/Braden Q ≤15 – خطة تدخل يومية + تنفيذ مرة في الوردية"
-      ]
+      "question": "قرح الضغط 🛌⚠️\n متى يجب إجراء تقييم لخطر تطور قرح الضغط ([b]Norton[/b]/[g]Braden[/g]) وتنفيذ خطة التدخل؟",
+      "answer": "لكل مريض حتى 8 ساعات من قبوله وفي كل تغيير في الحالة,البالغون: [r]Norton ≤17[/r] – خطة تدخل يومية + تنفيذ مرة في الوردية,الأطفال: [r]Braden/Braden Q ≤1[/r]5 – خطة تدخل يومية + تنفيذ مرة في الوردية"
     },
     "question_media": [],
-    "answer_media": []
+    "answer_media": [
+      {
+        "type": "link",
+        "url": "https://starleyby.github.io/tracer-2025/pdf/norton.pdf",
+        "labels": {
+          "he": "NORTON SCALE",
+          "ru": "NORTON SCALE",
+          "en": "NORTON SCALE",
+          "ar": "NORTON SCALE"
+        }
+      },
+      {
+        "type": "link",
+        "url": "https://starleyby.github.io/tracer-2025/pdf/braden.pdf",
+        "labels": {
+          "he": "BRADEN SCALE",
+          "ru": "BRADEN SCALE",
+          "en": "BRADEN SCALE",
+          "ar": "BRADEN SCALE"
+        }
+      }
+    ]
   },
   {
     "id": 84,
     "he": {
-      "question": "ניטור לאחר ניתוח 🏥🩹❔ מה תדירות ביצוע אומדן חתך ניתוחי סגור?",
-      "answer": [
-        "אחת ל-24 שעות עד להוצאת סיכות/תפרים לאחר הסרת התחבושת"
-      ]
+      "question": "ניטור לאחר ניתוח 🏥🩹\nמה תדירות ביצוע אומדן חתך ניתוחי סגור?",
+      "answer": "[b]אחת ל-24 שעות[/b] עד להוצאת סיכות/תפרים לאחר הסרת התחבושת"
     },
     "en": {
-      "question": "Post-Operative Monitoring 🏥🩹❔ What is the frequency of performing assessment of a closed surgical incision?",
-      "answer": [
-        "Every 24 hours until removal of staples/sutures after removal of the dressing"
-      ]
+      "question": "Post-Operative Monitoring 🏥🩹\nWhat is the frequency of performing assessment of a closed surgical incision?",
+      "answer": "[b]Every 24 hours[/b] until removal of staples/sutures after removal of the dressing"
     },
     "ru": {
-      "question": "Послеоперационный мониторинг 🏥🩹❔ Какова частота выполнения оценки закрытого хирургического разреза?",
-      "answer": [
-        "Каждые 24 часа до удаления скобок/швов после снятия повязки"
-      ]
+      "question": "Послеоперационный мониторинг 🏥🩹\nКакова частота выполнения оценки закрытого хирургического разреза?",
+      "answer": "[b]Каждые 24 часа[/b] до удаления скобок/швов после снятия повязки"
     },
     "ar": {
-      "question": "مراقبة ما بعد الجراحة 🏥🩹❔ ما هي تكرار إجراء تقييم شق جراحي مغلق؟",
-      "answer": [
-        "كل 24 ساعة حتى إزالة الدبابيس/الغرز بعد إزالة الضماد"
-      ]
+      "question": "مراقبة ما بعد الجراحة 🏥🩹\n ما هي تكرار إجراء تقييم شق جراحي مغلق؟",
+      "answer": "كل 24 ساعة حتى إزالة الدبابيس/الغرز بعد إزالة الضماد"
     },
     "question_media": [],
     "answer_media": []
@@ -1152,69 +1003,52 @@
   {
     "id": 85,
     "he": {
-      "question": "תזונה 🍎📊❔ מהו אומדן סיקור תזונתי MUST?",
-      "answer": [
-        "אומדן לקביעת רמת סיכון לתת-תזונה (נמוך/בינוני/גבוה)",
-        "לכל מטופל עד 36 שעות מקבלתו + חזרה לאחר שבוע",
-        "בהמשך – התערבות על ידי דיאטנים"
-      ]
+      "question": "תזונה 🍎📊\nמהו אומדן סיקור תזונתי [r][bold]MUST[/bold][/r]?",
+      "answer": "אומדן לקביעת רמת סיכון לתת-תזונה (נמוך/בינוני/גבוה)\n🍎 לכל מטופל [r]עד 36 שעות[/r] מקבלתו + חזרה [g]לאחר שבוע[/g]\n🍎 בהמשך – התערבות על ידי דיאטנים"
     },
     "en": {
-      "question": "Nutrition 🍎📊❔ What is the MUST nutritional screening assessment?",
-      "answer": [
-        "Assessment to determine risk level of malnutrition (low/medium/high)",
-        "For every patient up to 36 hours from admission + repeat after one week",
-        "Later – intervention by dietitians"
-      ]
+      "question": "Nutrition 🍎📊\nWhat is the [r][bold]MUST[/bold][/r] nutritional screening assessment?",
+      "answer": "Assessment to determine risk level of malnutrition (low/medium/high)\n🍎 For every patient up to [r]36 hours from admission[/r] + repeat [g]after one week[/g]\n🍎 Later – intervention by dietitians"
     },
     "ru": {
-      "question": "Питание 🍎📊❔ Что такое оценка нутритивного скрининга MUST?",
-      "answer": [
-        "Оценка для определения уровня риска недостаточности питания (низкий/средний/высокий)",
-        "Каждому пациенту не позднее 36 часов с поступления + повтор через неделю",
-        "Далее – вмешательство диетологов"
-      ]
+      "question": "Питание 🍎📊\nЧто такое оценка нутритивного скрининга [y][bold]MUST[/bold][/y]?",
+      "answer": "[y][bold]MUST[/bold][/y] - Оценка для определения уровня риска недостаточности питания (низкий/средний/высокий)\n🍎 Каждому пациенту [r]не позднее 36 часов[/r] с поступления + повтор [g]через неделю[/g]\n🍎 Далее – вмешательство диетологов"
     },
     "ar": {
-      "question": "التغذية 🍎📊❔ ما هو تقييم فحص التغذية MUST؟",
-      "answer": [
-        "تقييم لتحديد مستوى خطر سوء التغذية (منخفض/متوسط/مرتفع)",
-        "لكل مريض حتى 36 ساعة من قبوله + تكرار بعد أسبوع",
-        "لاحقاً – تدخل من قبل أخصائيي التغذية"
-      ]
+      "question": "التغذية 🍎📊\n ما هو تقييم فحص التغذية [r][bold]MUST[/bold][/r]؟",
+      "answer": "تقييم لتحديد مستوى خطر سوء التغذية (منخفض/متوسط/مرتفع),لكل مريض حتى 36 ساعة من قبوله + تكرار بعد أسبوع,لاحقاً – تدخل من قبل أخصائيي التغذية"
     },
     "question_media": [],
-    "answer_media": []
+    "answer_media": [
+      {
+        "type": "link",
+        "url": "https://starleyby.github.io/tracer-2025/pdf/must.pdf",
+        "labels": {
+          "he": "Malnutrition Universal Screening Tool (MUST)",
+          "ru": "Malnutrition Universal Screening Tool (MUST)",
+          "en": "Malnutrition Universal Screening Tool (MUST)",
+          "ar": "Malnutrition Universal Screening Tool (MUST)"
+        }
+      }
+    ]
   },
   {
     "id": 87,
     "he": {
-      "question": "מתן דם 💉🩸❔ אם החולה קיבל דם ומוצריו, האם המטופל נתן את הסכמתו?",
-      "answer": [
-        "כן – חובה הסכמה מדעת חתומה על טופס ייעודי",
-        "הסבר למטופל/משפחה לפני לקיחת דגימה או מתן דם"
-      ]
+      "question": "מתן דם 💉🩸\n אם החולה קיבל דם ומוצריו, האם המטופל נתן את הסכמתו?",
+      "answer": "כן – חובה הסכמה מדעת חתומה על טופס ייעודי\nהסבר למטופל/משפחה לפני לקיחת דגימה או מתן דם"
     },
     "en": {
-      "question": "Blood Administration 💉🩸❔ If the patient received blood and blood products, did the patient give consent?",
-      "answer": [
-        "Yes – signed informed consent on dedicated form is mandatory",
-        "Explanation to patient/family before sample or blood administration"
-      ]
+      "question": "Blood Administration 💉🩸\nIf the patient received blood and blood products, did the patient give consent?",
+      "answer": "Yes – signed informed consent on dedicated form is mandatory\nExplanation to patient/family before sample or blood administration"
     },
     "ru": {
-      "question": "Переливание крови 💉🩸❔ Если пациент получил кровь и её компоненты, дал ли пациент согласие?",
-      "answer": [
-        "Да – обязательна подписанная форма информированного согласия",
-        "Объяснение пациенту/семье перед взятием пробы или переливанием"
-      ]
+      "question": "Переливание крови 💉🩸\nЕсли пациент получил кровь и её компоненты, дал ли пациент согласие?",
+      "answer": "Да – [r]обязательна подписанная форма[/r] информированного согласия\nОбъяснение пациенту/семье перед взятием пробы или переливанием"
     },
     "ar": {
-      "question": "إعطاء الدم 💉🩸❔ إذا تلقى المريض دماً ومشتقاته، هل أعطى المريض موافقته؟",
-      "answer": [
-        "نعم – مطلوب موافقة مستنيرة موقعة على نموذج مخصص",
-        "شرح للمريض/العائلة قبل أخذ العينة أو إعطاء الدم"
-      ]
+      "question": "إعطاء الدم 💉🩸\n إذا تلقى المريض دماً ومشتقاته، هل أعطى المريض موافقته؟",
+      "answer": "نعم – مطلوب موافقة مستنيرة موقعة على نموذج مخصص,شرح للمريض/العائلة قبل أخذ العينة أو إعطاء الدم"
     },
     "question_media": [],
     "answer_media": []
@@ -1223,47 +1057,19 @@
     "id": 88,
     "he": {
       "question": "מתן דם 💉📊 למטופל נלקחו סימנים חיוניים לפני/בסוף מתן דם ומוצריו והם כוללים: חום, דופק, לחץ דם",
-      "answer": [
-        "סימנים חיוניים נלקחים:",
-        "• לפני התחלת עירוי",
-        "• 15 דקות לאחר התחלה",
-        "• בסיום עירוי",
-        "• בסמוך להעברה/שחרור",
-        "כולל: חום, דופק, לחץ דם"
-      ]
+      "answer": "סימנים חיוניים נלקחים:,• לפני התחלת עירוי,• 15 דקות לאחר התחלה,• בסיום עירוי,• בסמוך להעברה/שחרור,כולל: חום, דופק, לחץ דם"
     },
     "en": {
       "question": "Blood Administration 💉📊 Vital signs were taken for the patient before/end of blood and blood products administration and they include: temperature, pulse, blood pressure",
-      "answer": [
-        "Vital signs are taken:",
-        "• Before starting transfusion",
-        "• 15 minutes after start",
-        "• At the end of transfusion",
-        "• Close to transfer/discharge",
-        "Including: temperature, pulse, blood pressure"
-      ]
+      "answer": "Vital signs are taken:,• Before starting transfusion,• 15 minutes after start,• At the end of transfusion,• Close to transfer/discharge,Including: temperature, pulse, blood pressure"
     },
     "ru": {
       "question": "Переливание крови 💉📊 Жизненно важные показатели снимались до/после переливания крови и её компонентов и включают: температура, пульс, артериальное давление",
-      "answer": [
-        "Жизненно важные показатели снимаются:",
-        "• Перед началом трансфузии",
-        "• Через 15 минут после начала",
-        "• В конце трансфузии",
-        "• Близко к переводу/выписке",
-        "Включая: температура, пульс, артериальное давление"
-      ]
+      "answer": "Жизненно важные показатели снимаются:,• Перед началом трансфузии,• Через 15 минут после начала,• В конце трансфузии,• Близко к переводу/выписке,Включая: температура, пульс, артериальное давление"
     },
     "ar": {
       "question": "إعطاء الدم 💉📊 تم أخذ العلامات الحيوية للمريض قبل/نهاية إعطاء الدم ومشتقاته وتشمل: درجة الحرارة، النبض، ضغط الدم",
-      "answer": [
-        "تؤخذ العلامات الحيوية:",
-        "• قبل بداية النقل",
-        "• بعد 15 دقيقة من البداية",
-        "• في نهاية النقل",
-        "• قريباً من النقل/الخروج",
-        "تشمل: درجة الحرارة، النبض، ضغط الدم"
-      ]
+      "answer": "تؤخذ العلامات الحيوية:,• قبل بداية النقل,• بعد 15 دقيقة من البداية,• في نهاية النقل,• قريباً من النقل/الخروج,تشمل: درجة الحرارة، النبض، ضغط الدم"
     },
     "question_media": [],
     "answer_media": []
