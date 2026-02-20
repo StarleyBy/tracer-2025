@@ -389,106 +389,88 @@
   {
     "id": 34,
     "he": {
-      "question": "תרופות מסוכנות 💊⚠️❔ מהי קבוצת תרופות \"בנות סיכון\"?",
-      "answer": [
-        "תרופות שעלולות לגרום נזק משמעותי גם אם ניתנות לפי הכללים",
-        "דוגמאות: כימותרפיה, אינסולין, אלקטרוליטים מרוכזים, תרופות עם אינדקס תראפויטי צר",
-        "אלקטרוליטים מרוכזים – תת-קבוצה עם דרישות אחסון נפרדות ונעולות"
-      ]
+      "question": "תרופות מסוכנות 💊⚠️\nמהי קבוצת תרופות \"[r]בנות סיכון[/r]\"?",
+      "answer": "תרופות שעלולות לגרום [r]נזק[/r] משמעותי גם [b]אם ניתנות לפי הכללים[/b]\nדוגמאות: \n💊 כימותרפיה\n💊 אינסולין\n💊 אלקטרוליטים מרוכזים\n💊 תרופות עם אינדקס תראפויטי צר\n💊 אלקטרוליטים מרוכזים – תת-קבוצה עם דרישות אחסון נפרדות ונעולות"
     },
     "en": {
-      "question": "High-Risk Medications 💊⚠️❔ What is the group of \"high-alert\" medications?",
-      "answer": [
-        "Medications that may cause significant harm even if given according to the rules",
-        "Examples: chemotherapy, insulin, concentrated electrolytes, drugs with narrow therapeutic index",
-        "Concentrated electrolytes – sub-group with separate locked storage requirements"
-      ]
+      "question": "High-Risk Medications 💊⚠️\nWhat is the group of \"[r]high-alert[/r]\" medications?",
+      "answer": "Medications that may cause [r]significant harm[/r] [b]even if given according to the rules[/b]\nExamples: \n💊 chemotherapy\n💊 nsulin\n💊 concentrated electrolytes\n💊 drugs with narrow therapeutic index\n💊 concentrated electrolytes – sub-group with separate locked storage requirements"
     },
     "ru": {
-      "question": "Опасные лекарства 💊⚠️❔ Что такое группа лекарств «высокого риска»?",
-      "answer": [
-        "Препараты, которые могут причинить значительный вред даже при правильном применении",
-        "Примеры: химиотерапия, инсулин, концентрированные электролиты, препараты с узким терапевтическим индексом",
-        "Концентрированные электролиты — подгруппа с отдельными запираемыми требованиями к хранению"
-      ]
+      "question": "Опасные лекарства 💊⚠️\nЧто такое группа лекарств «[r]высокого риска[/r]»?",
+      "answer": "Препараты, которые могут причинить [r]значительный вред[/r] [b]даже при правильном применении[/b]\nПримеры: \n💊 химиотерапия\n💊 инсулин\n💊 концентрированные электролиты\n💊 препараты с узким терапевтическим индексом\n💊 концентрированные электролиты — подгруппа с отдельными требованиями к хранению"
     },
     "ar": {
-      "question": "الأدوية عالية الخطورة 💊⚠️❔ ما هي مجموعة الأدوية \"عالية التنبيه\"؟",
-      "answer": [
-        "أدوية قد تسبب ضرراً كبيراً حتى لو أُعطيت وفق القواعد",
-        "أمثلة: العلاج الكيميائي، الإنسولين، الإلكتروليتات المركزة، أدوية بمؤشر علاجي ضيق",
-        "الإلكتروليتات المركزة – مجموعة فرعية مع متطلبات تخزين منفصلة ومقفلة"
-      ]
+      "question": "الأدوية عالية الخطورة 💊⚠️\n ما هي مجموعة الأدوية \"عالية التنبيه\"؟",
+      "answer": "أدوية قد تسبب ضرراً كبيراً حتى لو أُعطيت وفق القواعد,أمثلة: العلاج الكيميائي، الإنسولين، الإلكتروليتات المركزة، أدوية بمؤشر علاجي ضيق,الإلكتروليتات المركزة – مجموعة فرعية مع متطلبات تخزين منفصلة ومقفلة"
     },
     "question_media": [],
-    "answer_media": []
+    "answer_media": [
+      {
+        "type": "note",
+        "text": {
+          "he": "\n",
+          "ru": "",
+          "en": "",
+          "ar": ""
+        }
+      },
+      {
+        "type": "link",
+        "url": "wolfportal/wolfson/wp-content/uploads/2023/07/רשימת-תרופות-בנות-סיקון-מהדורה-6-מרץ-2023-להדפסה.pdf",
+        "labels": {
+          "he": "תרופות בנות סיקון הדורשות בקרה כפולה",
+          "ru": "Лекарственные препараты, отпускаемые по рецепту, требующие двойного контроля.",
+          "en": "Prescription drugs that require double control",
+          "ar": "الأدوية الموصوفة التي تتطلب رقابة مزدوجة"
+        }
+      }
+    ]
   },
   {
     "id": 35,
     "he": {
-      "question": "תרופות מסוכנות 💊⚠️❔ האם תרופות בנות סיכון מסומנות כנדרש?",
-      "answer": [
-        "כן – מדבקה אדומה עם סימן קריאה בחדר תרופות, במקרר ובעגלת החייאה"
-      ]
+      "question": "תרופות מסוכנות 💊⚠️\nהאם [r]תרופות בנות סיכון[/r] מסומנות כנדרש?",
+      "answer": "כן – [r]מדבקה אדומה[/r] עם [g]סימן קריאה[/g] בחדר תרופות, במקרר ובעגלת החייאה"
     },
     "en": {
-      "question": "High-Risk Medications 💊⚠️❔ Are high-alert medications marked as required?",
-      "answer": [
-        "Yes – red sticker with exclamation mark in medication room, refrigerator and crash cart"
-      ]
+      "question": "High-Risk Medications 💊⚠️\nAre [r]high-alert medications[/r] marked as required?",
+      "answer": "Yes – [r]red sticker[/r] with [g]exclamation mark[/g] in medication room, refrigerator and crash cart"
     },
     "ru": {
-      "question": "Опасные лекарства 💊⚠️❔ Маркированы ли лекарства высокого риска как требуется?",
-      "answer": [
-        "Да – красная наклейка со знаком восклицания в комнате лекарств, холодильнике и тележке реанимации"
-      ]
+      "question": "Опасные лекарства 💊⚠️\nМаркированы ли [r]лекарства высокого риска[/r] как требуется?",
+      "answer": "Да – [r]красная наклейка[/r] со [g]знаком восклицания[/g] в комнате лекарств, холодильнике и тележке реанимации"
     },
     "ar": {
-      "question": "الأدوية عالية الخطورة 💊⚠️❔ هل تم وضع علامة على الأدوية عالية التنبيه كما هو مطلوب؟",
-      "answer": [
-        "نعم – ملصق أحمر بعلامة تعجب في غرفة الأدوية والثلاجة وعربة الإنعاش"
-      ]
+      "question": "الأدوية عالية الخطورة 💊⚠️\n هل تم وضع علامة على الأدوية عالية التنبيه كما هو مطلوب؟",
+      "answer": "نعم – ملصق أحمر بعلامة تعجب في غرفة الأدوية والثلاجة وعربة الإنعاش"
     },
     "question_media": [],
-    "answer_media": []
+    "answer_media": [
+      {
+        "type": "image",
+        "src": "dang-drug.jpg",
+        "alt": ""
+      }
+    ]
   },
   {
     "id": 36,
     "he": {
-      "question": "בקרת תרופות 💊🔍❔ מהי בקרה כפולה? לאיזה תרופות מבצעים בקרה כפולה?",
-      "answer": [
-        "בקרה כפולה בלתי תלויה של שני אנשי צוות על: שם מטופל, סוג תרופה, מינון, תדירות, שעה וקצב",
-        "חתימה של שני אנשי הצוות",
-        "לתרופות המסומנות באדום – זיהוי מטופל נוסף ליד המיטה + בקרת קצב",
-        "מעקב אחר המטופל כל שעתיים"
-      ]
+      "question": "בקרת תרופות 💊🔍\nמהי בקרה כפולה? \nלאיזה תרופות מבצעים בקרה כפולה?",
+      "answer": "בקרה כפולה בלתי תלויה של [b]שני 👨‍⚕️👨‍⚕️ אנשי צוות[/b] על:\n 👨‍⚕️👨‍⚕️ שם מטופל\n👨‍⚕️👨‍⚕️ סוג תרופה\n👨‍⚕️👨‍⚕️ מינון\n👨‍⚕️👨‍⚕️ תדירות\n👨‍⚕️👨‍⚕️ שעה וקצב\n👨‍⚕️👨‍⚕️ חתימה של [g]שני אנשי הצוות[/g]\nלתרופות המסומנות ב[r]אדום[/r] – [g]זיהוי מטופל נוסף ליד המיטה[/g] + [b]בקרת קצב[/b],[y]מעקב[/y] אחר המטופל כל [y]שעתיים[/y]"
     },
     "en": {
-      "question": "Medication Control 💊🔍❔ What is double-check? For which medications is double-check performed?",
-      "answer": [
-        "Independent double-check by two staff members on: patient name, drug type, dose, frequency, time and rate",
-        "Signature of both staff members",
-        "For medications marked in red – additional patient identification at bedside + rate control",
-        "Patient monitoring every two hours"
-      ]
+      "question": "Medication Control 💊🔍\nWhat is [r]double-check[/r]? \nFor which medications is double-check performed?",
+      "answer": "Independent [r]double-check[/r] by[g] two staff 👨‍⚕️👨‍⚕️ members[/g] on: \n👨‍⚕️👨‍⚕️ patient name\n👨‍⚕️👨‍⚕️ drug type\n👨‍⚕️👨‍⚕️ dose\n👨‍⚕️👨‍⚕️ frequency\n👨‍⚕️👨‍⚕️ time and rate\n👨‍⚕️👨‍⚕️ signature of both staff members\nFor medications marked in [r]red[/r] – [b]additional patient identification at bedside[/b] + [g]rate control[/g]\nPatient monitoring every [y]two hours[/y]"
     },
     "ru": {
-      "question": "Контроль лекарств 💊🔍❔ Что такое двойная проверка? Для каких лекарств выполняется двойная проверка?",
-      "answer": [
-        "Независимая двойная проверка двумя сотрудниками: имя пациента, тип препарата, доза, частота, время и скорость",
-        "Подпись обоих сотрудников",
-        "Для препаратов, отмеченных красным – дополнительная идентификация пациента у постели + контроль скорости",
-        "Мониторинг пациента каждые два часа"
-      ]
+      "question": "Контроль лекарств 💊🔍\nЧто такое [g][bold]двойная проверка[/bold][/g]? \nДля каких лекарств выполняется двойная проверка?",
+      "answer": "Независимая [g][bold]двойная проверка[/bold][/g] [b]двумя[/b]👨‍⚕️👨‍⚕️  сотрудниками: \n👨‍⚕️👨‍⚕️ имя пациента\n👨‍⚕️👨‍⚕️ тип препарата\n👨‍⚕️👨‍⚕️ доза, частота\n👨‍⚕️👨‍⚕️ время и скорость\n👨‍⚕️👨‍⚕️ подпись [r]обоих[/r] сотрудников\nДля препаратов, отмеченных [r]красным[/r] – [b]дополнительная идентификация пациента[/b] у постели + [b]контроль скорости[/b]\n[y]Мониторинг[/y] пациента каждые [g]два часа[/g]"
     },
     "ar": {
-      "question": "مراقبة الأدوية 💊🔍❔ ما هي المراقبة المزدوجة؟ لأي الأدوية تُجرى المراقبة المزدوجة؟",
-      "answer": [
-        "مراقبة مزدوجة مستقلة من قبل موظفين اثنين على: اسم المريض، نوع الدواء، الجرعة، التكرار، الوقت والمعدل",
-        "توقيع كلا الموظفين",
-        "للأدوية المميزة بالأحمر – تحديد هوية المريض إضافي عند السرير + مراقبة المعدل",
-        "مراقبة المريض كل ساعتين"
-      ]
+      "question": "مراقبة الأدوية 💊🔍\n ما هي المراقبة المزدوجة؟ لأي الأدوية تُجرى المراقبة المزدوجة؟",
+      "answer": "مراقبة مزدوجة مستقلة من قبل موظفين اثنين على: اسم المريض، نوع الدواء، الجرعة، التكرار، الوقت والمعدل,توقيع كلا الموظفين,للأدوية المميزة بالأحمر – تحديد هوية المريض إضافي عند السرير + مراقبة المعدل,مراقبة المريض كل ساعتين"
     },
     "question_media": [],
     "answer_media": []
@@ -496,57 +478,47 @@
   {
     "id": 38,
     "he": {
-      "question": "אחסון תרופות 💊🗃️⚠️ אלקטרוליטים מרוכזים מאוחסנים בנפרד...",
-      "answer": [
-        "אין צורך בתשובה – תצפית והערכה"
-      ]
+      "question": "אחסון תרופות 💊🗃️⚠️\n אלקטרוליטים מרוכזים מאוחסנים [y]בנפרד[/y]...",
+      "answer": "אין צורך בתשובה – תצפית והערכה"
     },
     "en": {
-      "question": "Medication Storage 💊🗃️⚠️ Concentrated electrolytes are stored separately...",
-      "answer": [
-        "No answer needed – observation and evaluation"
-      ]
+      "question": "Medication Storage 💊🗃️⚠️ \nConcentrated electrolytes are stored [y]separately[/y]...",
+      "answer": "No answer needed – observation and evaluation"
     },
     "ru": {
-      "question": "Хранение лекарств 💊🗃️⚠️ Концентрированные электролиты хранятся отдельно...",
-      "answer": [
-        "Ответ не требуется – наблюдение и оценка"
-      ]
+      "question": "Хранение лекарств 💊🗃️⚠️ \nКонцентрированные электролиты хранятся [y]отдельно[/y]...",
+      "answer": "Ответ не требуется – наблюдение и оценка"
     },
     "ar": {
-      "question": "تخزين الأدوية 💊🗃️⚠️ الإلكتروليتات المركزة مخزنة بشكل منفصل...",
-      "answer": [
-        "لا حاجة للإجابة – الملاحظة والتقييم"
-      ]
+      "question": "تخزين الأدوية 💊🗃️⚠️\n الإلكتروليتات المركزة مخزنة بشكل منفصل...",
+      "answer": "لا حاجة للإجابة – الملاحظة والتقييم"
     },
     "question_media": [],
-    "answer_media": []
+    "answer_media": [
+      {
+        "type": "image",
+        "src": "images/doctor/nabl2.jpeg",
+        "alt": ""
+      }
+    ]
   },
   {
     "id": 39,
     "he": {
-      "question": "תרופות מסוכנות 💊⚠️❔ האם מטופל המקבל תרופות בנות סיכון דרך הוריד במתן מתמשך יכול לצאת מחוץ למחלקה?",
-      "answer": [
-        "לא – אסור לצאת מהמחלקה בזמן קבלת התרופה"
-      ]
+      "question": "תרופות מסוכנות 💊⚠️\nהאם מטופל [r]המקבל תרופות בנות סיכון[/r] דרך הוריד במתן מתמשך יכול [y]לצאת מחוץ למחלקה[/y]?",
+      "answer": "[r][bold]לא[/bold][/r] – [r][bold]אסור[/bold][/r] לצאת מהמחלקה בזמן קבלת התרופה"
     },
     "en": {
-      "question": "High-Risk Medications 💊⚠️❔ Can a patient receiving high-alert medications intravenously by continuous infusion leave the department?",
-      "answer": [
-        "No – it is forbidden to leave the department while receiving the medication"
-      ]
+      "question": "High-Risk Medications 💊⚠️\nCan a patient [r]receiving high-alert medications[/r] intravenously by continuous infusion [y]leave the department[/y]?",
+      "answer": "[r][bold]No[/bold][/r] – it is [r][bold]forbidden[/bold][/r] to leave the department while receiving the medication"
     },
     "ru": {
-      "question": "Опасные лекарства 💊⚠️❔ Может ли пациент, получающий лекарства высокого риска внутривенно непрерывной инфузией, покинуть отделение?",
-      "answer": [
-        "Нет – запрещено покидать отделение во время получения препарата"
-      ]
+      "question": "Опасные лекарства 💊⚠️\nМожет ли пациент, [r]получающий лекарства высокого риска[/r] внутривенно непрерывной инфузией, [y]покинуть отделение[/y]?",
+      "answer": "[r][bold]Нет[/bold][/r] – [r][bold]запрещено[/bold][/r] покидать отделение во время получения препарата"
     },
     "ar": {
-      "question": "الأدوية عالية الخطورة 💊⚠️❔ هل يمكن لمريض يتلقى أدوية عالية التنبيه عن طريق الوريد بالتسريب المستمر مغادرة القسم؟",
-      "answer": [
-        "لا – يُمنع مغادرة القسم أثناء تلقي الدواء"
-      ]
+      "question": "الأدوية عالية الخطورة 💊⚠️\n هل يمكن لمريض يتلقى أدوية عالية التنبيه عن طريق الوريد بالتسريب المستمر مغادرة القسم؟",
+      "answer": "لا – يُمنع مغادرة القسم أثناء تلقي الدواء"
     },
     "question_media": [],
     "answer_media": []
@@ -554,44 +526,20 @@
   {
     "id": 40,
     "he": {
-      "question": "סיכון נפילות 🚶‍♂️⚠️❔ למי יבוצע אומדן סיכון או סיקור לנפילה בקבלה?",
-      "answer": [
-        "לכל מטופל בקבלתו למלר\"ד",
-        "בעת קבלת מטופל חדש למחלקת אשפוז",
-        "בעת קבלת מטופל חדש לשירות האמבולטורי",
-        "בכל ביקור אמבולטורי הנבדק על ידי אחות",
-        "ביחידות טיפול נמרץ – אין צורך באומדן, אלא בהפעלת תכנית התערבות"
-      ]
+      "question": "סיכון נפילות 🚶‍♂️⚠️\nלמי יבוצע [g]אומדן סיכון או סיקור לנפילה[/g] בקבלה?",
+      "answer": "⚠️ לכל מטופל בקבלתו למלר\"ד\n⚠️ בעת קבלת מטופל חדש למחלקת אשפוז\n⚠️ בעת קבלת מטופל חדש לשירות האמבולטורי\n⚠️בכל ביקור אמבולטורי הנבדק על ידי אחות\n🚶‍♂️ ביחידות טיפול נמרץ – [y]אין צורך[/y] באומדן, אלא בהפעלת תכנית התערבות"
     },
     "en": {
-      "question": "Fall Risk 🚶‍♂️⚠️❔ For whom will a fall risk assessment or screening be performed upon admission?",
-      "answer": [
-        "For every patient upon admission to ER",
-        "Upon admission of a new patient to inpatient department",
-        "Upon admission of a new patient to ambulatory service",
-        "In every ambulatory visit examined by a nurse",
-        "In intensive care units – no need for assessment, only activation of intervention plan"
-      ]
+      "question": "Fall Risk 🚶‍♂️⚠️\nFor whom will a [g]fall risk assessment or screening[/g] be performed upon admission?",
+      "answer": "⚠️ For [r]every[/r] patient upon admission to ER\n⚠️ Upon admission of a new patient to inpatient department\n⚠️ Upon admission of a new patient to ambulatory service\n⚠️ In every ambulatory visit examined by a nurse\n🚶‍♂️ In intensive care units – [y]no need[/y] for assessment, [y]only activation of intervention plan[/y]"
     },
     "ru": {
-      "question": "Риск падений 🚶‍♂️⚠️❔ Кому будет проведена оценка или скрининг риска падения при поступлении?",
-      "answer": [
-        "Каждому пациенту при поступлении в приёмное отделение",
-        "При поступлении нового пациента в стационарное отделение",
-        "При поступлении нового пациента в амбулаторную службу",
-        "При каждом амбулаторном визите, обследуемом медсестрой",
-        "В отделениях интенсивной терапии – не требуется оценка, только активация плана вмешательства"
-      ]
+      "question": "Риск падений 🚶‍♂️⚠️\nКому будет проведена [g]оценка или скрининг риска падения[/g] при поступлении?",
+      "answer": "⚠️[b]Каждому[/b] пациенту при поступлении в приёмное отделение.\n⚠️ При поступлении нового пациента в стационарное отделение\n⚠️ При поступлении нового пациента в амбулаторную службу\n⚠️ При каждом амбулаторном визите, обследуемом медсестрой\n🚶‍♂️ В отделениях интенсивной терапии – [y]не[/y] требуется оценка, только [g]активация плана вмешательства[/g]"
     },
     "ar": {
-      "question": "خطر السقوط 🚶‍♂️⚠️❔ لمن سيتم إجراء تقييم أو فحص خطر السقوط عند القبول؟",
-      "answer": [
-        "لكل مريض عند قبوله في الطوارئ",
-        "عند قبول مريض جديد في قسم الإقامة",
-        "عند قبول مريض جديد للخدمة الخارجية",
-        "في كل زيارة خارجية يفحصها ممرضة",
-        "في وحدات العناية المركزة – لا حاجة للتقييم، بل تفعيل خطة التدخل"
-      ]
+      "question": "خطر السقوط 🚶‍♂️⚠️\nلمن سيتم إجراء تقييم أو فحص خطر السقوط عند القبول؟",
+      "answer": "لكل مريض عند قبوله في الطوارئ,عند قبول مريض جديد في قسم الإقامة,عند قبول مريض جديد للخدمة الخارجية,في كل زيارة خارجية يفحصها ممرضة,في وحدات العناية المركزة – لا حاجة للتقييم، بل تفعيل خطة التدخل"
     },
     "question_media": [],
     "answer_media": []
@@ -599,28 +547,20 @@
   {
     "id": 41,
     "he": {
-      "question": "סיכון נפילות 🚶‍♂️⚠️❔ למי יבוצע אומדן סיכון לנפילה במהלך האשפוז?",
-      "answer": [
-        "במחלקות בלבד: בקבלה, בכל שינוי מצב, ולאחר נפילה"
-      ]
+      "question": "סיכון נפילות 🚶‍♂️⚠️\nלמי יבוצע [g]אומדן סיכון לנפילה[/g] במהלך האשפוז?",
+      "answer": "במחלקות בלבד: [y]בקבלה[/y], [g]בכל שינוי מצב[/g], [r]ולאחר נפילה[/r]"
     },
     "en": {
-      "question": "Fall Risk 🚶‍♂️⚠️❔ For whom will a fall risk assessment be performed during hospitalization?",
-      "answer": [
-        "In departments only: upon admission, in every change of condition, and after a fall"
-      ]
+      "question": "Fall Risk 🚶‍♂️⚠️\nFor whom will a [g]fall risk assessment[/g] be performed during hospitalization?",
+      "answer": "In departments only: [y]upon admission[/y], [g]in every change of condition[/g], and [r]after a fall[/r]"
     },
     "ru": {
-      "question": "Риск падений 🚶‍♂️⚠️❔ Кому будет проведена оценка риска падения во время госпитализации?",
-      "answer": [
-        "Только в отделениях: при поступлении, при каждом изменении состояния и после падения"
-      ]
+      "question": "Риск падений 🚶‍♂️⚠️\nКому будет проведена [g]оценка риска падения[/g] во время госпитализации?",
+      "answer": "Только в отделениях: [y]при поступлении[/y], [g]при каждом изменении состояния[/g] и [r]после падения[/r]"
     },
     "ar": {
-      "question": "خطر السقوط 🚶‍♂️⚠️❔ لمن سيتم إجراء تقييم خطر السقوط أثناء الإقامة؟",
-      "answer": [
-        "في الأقسام فقط: عند القبول، في كل تغيير في الحالة، وبعد السقوط"
-      ]
+      "question": "خطر السقوط 🚶‍♂️⚠️\n لمن سيتم إجراء تقييم خطر السقوط أثناء الإقامة؟",
+      "answer": "في الأقسام فقط: عند القبول، في كل تغيير في الحالة، وبعد السقوط"
     },
     "question_media": [],
     "answer_media": []
@@ -628,32 +568,20 @@
   {
     "id": 42,
     "he": {
-      "question": "סיכון נפילות 🚶‍♂️🔄❔ מתי יתבצע אומדן חוזר להערכת סיכון לנפילה?",
-      "answer": [
-        "לאחר נפילה במהלך האשפוז",
-        "בכל שינוי או החמרה במצבו הרפואי/סיעודי של המטופל"
-      ]
+      "question": "סיכון נפילות 🚶‍♂️🔄\nמתי יתבצע [g]אומדן חוזר להערכת סיכון לנפילה[/g]?",
+      "answer": "🔄 [r]לאחר נפילה[/r] במהלך האשפוז\n🔄 [y]בכל שינוי או החמרה[/y] במצבו הרפואי/סיעודי של המטופל"
     },
     "en": {
-      "question": "Fall Risk 🚶‍♂️🔄❔ When will a repeated fall risk assessment be performed?",
-      "answer": [
-        "After a fall during hospitalization",
-        "In every change or deterioration in the patient’s medical/nursing condition"
-      ]
+      "question": "Fall Risk 🚶‍♂️🔄\nWhen will a[g] repeated fall risk assessment[/g] be performed?",
+      "answer": "🔄 [r]After a fall[/r] during hospitalization\n🔄 In [y]every change or deterioration[/y] in the patient’s medical/nursing [g]condition[/g]"
     },
     "ru": {
-      "question": "Риск падений 🚶‍♂️🔄❔ Когда будет проведена повторная оценка риска падения?",
-      "answer": [
-        "После падения во время госпитализации",
-        "При каждом изменении или ухудшении медицинского/сестринского состояния пациента"
-      ]
+      "question": "Риск падений 🚶‍♂️🔄\nКогда будет проведена [g]повторная оценка риска падения[/g]?",
+      "answer": "🔄 [r]После падения[/r] во время госпитализации\n🔄 При каждом [b]изменении[/b] или [r]ухудшении[/r] медицинского/сестринского [g]состояния[/g] пациента"
     },
     "ar": {
-      "question": "خطر السقوط 🚶‍♂️🔄❔ متى سيتم إجراء تقييم متكرر لخطر السقوط؟",
-      "answer": [
-        "بعد سقوط أثناء الإقامة",
-        "في كل تغيير أو تدهور في الحالة الطبية/التمريضية للمريض"
-      ]
+      "question": "خطر السقوط 🚶‍♂️🔄\n متى سيتم إجراء تقييم متكرر لخطر السقوط؟",
+      "answer": "بعد سقوط أثناء الإقامة,في كل تغيير أو تدهور في الحالة الطبية/التمريضية للمريض"
     },
     "question_media": [],
     "answer_media": []
@@ -661,36 +589,20 @@
   {
     "id": 43,
     "he": {
-      "question": "סיכון נפילות 🚶‍♂️🛡️❔ נפילות - מה כוללת התערבות בקרב מטופלים ללא סיכון לנפילה?",
-      "answer": [
-        "הדרכת המטופל ומשפחתו על סביבה בטוחה + הדרכה בכתב",
-        "בדיקת יחידת המטופל: פעמון קריאה, מעצורי מיטה, כסא, דפנות",
-        "תיעוד ההדרכה למניעת נפילות"
-      ]
+      "question": "סיכון נפילות 🚶‍♂️🛡️\n[r]נפילות[/r] - מה כוללת התערבות בקרב מטופלים ללא סיכון לנפילה?",
+      "answer": "🛡️ הדרכת המטופל ומשפחתו על סביבה בטוחה + הדרכה בכתב\n🛡️ בדיקת יחידת המטופל: פעמון קריאה\n🛡️ מעצורי מיטה, כסא, דפנות,תיעוד ההדרכה למניעת נפילות"
     },
     "en": {
-      "question": "Fall Risk 🚶‍♂️🛡️❔ Falls – what does the intervention include for patients with no fall risk?",
-      "answer": [
-        "Education of patient and family on safe environment + written instructions",
-        "Checking patient’s unit: call bell, bed brakes, chair, side rails",
-        "Documentation of fall prevention education"
-      ]
+      "question": "Fall Risk 🚶‍♂️🛡️\n[r]Falls[/r] – what does the intervention include for patients with no fall risk?",
+      "answer": "🛡️ Education of patient and family on safe environment + written instructions\n🛡️ Checking patient’s unit: call bell, bed brakes, chair, side rails\n🛡️ Documentation of fall prevention education"
     },
     "ru": {
-      "question": "Риск падений 🚶‍♂️🛡️❔ Падения — что включает вмешательство у пациентов без риска падения?",
-      "answer": [
-        "Обучение пациента и семьи безопасной среде + письменные инструкции",
-        "Проверка блока пациента: звонок вызова, тормоза кровати, стул, боковые ограждения",
-        "Документирование обучения профилактике падений"
-      ]
+      "question": "Риск падений 🚶‍♂️🛡️\n[r]Падения[/r] — что включает вмешательство у пациентов без риска падения?",
+      "answer": "🛡️ Обучение пациента и семьи безопасной среде + письменные инструкции\n🛡️ Проверка блока пациента: звонок вызова, тормоза кровати, стул, боковые ограждения\n🛡️ Документирование обучения профилактике падений"
     },
     "ar": {
-      "question": "خطر السقوط 🚶‍♂️🛡️❔ السقوط - ما الذي تشمله التدخل لدى المرضى بدون خطر سقوط؟",
-      "answer": [
-        "تثقيف المريض والعائلة حول البيئة الآمنة + تعليمات مكتوبة",
-        "فحص وحدة المريض: جرس النداء، فرامل السرير، الكرسي، جوانب السرير",
-        "توثيق تثقيف منع السقوط"
-      ]
+      "question": "خطر السقوط 🚶‍♂️🛡️\n السقوط - ما الذي تشمله التدخل لدى المرضى بدون خطر سقوط؟",
+      "answer": "تثقيف المريض والعائلة حول البيئة الآمنة + تعليمات مكتوبة,فحص وحدة المريض: جرس النداء، فرامل السرير، الكرسي، جوانب السرير,توثيق تثقيف منع السقوط"
     },
     "question_media": [],
     "answer_media": []
@@ -698,52 +610,20 @@
   {
     "id": 46,
     "he": {
-      "question": "בקרת תרופות 💊✅❔ מהי אימות הוראה למתן תרופה וכיצד מתבצע?",
-      "answer": [
-        "אימות הוראה מתבצע על ידי האחות לפני כל מתן תרופה",
-        "בדיקת 5 הזכויות הנכונות (5 RIGHTS):",
-        "• התרופה הנכונה",
-        "• המטופל הנכון",
-        "• המינון הנכון",
-        "• הזמן והתדירות הנכונים",
-        "• אופן המתן הנכון"
-      ]
+      "question": "בקרת תרופות 💊✅\nמהי אימות הוראה למתן תרופה וכיצד מתבצע?",
+      "answer": "אימות הוראה מתבצע על ידי [b]האחות[/b] לפני כל מתן תרופה\nבדיקת 5 הזכויות הנכונות (5 RIGHTS):\n• התרופה הנכונה\n• המטופל הנכון\n• המינון הנכון\n• הזמן והתדירות הנכונים\n• אופן המתן הנכון"
     },
     "en": {
-      "question": "Medication Control 💊✅❔ What is order verification for medication administration and how is it performed?",
-      "answer": [
-        "Order verification is performed by the nurse before every medication administration",
-        "Checking the 5 Rights:",
-        "• Right medication",
-        "• Right patient",
-        "• Right dose",
-        "• Right time and frequency",
-        "• Right route of administration"
-      ]
+      "question": "Medication Control 💊✅\nWhat is order verification for medication administration and how is it performed?",
+      "answer": "Order verification is performed by the [b]nurse[/b] before every medication administration\nChecking the 5 Rights:\n• Right medication\n• Right patient\n• Right dose\n• Right time and frequency\n• Right route of administration"
     },
     "ru": {
-      "question": "Контроль лекарств 💊✅❔ Что такое верификация назначения на введение лекарства и как она выполняется?",
-      "answer": [
-        "Верификация назначения выполняется медсестрой перед каждым введением лекарства",
-        "Проверка 5 Прав:",
-        "• Правильное лекарство",
-        "• Правильный пациент",
-        "• Правильная доза",
-        "• Правильное время и частота",
-        "• Правильный путь введения"
-      ]
+      "question": "Контроль лекарств 💊✅\nЧто такое верификация назначения на введение лекарства и как она выполняется?",
+      "answer": "Верификация назначения выполняется [b]медсестрой[/b] перед каждым введением лекарства.\nПроверка 5 RIGHTS:\n• Правильное лекарство\n• Правильный пациент\n• Правильная доза\n• Правильное время и частота\n• Правильный путь введения"
     },
     "ar": {
-      "question": "مراقبة الأدوية 💊✅❔ ما هي التحقق من التعليمة لإعطاء الدواء وكيف يتم ذلك؟",
-      "answer": [
-        "يتم التحقق من التعليمة من قبل الممرضة قبل كل إعطاء دواء",
-        "فحص الحقوق الخمسة الصحيحة (5 RIGHTS):",
-        "• الدواء الصحيح",
-        "• المريض الصحيح",
-        "• الجرعة الصحيحة",
-        "• الوقت والتكرار الصحيحان",
-        "• طريقة الإعطاء الصحيحة"
-      ]
+      "question": "مراقبة الأدوية 💊✅\n ما هي التحقق من التعليمة لإعطاء الدواء وكيف يتم ذلك؟",
+      "answer": "يتم التحقق من التعليمة من قبل الممرضة قبل كل إعطاء دواء,فحص الحقوق الخمسة الصحيحة (5 RIGHTS):\n• الدواء الصحيح\n• المريض الصحيح\n• الجرعة الصحيحة\n• الوقت والتكرار الصحيحان\n• طريقة الإعطاء الصحيحة"
     },
     "question_media": [],
     "answer_media": []
@@ -751,127 +631,101 @@
   {
     "id": 47,
     "he": {
-      "question": "תרופות מסוכנות 💊⚠️❔ מהן תרופות מסוג LASA, וכיצד יש לנהוג איתן?",
-      "answer": [
-        "תרופות Look Alike Sound Alike – שמות דומים במראה או בצליל",
-        "מוגדרות כבנות סיכון אך ללא בקרה כפולה",
-        "Sound Alike – שימוש ב-TALL MAN LETTERS + סימון LASA + אחסון נפרד",
-        "Look Alike – עדכון הצוות במבזקים + מדבקות LASA על האריזות"
-      ]
+      "question": "תרופות מסוכנות 💊⚠️\nמהן תרופות מסוג [r][bold]LASA[/bold][/r], וכיצד יש לנהוג איתן?",
+      "answer": "תרופות [r][bold]Look Alike Sound Alike[/bold][/r] – שמות דומים במראה או בצליל,מוגדרות כבנות סיכון אך ללא בקרה כפולה\n[g]Sound Alike[/g] – שימוש ב-TALL MAN LETTERS + סימון [r][bold]LASA[/bold][/r] + אחסון נפרד\n[g]Look Alike[/g] – עדכון הצוות במבזקים + מדבקות [r][bold]LASA[/bold][/r] על האריזות"
     },
     "en": {
-      "question": "High-Risk Medications 💊⚠️❔ What are LASA medications, and how should they be handled?",
-      "answer": [
-        "Look Alike Sound Alike medications – names similar in appearance or sound",
-        "Defined as high-alert but do not require double-check",
-        "Sound Alike – use TALL MAN LETTERS + LASA marking + separate storage",
-        "Look Alike – staff update via bulletins + LASA stickers on packages"
-      ]
+      "question": "High-Risk Medications 💊⚠️\nWhat are [r][bold]LASA[/bold][/r] medications, and how should they be handled?",
+      "answer": "[r][bold]Look Alike Sound Alike[/bold][/r] medications – names similar in appearance or sound\nDefined as high-alert but do not require double-check\n[g]Sound Alike[/g] – use TALL MAN LETTERS + [r][bold]LASA[/bold][/r] marking + separate storage\n[g]Look Alike[/g] – staff update via bulletins + [r][bold]LASA[/bold][/r] stickers on packages"
     },
     "ru": {
-      "question": "Опасные лекарства 💊⚠️❔ Что такое препараты LASA и как с ними обращаться?",
-      "answer": [
-        "Препараты Look Alike Sound Alike – названия похожие по виду или звучанию",
-        "Определены как высокорисковые, но без двойной проверки",
-        "Sound Alike – использование TALL MAN LETTERS + маркировка LASA + отдельное хранение",
-        "Look Alike – информирование персонала бюллетенями + наклейки LASA на упаковках"
-      ]
+      "question": "Опасные лекарства 💊⚠️\nЧто такое препараты [y][bold]LASA[/bold][/y] и как с ними обращаться?",
+      "answer": "Препараты [y][bold]Look Alike Sound Alike[/bold][/y] – названия [g]похожие[/g] по [r]виду[/r] или [g]звучанию[/g]\nОпределены как высокорисковые, но без двойной проверки\n[g]Sound Alike[/g] – использование больших заглавных букв + маркировка [r][bold]LASA[/bold][/r] + отдельное хранение\n[r]Look Alike[/r] – информирование персонала бюллетенями + наклейки[r][bold] LASA[/bold][/r] на упаковках"
     },
     "ar": {
-      "question": "الأدوية عالية الخطورة 💊⚠️❔ ما هي الأدوية من نوع LASA، وكيف يجب التعامل معها؟",
-      "answer": [
-        "أدوية Look Alike Sound Alike – أسماء متشابهة في المظهر أو الصوت",
-        "معرفة كأدوية عالية التنبيه لكن بدون مراقبة مزدوجة",
-        "Sound Alike – استخدام TALL MAN LETTERS + علامة LASA + تخزين منفصل",
-        "Look Alike – تحديث الطاقم عبر نشرات + ملصقات LASA على العبوات"
-      ]
+      "question": "الأدوية عالية الخطورة 💊⚠️\n ما هي الأدوية من نوع [r][bold]LASA[/bold][/r]، وكيف يجب التعامل معها؟",
+      "answer": "أدوية [r][bold]Look Alike Sound Alike[/bold][/r] – أسماء متشابهة في المظهر أو الصوت,معرفة كأدوية عالية التنبيه لكن بدون مراقبة مزدوجة\n[g]Sound Alike[/g] – استخدام TALL MAN LETTERS + علامة [r][bold]LASA[/bold][/r] + تخزين منفصل\n[g]Look Alik[/g]e – تحديث الطاقم عبر نشرات + ملصقات [r][bold]LASA[/bold][/r] على العبوات"
     },
     "question_media": [],
-    "answer_media": []
+    "answer_media": [
+      {
+        "type": "image",
+        "src": "images/doctor/lasa.png",
+        "alt": ""
+      }
+    ]
   },
   {
     "id": 48,
     "he": {
-      "question": "תרופות 💊📝 \"שימוש בתרופות IV שנרכשו ואוחסנו לא דרך שירותי רוקחות\"",
-      "answer": [
-        "אין צורך בתשובה – תצפית והערכה"
-      ]
+      "question": "תרופות 💊📝\n\"שימוש בתרופות IV שנרכשו ואוחסנו לא דרך שירותי רוקחות\"",
+      "answer": "אין צורך בתשובה – תצפית והערכה"
     },
     "en": {
-      "question": "Medications 💊📝 \"Use of IV medications purchased and stored not through pharmacy services\"",
-      "answer": [
-        "No answer needed – observation and evaluation"
-      ]
+      "question": "Medications 💊📝 \n\"Use of IV medications purchased and stored not through pharmacy services\"",
+      "answer": "No answer needed – observation and evaluation"
     },
     "ru": {
-      "question": "Лекарства 💊📝 \"Использование внутривенных лекарств, приобретённых и хранящихся не через аптечные службы\"",
-      "answer": [
-        "Ответ не требуется – наблюдение и оценка"
-      ]
+      "question": "Лекарства 💊📝\n\"Использование внутривенных лекарств, приобретённых и хранящихся не через аптечные службы\"",
+      "answer": "Ответ не требуется – наблюдение и оценка"
     },
     "ar": {
-      "question": "الأدوية 💊📝 \"استخدام أدوية وريدية تم شراؤها وتخزينها لا عبر خدمات الصيدلة\"",
-      "answer": [
-        "لا حاجة للإجابة – الملاحظة والتقييم"
-      ]
+      "question": "الأدوية 💊📝\n \"استخدام أدوية وريدية تم شراؤها وتخزينها لا عبر خدمات الصيدلة\"",
+      "answer": "لا حاجة للإجابة – الملاحظة والتقييم"
     },
     "question_media": [],
-    "answer_media": []
+    "answer_media": [
+      {
+        "type": "image",
+        "src": "images/doctor/nabl3.jpeg",
+        "alt": ""
+      }
+    ]
   },
   {
     "id": 49,
     "he": {
-      "question": "נרקוטיקה 💊🔒 קיימת ומתועדת בקרת נרקוטיקה חתומה בכל משמרת...",
-      "answer": [
-        "אין צורך בתשובה – תצפית והערכה"
-      ]
+      "question": "נרקוטיקה 💊🔒 \nקיימת ומתועדת בקרת [r]נרקוטיקה[/r] חתומה בכל משמרת...",
+      "answer": "אין צורך בתשובה – תצפית והערכה"
     },
     "en": {
-      "question": "Narcotics 💊🔒 There is documented and signed narcotic control in every shift...",
-      "answer": [
-        "No answer needed – observation and evaluation"
-      ]
+      "question": "Narcotics 💊🔒 \nThere is documented and signed [r]narcotic[/r] control in every shift...",
+      "answer": "No answer needed – observation and evaluation"
     },
     "ru": {
-      "question": "Наркотические средства 💊🔒 Существует документированный и подписанный контроль наркотических средств в каждой смене...",
-      "answer": [
-        "Ответ не требуется – наблюдение и оценка"
-      ]
+      "question": "Наркотические средства 💊🔒 \nСуществует документированный и подписанный контроль [r]наркотических[/r] средств в каждой смене...",
+      "answer": "Ответ не требуется – наблюдение и оценка"
     },
     "ar": {
-      "question": "المخدرات 💊🔒 يوجد مراقبة موثقة وموقعة للمخدرات في كل وردية...",
-      "answer": [
-        "لا حاجة للإجابة – الملاحظة والتقييم"
-      ]
+      "question": "المخدرات 💊🔒\n يوجد مراقبة موثقة وموقعة للمخدرات في كل وردية...",
+      "answer": "لا حاجة للإجابة – الملاحظة والتقييم"
     },
     "question_media": [],
-    "answer_media": []
+    "answer_media": [
+      {
+        "type": "image",
+        "src": "images/doctor/nabl4.jpeg",
+        "alt": ""
+      }
+    ]
   },
   {
     "id": 50,
     "he": {
       "question": "נרקוטיקה 💊🗑️ עודף נרקוטיקה מושמד, מתועד וחתום...",
-      "answer": [
-        "אין צורך בתשובה – תצפית והערכה"
-      ]
+      "answer": "אין צורך בתשובה – תצפית והערכה"
     },
     "en": {
       "question": "Narcotics 💊🗑️ Excess narcotics are destroyed, documented and signed...",
-      "answer": [
-        "No answer needed – observation and evaluation"
-      ]
+      "answer": "No answer needed – observation and evaluation"
     },
     "ru": {
       "question": "Наркотические средства 💊🗑️ Излишки наркотических средств уничтожаются, документируются и подписываются...",
-      "answer": [
-        "Ответ не требуется – наблюдение и оценка"
-      ]
+      "answer": "Ответ не требуется – наблюдение и оценка"
     },
     "ar": {
       "question": "المخدرات 💊🗑️ يتم تدمير الفائض من المخدرات وتوثيقه وتوقيعه...",
-      "answer": [
-        "لا حاجة للإجابة – الملاحظة والتقييم"
-      ]
+      "answer": "لا حاجة للإجابة – الملاحظة والتقييم"
     },
     "question_media": [],
     "answer_media": []
