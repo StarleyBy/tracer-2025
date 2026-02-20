@@ -406,23 +406,17 @@
     },
     "question_media": [],
     "answer_media": [
-      {
-        "type": "note",
-        "text": {
-          "he": "\n",
-          "ru": "",
-          "en": "",
-          "ar": ""
-        }
-      },
-      {
-        "type": "link",
-        "url": "wolfportal/wolfson/wp-content/uploads/2023/07/רשימת-תרופות-בנות-סיקון-מהדורה-6-מרץ-2023-להדפסה.pdf",
-        "labels": {
-          "he": "תרופות בנות סיקון הדורשות בקרה כפולה",
-          "ru": "Лекарственные препараты, отпускаемые по рецепту, требующие двойного контроля.",
-          "en": "Prescription drugs that require double control",
-          "ar": "الأدوية الموصوفة التي تتطلب رقابة مزدوجة"
+  {
+    "type": "link",
+    "url": "https://starleyby.github.io/tracer-2025/wolfportal/wolfson/wp-content/uploads/2023/07/%D7%A8%D7%A9%D7%99%D7%9E%D7%AA-%D7%AA%D7%A8%D7%95%D7%A4%D7%95%D7%AA-%D7%91%D7%A0%D7%95%D7%AA-%D7%A1%D7%99%D7%A7%D7%95%D7%9F-%D7%9E%D7%94%D7%93%D7%95%D7%A8%D7%94-6-%D7%9E%D7%A8%D7%A5-2023-%D7%9C%D7%94%D7%93%D7%A4%D7%A1%D7%94.pdf",
+    "labels": {
+      "he": "תרופות בנות סיקון הדורשות בקרה כפולה",
+      "ru": "Препараты, требующие двойного контроля",
+      "en": "Prescription drugs that require double control",
+      "ar": "الأدوية الموصوفة التي تتطلب رقابة مزدوجة"
+    }
+  }
+]
         }
       }
     ]
