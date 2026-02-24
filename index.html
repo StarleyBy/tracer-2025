@@ -516,6 +516,89 @@ body.light .tc-y { color: #b45309; }
   text-align: center;
   margin-top: 6px;
 }
+
+/* ── PDF LIBRARY ─────────────────────────────────────────── */
+.section-label {
+  font-size: .72em;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.pdf-lib-btn {
+  align-items: center;
+  border-left: 3px solid var(--warn);
+}
+.pdf-lib-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+}
+.pdf-lib-title { font-weight: 600; font-size: .97em; }
+.pdf-lib-sub   { font-size: .78em; color: var(--muted); font-weight: 400; }
+.pdf-arrow     { font-size: 1.4em; color: var(--muted); line-height: 1; }
+
+.pdf-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--grad-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color .2s, transform .18s, box-shadow .2s;
+  cursor: pointer;
+}
+.pdf-item:hover {
+  border-color: var(--warn);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(245,158,11,.15);
+}
+.pdf-item-icon {
+  font-size: 1.6em;
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+.pdf-item-body { flex: 1; min-width: 0; }
+.pdf-item-title {
+  font-size: .95em;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+.pdf-item-cat {
+  display: inline-block;
+  font-size: .72em;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 99px;
+  background: rgba(245,158,11,.12);
+  color: var(--warn);
+  letter-spacing: .04em;
+}
+body.light .pdf-item-cat { color: #92400e; background: rgba(245,158,11,.12); }
+
+.pdf-group-header {
+  font-size: .72em;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 12px 4px 6px;
+}
+
+.pdf-open-arrow {
+  font-size: 1.1em;
+  color: var(--muted);
+  flex-shrink: 0;
+  align-self: center;
+}
 </style>
 </head>
 <body>
@@ -547,6 +630,36 @@ body.light .tc-y { color: #b45309; }
     <button class="opt lang-btn lang-ar" onclick="selectLanguage('ar')">
       <span class="flag">🇸🇦</span><span>عربي</span>
     </button>
+  </div>
+
+  <div style="margin-top:20px;">
+    <div class="section-label">📂 Documents</div>
+    <button class="opt pdf-lib-btn" onclick="openPdfLibrary()">
+      <span class="opt-icon">📄</span>
+      <span class="pdf-lib-text">
+        <span class="pdf-lib-title">PDF Library</span>
+        <span class="pdf-lib-sub">Protocols &amp; reference sheets</span>
+      </span>
+      <span class="pdf-arrow">›</span>
+    </button>
+  </div>
+</div>
+
+<!-- ═══ PAGE 7 · PDF Library ════════════════════════════ -->
+<div class="page" id="page7">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-top:4px;">
+    <button class="icon-btn" onclick="goToPage(1)" title="Back">←</button>
+    <div>
+      <div style="font-weight:700;font-size:1.05em;" id="pdfLibTitle">PDF Library</div>
+      <div style="font-size:.75em;color:var(--muted);" id="pdfLibSub">Protocols &amp; reference sheets</div>
+    </div>
+  </div>
+
+  <div id="pdfListState" style="text-align:center;color:var(--muted);padding:40px 0;font-size:.9em;">
+    ⏳ Loading…
+  </div>
+  <div id="pdfListWrap" style="display:none;">
+    <div id="pdfList" class="opt-group"></div>
   </div>
 </div>
 
@@ -999,6 +1112,113 @@ function fmtText(s) {
     .replace(/\[b\]([\s\S]*?)\[\/b\]/g,       '<span class="tc-b">$1</span>')
     .replace(/\[g\]([\s\S]*?)\[\/g\]/g,       '<span class="tc-g">$1</span>')
     .replace(/\[y\]([\s\S]*?)\[\/y\]/g,       '<span class="tc-y">$1</span>');
+}
+
+/* ── PDF LIBRARY ─────────────────────────────────────────── */
+var PDF_BASE = 'https://starleyby.github.io/tracer-2025/pdf/';
+var PDF_LIST_URL = 'https://raw.githubusercontent.com/StarleyBy/tracer-2025/main/data/pdf-list.json';
+var pdfData = null;
+
+var PDF_UI = {
+  ru: { title: 'Библиотека PDF', sub: 'Протоколы и справочные материалы', open: 'Открыть', loading: '⏳ Загрузка…', error: '❌ Не удалось загрузить список файлов', empty: 'Файлы не найдены' },
+  en: { title: 'PDF Library',    sub: 'Protocols & reference sheets',      open: 'Open',   loading: '⏳ Loading…',  error: '❌ Failed to load file list',       empty: 'No files found' },
+  he: { title: 'ספריית PDF',     sub: 'פרוטוקולים וחומרי עזר',            open: 'פתח',    loading: '⏳ טוען…',     error: '❌ שגיאה בטעינת הרשימה',          empty: 'לא נמצאו קבצים' },
+  ar: { title: 'مكتبة PDF',      sub: 'البروتوكولات والمواد المرجعية',     open: 'فتح',    loading: '⏳ جارٍ التحميل…', error: '❌ فشل تحميل قائمة الملفات',    empty: 'لا توجد ملفات' }
+};
+
+function openPdfLibrary() {
+  goToPage(7);
+  var ui = PDF_UI[lang] || PDF_UI.en;
+  document.getElementById('pdfLibTitle').textContent = ui.title;
+  document.getElementById('pdfLibSub').textContent   = ui.sub;
+
+  if (pdfData) { renderPdfList(pdfData); return; }
+
+  var state = document.getElementById('pdfListState');
+  state.style.display = 'block';
+  state.textContent   = ui.loading;
+  document.getElementById('pdfListWrap').style.display = 'none';
+
+  fetch(PDF_LIST_URL + '?t=' + Date.now())
+    .then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function(data) {
+      pdfData = data;
+      renderPdfList(data);
+    })
+    .catch(function() {
+      state.textContent = ui.error;
+    });
+}
+
+function renderPdfList(data) {
+  var ui    = PDF_UI[lang] || PDF_UI.en;
+  var state = document.getElementById('pdfListState');
+  var wrap  = document.getElementById('pdfListWrap');
+  var list  = document.getElementById('pdfList');
+
+  if (!data || !data.length) {
+    state.textContent = ui.empty;
+    return;
+  }
+
+  state.style.display = 'none';
+  list.innerHTML = '';
+
+  // Group by category
+  var groups = {};
+  var groupOrder = [];
+  for (var i = 0; i < data.length; i++) {
+    var item = data[i];
+    var cat = (item.category && (item.category[lang] || item.category.en)) || '—';
+    if (!groups[cat]) { groups[cat] = []; groupOrder.push(cat); }
+    groups[cat].push(item);
+  }
+
+  for (var g = 0; g < groupOrder.length; g++) {
+    var catName = groupOrder[g];
+    var items   = groups[catName];
+
+    // Category header (only if more than one category)
+    if (groupOrder.length > 1) {
+      var hdr = document.createElement('div');
+      hdr.className = 'pdf-group-header';
+      hdr.textContent = catName;
+      list.appendChild(hdr);
+    }
+
+    for (var j = 0; j < items.length; j++) {
+      list.appendChild(makePdfItem(items[j]));
+    }
+  }
+
+  wrap.style.display = 'block';
+}
+
+function makePdfItem(item) {
+  var ui    = PDF_UI[lang] || PDF_UI.en;
+  var title = item[lang] || item.en || item.file;
+  var cat   = (item.category && (item.category[lang] || item.category.en)) || '';
+  var url   = PDF_BASE + item.file;
+
+  var a = document.createElement('a');
+  a.href   = url;
+  a.target = '_blank';
+  a.rel    = 'noopener noreferrer';
+  a.className = 'pdf-item';
+
+  a.innerHTML =
+    '<span class="pdf-item-icon">📄</span>' +
+    '<span class="pdf-item-body">' +
+      '<span class="pdf-item-title">' + escHtml(title) + '</span>' +
+      (cat ? '<span class="pdf-item-cat">' + escHtml(cat) + '</span>' : '') +
+    '</span>' +
+    '<span class="pdf-open-arrow">↗</span>';
+
+  return a;
+}
+
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
 /* ── THEME ───────────────────────────────────────────────── */
