@@ -2,384 +2,689 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>TRACER 2025</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Noto+Sans+Hebrew:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Hebrew:wght@400;600&family=Noto+Sans+Arabic:wght@400;600&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* ── RESET & BASE ─────────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { height: 100%; }
 
+/* ── DESIGN TOKENS ───────────────────────────────────────── */
 :root {
-    --bg:      #0d0d14;
-    --surface: #16161f;
-    --sur2:    #1e1e2e;
-    --accent:  #7c6af7;
-    --red:     #e06c75;
-    --cyan:    #56b6c2;
-    --text:    #ced2e0;
-    --dim:     #6b7089;
-    --green:   #98c379;
-    --yellow:  #e5c07b;
-    --border:  rgba(124,106,247,0.2);
+  /* Palette – dark */
+  --bg:       #0f0f1a;
+  --surface:  #1a1a2e;
+  --card:     #22223a;
+  --accent:   #7b68ee;
+  --accent2:  #a78bfa;
+  --danger:   #ef4444;
+  --success:  #22c55e;
+  --warn:     #f59e0b;
+  --info:     #38bdf8;
+  --text:     #e2e4f0;
+  --muted:    #7c7fa0;
+  --border:   rgba(123,104,238,.18);
+  --glow:     rgba(123,104,238,.35);
+
+  /* Gradients */
+  --grad-accent: linear-gradient(135deg, #7b68ee, #a78bfa);
+  --grad-card:   linear-gradient(160deg, #22223a 0%, #1a1a2e 100%);
+  --grad-success:linear-gradient(135deg, #22c55e, #16a34a);
+  --grad-danger: linear-gradient(135deg, #ef4444, #dc2626);
+
+  /* Spacing & Shape */
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --shadow: 0 4px 24px rgba(0,0,0,.45);
+  --shadow-sm: 0 2px 10px rgba(0,0,0,.3);
 }
 
-body {
-    font-family: 'Space Mono', monospace;
-    background: var(--bg);
-    min-height: 100vh;
-    color: var(--text);
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-.wrap {
-    width: 100%;
-    max-width: 420px;
-    min-height: 100vh;
-    background: var(--surface);
-    position: relative;
-}
-
-/* pages */
-.page { display: none; padding: 20px; min-height: 100vh; animation: fi .3s ease; }
-.page.active { display: block; }
-@keyframes fi { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
-
-/* topbar */
-.topbar {
-    position: sticky;
-    top: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 16px;
-    z-index: 100;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-}
-.tbtn {
-    background: var(--sur2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    width: 38px; height: 38px;
-    font-size: 1.1em;
-    cursor: pointer;
-    color: var(--text);
-    display: flex; align-items: center; justify-content: center;
-    transition: all .2s;
-}
-.tbtn:hover { border-color: var(--accent); }
-
-/* header */
-.hdr { text-align: center; margin: 28px 0 24px; }
-.logo { font-size: 2.2em; font-weight: 700; color: var(--accent); text-shadow: 0 0 30px rgba(124,106,247,.5); margin-bottom: 6px; }
-.logo-sub { font-size: .72em; color: var(--dim); letter-spacing: .15em; text-transform: uppercase; }
-
-/* options */
-.opt-group { display: flex; flex-direction: column; gap: 10px; }
-.opt {
-    background: var(--sur2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 18px 20px;
-    width: 100%;
-    text-align: left;
-    font-size: 1em;
-    font-family: 'Space Mono', monospace;
-    cursor: pointer;
-    color: var(--text);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    position: relative;
-    overflow: hidden;
-    transition: all .2s;
-}
-.opt::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-    background: var(--accent);
-    opacity: 0;
-    transition: opacity .2s;
-}
-.opt:hover { border-color: var(--accent); background: rgba(124,106,247,.08); transform: translateX(4px); }
-.opt:hover::before, .opt.sel::before { opacity: 1; }
-.opt.sel { border-color: var(--accent); background: rgba(124,106,247,.15); }
-
-.lang-btn { text-align: center; justify-content: center; }
-.lang-he { border-left-color: #4fc3f7; } .lang-he::before { background: #4fc3f7; }
-.lang-en { border-left-color: var(--green); } .lang-en::before { background: var(--green); }
-.lang-ru { border-left-color: var(--red); } .lang-ru::before { background: var(--red); }
-.lang-ar { border-left-color: var(--yellow); } .lang-ar::before { background: var(--yellow); }
-.flag { font-size: 1.4em; }
-
-/* buttons */
-.btn {
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    padding: 13px 20px;
-    font-size: .9em;
-    font-family: 'Space Mono', monospace;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: all .2s;
-}
-.btn:hover { opacity: .85; }
-.btn:disabled { opacity: .35; cursor: not-allowed; }
-.btn-out { background: transparent; border: 1px solid var(--accent); color: var(--accent); }
-.btn-red { background: var(--red); }
-.btn-full { width: 100%; justify-content: center; margin-top: 10px; }
-
-/* question card */
-.qcard {
-    background: var(--sur2);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 24px;
-    margin: 12px 0 110px;
-}
-.qlabel { font-size: .7em; color: var(--accent); letter-spacing: .15em; text-transform: uppercase; margin-bottom: 10px; }
-.qtext { font-size: 1.05em; line-height: 1.7; color: #fff; margin-bottom: 14px; white-space: pre-wrap; }
-.qmedia { margin: 10px 0; }
-.qmedia img { max-width: 100%; border-radius: 10px; display: block; border: 1px solid var(--border); margin-bottom: 8px; }
-.media-link {
-    display: inline-flex; align-items: center; gap: 6px;
-    color: var(--cyan); text-decoration: none; font-size: .9em;
-    border: 1px solid rgba(86,182,194,.3); border-radius: 8px;
-    padding: 8px 14px; margin-top: 8px; transition: all .2s; white-space: normal; word-break: break-all;
-}
-.media-link:hover { background: rgba(86,182,194,.1); }
-.media-note {
-    background: rgba(229,192,123,.1); border: 1px solid rgba(229,192,123,.3);
-    border-radius: 8px; padding: 10px 14px; font-size: .9em;
-    color: var(--yellow); margin-top: 8px; line-height: 1.5;
-}
-.ans-block { border-top: 1px solid var(--border); margin-top: 14px; padding-top: 14px; }
-.alabel { font-size: .7em; color: var(--green); letter-spacing: .15em; text-transform: uppercase; margin-bottom: 8px; }
-.atext { font-size: 1em; line-height: 1.7; color: var(--green); white-space: pre-wrap; }
-
-/* counter */
-.counter {
-    display: inline-block;
-    background: var(--sur2); border: 1px solid var(--border);
-    border-radius: 20px; padding: 4px 14px; font-size: .8em; color: var(--dim); margin-bottom: 10px;
-}
-
-/* controls */
-.controls {
-    position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
-    width: 100%; max-width: 420px;
-    display: flex; gap: 8px;
-    padding: 12px 16px;
-    background: var(--surface); border-top: 1px solid var(--border);
-    z-index: 100;
-}
-.controls .btn { flex: 1; justify-content: center; font-size: .82em; padding: 12px 8px; }
-
-/* progress */
-.prog-wrap { background: var(--sur2); border-radius: 4px; height: 4px; margin: 14px 0; overflow: hidden; }
-.prog-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--cyan)); width: 0%; transition: width .4s; }
-
-/* load status */
-.lstat { font-size: .85em; color: var(--dim); margin: 5px 0; }
-.lstat.ok { color: var(--green); }
-.lstat.err { color: var(--red); }
-
-/* warning */
-.warn-box {
-    background: rgba(224,108,117,.15); border: 1px solid var(--red);
-    border-radius: 10px; padding: 14px; text-align: center;
-    color: var(--red); margin: 14px 0; animation: shake .4s ease;
-}
-@keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
-
-/* modal */
-.modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,.75); display: none; justify-content: center; align-items: center; z-index: 2000; }
-.modal-bg.open { display: flex; }
-.modal-box { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 26px; max-width: 340px; margin: 20px; line-height: 1.7; font-size: .9em; }
-.modal-box h3 { color: var(--accent); margin-bottom: 12px; }
-
-/* colour tags */
-.tc-r { color: #ff5f6d; font-weight: 600; }
-.tc-b { color: #56b6e8; font-weight: 600; }
-.tc-g { color: #5fd987; font-weight: 600; }
-.tc-y { color: #f0c060; font-weight: 600; }
-
-/* RTL */
-[dir="rtl"] .opt { flex-direction: row-reverse; text-align: right; }
-[dir="rtl"] .opt::before { left: auto; right: 0; }
-[dir="rtl"] .opt:hover { transform: translateX(-4px); }
-[dir="rtl"] .qtext, [dir="rtl"] .atext { direction: rtl; }
-
-/* LIGHT THEME */
+/* ── LIGHT THEME ─────────────────────────────────────────── */
 body.light {
-    --bg: #eef0f7; --surface: #fff; --sur2: #f4f5fb;
-    --accent: #5a48e0; --red: #c0392b; --cyan: #1a7f8e;
-    --text: #1a1a2e; --dim: #5a5a7a; --green: #1e7e34; --yellow: #8a6200;
-    --border: rgba(90,72,224,.18);
+  --bg:       #f0f2ff;
+  --surface:  #ffffff;
+  --card:     #f5f5ff;
+  --accent:   #5b4de8;
+  --accent2:  #7c6af7;
+  --danger:   #dc2626;
+  --success:  #16a34a;
+  --warn:     #d97706;
+  --info:     #0284c7;
+  --text:     #1e1b4b;
+  --muted:    #6b6b9a;
+  --border:   rgba(91,77,232,.15);
+  --glow:     rgba(91,77,232,.2);
+  --grad-card: linear-gradient(160deg, #f5f5ff 0%, #eef0ff 100%);
 }
 body.light .logo { text-shadow: none; }
-body.light .opt  { color: var(--text); }
-body.light .qtext { color: #1a1a2e; }
-body.light .atext { color: var(--green); }
-body.light .tc-r { color: #c0392b; }
-body.light .tc-b { color: #1a6fa8; }
-body.light .tc-g { color: #1e7e34; }
-body.light .tc-y { color: #8a6200; }
-body.light .media-note { color: var(--yellow); background: rgba(138,98,0,.08); border-color: rgba(138,98,0,.25); }
-body.light .media-link { color: var(--cyan); border-color: rgba(26,127,142,.3); }
-body.light .modal-box { background: var(--surface); color: var(--text); }
+body.light .qtext { color: #1e1b4b; }
+body.light .atext { color: var(--success); }
+body.light .topbar { backdrop-filter: blur(12px); background: rgba(255,255,255,.85); }
+body.light .controls { background: rgba(255,255,255,.9); backdrop-filter: blur(12px); }
+
+/* ── BODY ────────────────────────────────────────────────── */
+body {
+  font-family: 'Inter', 'Noto Sans Hebrew', 'Noto Sans Arabic', sans-serif;
+  background: var(--bg);
+  min-height: 100%;
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── SHELL ───────────────────────────────────────────────── */
+.shell {
+  width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--surface);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 60px rgba(0,0,0,.5);
+}
+
+/* ── PAGES ───────────────────────────────────────────────── */
+.page { display: none; padding: 20px; min-height: 100vh; min-height: 100dvh; }
+.page.active { display: block; animation: pageIn .28s cubic-bezier(.4,0,.2,1); }
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── TOPBAR ──────────────────────────────────────────────── */
+.topbar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: rgba(26,26,46,.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  z-index: 200;
+}
+.topbar-title {
+  font-size: .72em;
+  font-weight: 600;
+  letter-spacing: .18em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.icon-btn {
+  width: 36px; height: 36px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  font-size: 1em;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color .2s, background .2s, transform .15s;
+}
+.icon-btn:hover { border-color: var(--accent); background: rgba(123,104,238,.12); transform: scale(1.05); }
+.icon-btn:active { transform: scale(.96); }
+
+/* ── HEADER ──────────────────────────────────────────────── */
+.hdr {
+  text-align: center;
+  padding: 36px 0 28px;
+}
+.logo {
+  font-size: 2.6em;
+  font-weight: 700;
+  letter-spacing: .06em;
+  background: var(--grad-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 20px var(--glow));
+  margin-bottom: 8px;
+  line-height: 1;
+}
+.logo-sub {
+  font-size: .72em;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+/* ── OPTION LIST ─────────────────────────────────────────── */
+.opt-group { display: flex; flex-direction: column; gap: 10px; }
+
+.opt {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 16px 18px;
+  background: var(--grad-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  font-family: inherit;
+  font-size: .97em;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  overflow: hidden;
+  transition: border-color .2s, transform .18s, box-shadow .2s, background .2s;
+}
+.opt::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--grad-accent);
+  opacity: 0;
+  transition: opacity .2s;
+  border-radius: inherit;
+}
+.opt:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(123,104,238,.2);
+}
+.opt:hover::after { opacity: .06; }
+.opt:active { transform: translateY(0) scale(.99); }
+.opt.sel {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--glow), 0 6px 20px rgba(123,104,238,.2);
+}
+.opt.sel::after { opacity: .1; }
+.opt-icon { font-size: 1.35em; flex-shrink: 0; position: relative; z-index: 1; }
+.opt span:not(.opt-icon) { position: relative; z-index: 1; }
+
+/* Language buttons */
+.lang-btn { justify-content: center; gap: 10px; padding: 20px 18px; font-size: 1.05em; }
+.flag { font-size: 1.5em; }
+
+/* Language accent stripes */
+.lang-he { border-left: 3px solid #38bdf8; }
+.lang-en { border-left: 3px solid #22c55e; }
+.lang-ru { border-left: 3px solid #ef4444; }
+.lang-ar { border-left: 3px solid #f59e0b; }
+
+/* ── BUTTONS ─────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 22px;
+  border: none;
+  border-radius: var(--r-md);
+  font-family: inherit;
+  font-size: .92em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity .2s, transform .15s, box-shadow .2s;
+  background: var(--grad-accent);
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(123,104,238,.35);
+}
+.btn:hover { opacity: .9; transform: translateY(-1px); box-shadow: 0 4px 18px rgba(123,104,238,.45); }
+.btn:active { transform: translateY(0) scale(.98); }
+.btn:disabled { opacity: .3; cursor: not-allowed; transform: none; box-shadow: none; }
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  box-shadow: none;
+}
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); box-shadow: 0 2px 12px rgba(123,104,238,.15); }
+
+.btn-danger { background: var(--grad-danger); box-shadow: 0 2px 10px rgba(239,68,68,.3); }
+.btn-danger:hover { box-shadow: 0 4px 16px rgba(239,68,68,.4); }
+
+.btn-success { background: var(--grad-success); box-shadow: 0 2px 10px rgba(34,197,94,.3); }
+
+.btn-full { width: 100%; margin-top: 10px; }
+
+/* ── PROGRESS BAR ────────────────────────────────────────── */
+.prog-wrap {
+  height: 3px;
+  background: var(--card);
+  border-radius: 99px;
+  margin: 16px 0;
+  overflow: hidden;
+}
+.prog-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--grad-accent);
+  border-radius: 99px;
+  transition: width .4s ease;
+}
+
+/* Load status */
+.lstat { font-size: .85em; color: var(--muted); margin: 6px 0; display: flex; align-items: center; gap: 8px; }
+.lstat.ok  { color: var(--success); }
+.lstat.err { color: var(--danger); }
+
+/* ── QUESTION CARD ───────────────────────────────────────── */
+.counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: 5px 14px;
+  font-size: .78em;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.counter-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity: 1; } 50% { opacity: .3; }
+}
+
+.qcard {
+  background: var(--grad-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 22px;
+  margin-bottom: 120px;
+  box-shadow: var(--shadow-sm);
+}
+
+.qlabel {
+  font-size: .68em;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.qlabel::before {
+  content: '';
+  display: inline-block;
+  width: 12px; height: 2px;
+  background: var(--grad-accent);
+  border-radius: 1px;
+}
+
+.qtext {
+  font-size: 1.04em;
+  line-height: 1.75;
+  color: var(--text);
+  white-space: pre-wrap;
+  margin-bottom: 8px;
+}
+
+/* Media containers */
+.qmedia { margin: 12px 0; display: flex; flex-direction: column; gap: 8px; }
+.qmedia img {
+  max-width: 100%; border-radius: var(--r-md);
+  display: block; border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.media-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--info);
+  text-decoration: none;
+  font-size: .9em;
+  font-weight: 500;
+  border: 1px solid rgba(56,189,248,.25);
+  border-radius: var(--r-sm);
+  padding: 10px 14px;
+  background: rgba(56,189,248,.06);
+  transition: background .2s, border-color .2s;
+  word-break: break-all;
+}
+.media-link:hover { background: rgba(56,189,248,.12); border-color: rgba(56,189,248,.5); }
+.media-link::before { content: '↗'; flex-shrink: 0; font-size: 1.1em; }
+
+.media-note {
+  background: rgba(245,158,11,.07);
+  border: 1px solid rgba(245,158,11,.25);
+  border-left: 3px solid var(--warn);
+  border-radius: var(--r-sm);
+  padding: 10px 14px;
+  font-size: .9em;
+  color: var(--warn);
+  line-height: 1.55;
+}
+body.light .media-note { color: #92400e; background: rgba(245,158,11,.08); }
+
+/* Answer block */
+.ans-block {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.alabel {
+  font-size: .68em;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--success);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.alabel::before {
+  content: '';
+  display: inline-block;
+  width: 12px; height: 2px;
+  background: var(--grad-success);
+  border-radius: 1px;
+}
+.atext {
+  font-size: 1em;
+  line-height: 1.75;
+  color: var(--success);
+  white-space: pre-wrap;
+}
+body.light .atext { color: var(--success); }
+
+/* Colour tags */
+.tc-r { color: #f87171; font-weight: 600; }
+.tc-b { color: #60a5fa; font-weight: 600; }
+.tc-g { color: #4ade80; font-weight: 600; }
+.tc-y { color: #fbbf24; font-weight: 600; }
+body.light .tc-r { color: #dc2626; }
+body.light .tc-b { color: #1d4ed8; }
+body.light .tc-g { color: #15803d; }
+body.light .tc-y { color: #b45309; }
+
+/* ── BOTTOM CONTROLS ─────────────────────────────────────── */
+.controls {
+  position: fixed;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 100%; max-width: 430px;
+  display: flex;
+  gap: 8px;
+  padding: 10px 14px;
+  padding-bottom: calc(10px + env(safe-area-inset-bottom));
+  background: rgba(26,26,46,.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--border);
+  z-index: 100;
+}
+.controls .btn {
+  flex: 1;
+  padding: 13px 10px;
+  font-size: .85em;
+}
+.ctrl-icon { flex: 0 0 auto; padding: 13px 13px; }
+
+/* ── WARNING BOX ─────────────────────────────────────────── */
+.warn-box {
+  background: rgba(239,68,68,.1);
+  border: 1px solid rgba(239,68,68,.4);
+  border-radius: var(--r-md);
+  padding: 14px 18px;
+  text-align: center;
+  color: var(--danger);
+  margin: 16px 0;
+  font-weight: 500;
+  animation: shake .38s cubic-bezier(.36,.07,.19,.97);
+}
+@keyframes shake {
+  10%,90% { transform: translateX(-2px); }
+  20%,80% { transform: translateX(4px); }
+  30%,50%,70% { transform: translateX(-5px); }
+  40%,60% { transform: translateX(5px); }
+}
+
+/* ── MODAL ───────────────────────────────────────────────── */
+.modal-bg {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 500;
+  padding: 20px;
+}
+.modal-bg.open { display: flex; animation: fadeIn .2s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.modal-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 28px;
+  max-width: 360px;
+  width: 100%;
+  line-height: 1.7;
+  font-size: .9em;
+  box-shadow: var(--shadow);
+  animation: slideUp .25s cubic-bezier(.4,0,.2,1);
+}
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+.modal-box h3 {
+  font-size: 1.15em;
+  font-weight: 700;
+  background: var(--grad-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 14px;
+}
+.modal-box p { color: var(--text); margin-bottom: 8px; }
+.modal-box strong { color: var(--accent2); }
+
+/* ── RTL SUPPORT ─────────────────────────────────────────── */
+[dir="rtl"] .opt              { flex-direction: row-reverse; text-align: right; }
+[dir="rtl"] .opt:hover        { transform: translateY(-1px); }
+[dir="rtl"] .lang-he,
+[dir="rtl"] .lang-ar          { border-left: none; }
+[dir="rtl"] .lang-he          { border-right: 3px solid #38bdf8; }
+[dir="rtl"] .lang-ar          { border-right: 3px solid #f59e0b; }
+[dir="rtl"] .qtext,
+[dir="rtl"] .atext            { direction: rtl; text-align: right; }
+[dir="rtl"] .qlabel,
+[dir="rtl"] .alabel           { flex-direction: row-reverse; }
+[dir="rtl"] .media-link       { flex-direction: row-reverse; }
+
+/* ── SECTION DIVIDER (loading page) ─────────────────────── */
+.section-note {
+  font-size: .82em;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 6px;
+}
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="shell">
 
-<!-- TOPBAR -->
+<!-- ═══ TOPBAR ═══════════════════════════════════════════ -->
 <div class="topbar">
-    <button class="tbtn" onclick="showModal('aboutModal')" title="About">ℹ️</button>
-    <span style="font-size:.7em;letter-spacing:.1em;color:var(--dim)">TRACER // 2025</span>
-    <button class="tbtn" onclick="toggleTheme()" id="themeBtn" title="Toggle theme">☀️</button>
+  <button class="icon-btn" onclick="showModal('aboutModal')" title="About">ℹ️</button>
+  <span class="topbar-title">Tracer · 2025</span>
+  <button class="icon-btn" onclick="toggleTheme()" id="themeBtn" title="Toggle theme">☀️</button>
 </div>
 
-<!-- PAGE 1: Language -->
+<!-- ═══ PAGE 1 · Language ════════════════════════════════ -->
 <div class="page active" id="page1">
-    <div class="hdr">
-        <div class="logo">TRACER</div>
-        <div class="logo-sub">Healthcare Accreditation · 2025</div>
-    </div>
-    <div class="opt-group">
-        <button class="opt lang-btn lang-he" onclick="selectLanguage('he')"><span class="flag">🇮🇱</span><span>עברית</span></button>
-        <button class="opt lang-btn lang-en" onclick="selectLanguage('en')"><span class="flag">🇺🇸</span><span>English</span></button>
-        <button class="opt lang-btn lang-ru" onclick="selectLanguage('ru')"><span class="flag">🇷🇺</span><span>Русский</span></button>
-        <button class="opt lang-btn lang-ar" onclick="selectLanguage('ar')"><span class="flag">🇸🇦</span><span>عربي</span></button>
-    </div>
+  <div class="hdr">
+    <div class="logo">TRACER</div>
+    <div class="logo-sub">Healthcare Accreditation · 2025</div>
+  </div>
+  <div class="opt-group">
+    <button class="opt lang-btn lang-he" onclick="selectLanguage('he')">
+      <span class="flag">🇮🇱</span><span>עברית</span>
+    </button>
+    <button class="opt lang-btn lang-en" onclick="selectLanguage('en')">
+      <span class="flag">🇺🇸</span><span>English</span>
+    </button>
+    <button class="opt lang-btn lang-ru" onclick="selectLanguage('ru')">
+      <span class="flag">🇷🇺</span><span>Русский</span>
+    </button>
+    <button class="opt lang-btn lang-ar" onclick="selectLanguage('ar')">
+      <span class="flag">🇸🇦</span><span>عربي</span>
+    </button>
+  </div>
 </div>
 
-<!-- PAGE 2: Loading -->
+<!-- ═══ PAGE 2 · Loading ═════════════════════════════════ -->
 <div class="page" id="page2">
-    <div class="hdr">
-        <div class="logo" style="font-size:1.4em">Loading</div>
-        <div class="logo-sub">Fetching questions…</div>
-    </div>
-    <div class="prog-wrap"><div class="prog-bar" id="progressBar"></div></div>
-    <div class="lstat" id="doctorStatus">⏳ doctor.json</div>
-    <div class="lstat" id="nurseStatus">⏳ nurse.json</div>
-    <div class="lstat" id="supportStatus">⏳ support.json</div>
+  <div class="hdr">
+    <div class="logo" style="font-size:2em">Loading</div>
+    <div class="logo-sub">Fetching questions…</div>
+  </div>
+  <div class="prog-wrap"><div class="prog-bar" id="progressBar"></div></div>
+  <div class="lstat" id="doctorStatus">⏳ &nbsp;doctor.json</div>
+  <div class="lstat" id="nurseStatus">⏳ &nbsp;nurse.json</div>
+  <div class="lstat" id="supportStatus">⏳ &nbsp;support.json</div>
 
-    <div style="display:none;margin-top:20px;text-align:center;" id="successSection">
-        <div style="color:var(--green);margin-bottom:14px;">✅ Data loaded</div>
-        <button class="btn btn-full" onclick="goToPage(3)">Continue →</button>
-        <button class="btn btn-out btn-full" onclick="clearCacheAndReload()">🔄 Force reload</button>
-    </div>
-    <div style="display:none;margin-top:20px;text-align:center;" id="errorSection">
-        <div style="color:var(--red);margin-bottom:14px;">❌ Load failed</div>
-        <button class="btn btn-full" onclick="loadData()">Retry</button>
-        <button class="btn btn-out btn-full" onclick="useSampleData()">Use demo data</button>
-    </div>
+  <div id="successSection" style="display:none;margin-top:24px;text-align:center;">
+    <div style="color:var(--success);margin-bottom:14px;font-weight:600;">✅ &nbsp;Data loaded</div>
+    <button class="btn btn-full" onclick="goToPage(3)">Continue →</button>
+    <button class="btn btn-ghost btn-full" onclick="clearCacheAndReload()">🔄 &nbsp;Reload from server</button>
+  </div>
+  <div id="errorSection" style="display:none;margin-top:24px;text-align:center;">
+    <div style="color:var(--danger);margin-bottom:14px;font-weight:600;">❌ &nbsp;Load failed</div>
+    <button class="btn btn-full" onclick="loadData()">Retry</button>
+    <button class="btn btn-ghost btn-full" onclick="useSampleData()">Use demo data</button>
+  </div>
 </div>
 
-<!-- PAGE 3: Position -->
+<!-- ═══ PAGE 3 · Role ════════════════════════════════════ -->
 <div class="page" id="page3">
-    <div class="hdr">
-        <div class="logo-sub" id="selectPositionTitle">Select role</div>
-    </div>
-    <div class="opt-group">
-        <button class="opt" onclick="selectPosition('doctor',this)"><span class="opt-icon">👨‍⚕️</span><span id="doctorText">Doctor</span></button>
-        <button class="opt" onclick="selectPosition('nurse',this)"><span class="opt-icon">👩‍⚕️</span><span id="nurseText">Nurse</span></button>
-        <button class="opt" onclick="selectPosition('support',this)"><span class="opt-icon">🧑‍🔬</span><span id="supportText">Support staff</span></button>
-    </div>
+  <div class="hdr">
+    <div class="logo-sub" id="selectPositionTitle">Select role</div>
+  </div>
+  <div class="opt-group">
+    <button class="opt" onclick="selectPosition('doctor',this)">
+      <span class="opt-icon">👨‍⚕️</span><span id="doctorText">Doctor</span>
+    </button>
+    <button class="opt" onclick="selectPosition('nurse',this)">
+      <span class="opt-icon">👩‍⚕️</span><span id="nurseText">Nurse</span>
+    </button>
+    <button class="opt" onclick="selectPosition('support',this)">
+      <span class="opt-icon">🧑‍🔬</span><span id="supportText">Support staff</span>
+    </button>
+  </div>
 </div>
 
-<!-- PAGE 4: Code check -->
+<!-- ═══ PAGE 4 · Code check ══════════════════════════════ -->
 <div class="page" id="page4">
-    <div class="hdr">
-        <div class="logo" style="font-size:1.5em" id="codeCheckTitle">Security check</div>
-        <div class="logo-sub" id="codeCheckSubtitle">Choose the correct phrase:</div>
-    </div>
-    <div class="opt-group">
-        <button class="opt" onclick="checkCode(false,this)"><span id="code1">🍵 Wolfson is Brazilian tea</span></button>
-        <button class="opt" onclick="checkCode(false,this)"><span id="code2">🎬 Wolfson is a German actor</span></button>
-        <button class="opt" onclick="checkCode(false,this)"><span id="code3">🚇 Wolfson is a metro station</span></button>
-        <button class="opt" onclick="checkCode(true,this)"><span id="code4">🏠 Wolfson is home</span></button>
-    </div>
-    <div class="warn-box" id="warningMessage" style="display:none;">
-        <span id="spyWarning">⚠️ Suspected spy from Ichilov!</span>
-    </div>
+  <div class="hdr">
+    <div class="logo" style="font-size:1.6em" id="codeCheckTitle">Security check</div>
+    <div class="logo-sub" id="codeCheckSubtitle">Choose the correct phrase:</div>
+  </div>
+  <div class="opt-group">
+    <button class="opt" onclick="checkCode(false,this)"><span id="code1">🍵 Wolfson is Brazilian tea</span></button>
+    <button class="opt" onclick="checkCode(false,this)"><span id="code2">🎬 Wolfson is a German actor</span></button>
+    <button class="opt" onclick="checkCode(false,this)"><span id="code3">🚇 Wolfson is a metro station</span></button>
+    <button class="opt" onclick="checkCode(true,this)"><span id="code4">🏠 Wolfson is home</span></button>
+  </div>
+  <div class="warn-box" id="warningMessage" style="display:none;">
+    <span id="spyWarning">⚠️ Suspected spy from Ichilov!</span>
+  </div>
 </div>
 
-<!-- PAGE 5: Mode -->
+<!-- ═══ PAGE 5 · Mode ════════════════════════════════════ -->
 <div class="page" id="page5">
-    <div class="hdr">
-        <div class="logo-sub" id="settingsTitle">Study mode</div>
-    </div>
-    <div class="opt-group">
-        <button class="opt" onclick="selectMode('sequential',this)"><span class="opt-icon">📋</span><span id="sequentialText">All questions in order</span></button>
-        <button class="opt" onclick="selectMode('random',this)"><span class="opt-icon">🔀</span><span id="randomText">Random order</span></button>
-        <button class="opt" onclick="selectMode('quiz',this)"><span class="opt-icon">🧠</span><span id="quizText">Quiz (answer hidden)</span></button>
-    </div>
+  <div class="hdr">
+    <div class="logo-sub" id="settingsTitle">Study mode</div>
+  </div>
+  <div class="opt-group">
+    <button class="opt" onclick="selectMode('sequential',this)">
+      <span class="opt-icon">📋</span><span id="sequentialText">All questions in order</span>
+    </button>
+    <button class="opt" onclick="selectMode('random',this)">
+      <span class="opt-icon">🔀</span><span id="randomText">Random order</span>
+    </button>
+    <button class="opt" onclick="selectMode('quiz',this)">
+      <span class="opt-icon">🧠</span><span id="quizText">Quiz (answer hidden)</span>
+    </button>
+  </div>
 </div>
 
-<!-- PAGE 6: Questions -->
+<!-- ═══ PAGE 6 · Questions ═══════════════════════════════ -->
 <div class="page" id="page6">
-    <span class="counter" id="questionCounter">1 / 1</span>
-    <div class="qcard">
-        <div class="qlabel" id="questionHeader">QUESTION</div>
-        <div class="qtext" id="currentQuestion">Loading…</div>
-        <div class="qmedia" id="questionMedia"></div>
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+    <span class="counter"><span class="counter-dot"></span><span id="questionCounter">1 / 1</span></span>
+  </div>
 
-        <div class="ans-block" id="answerBlock">
-            <div class="alabel" id="answerLabel">ANSWER</div>
-            <div class="atext" id="currentAnswer">Loading…</div>
-            <div class="qmedia" id="answerMedia"></div>
-        </div>
+  <div class="qcard">
+    <div class="qlabel" id="questionHeader">Question</div>
+    <div class="qtext" id="currentQuestion">Loading…</div>
+    <div class="qmedia" id="questionMedia"></div>
 
-        <button class="btn btn-out btn-full" id="showAnswerBtn" style="display:none;" onclick="showAnswer()">
-            <span id="showAnswerLabel">Show answer</span>
-        </button>
+    <div class="ans-block" id="answerBlock">
+      <div class="alabel" id="answerLabel">Answer</div>
+      <div class="atext" id="currentAnswer">Loading…</div>
+      <div class="qmedia" id="answerMedia"></div>
     </div>
 
-    <div class="controls">
-        <button class="btn btn-out" onclick="goToPage(5)" style="flex:0 0 auto;padding:12px 14px;">
-            <span id="menuText">≡</span>
-        </button>
-        <button class="btn btn-out" id="prevBtn" onclick="prevQuestion()" disabled>
-            <span id="prevText">← Back</span>
-        </button>
-        <button class="btn" onclick="nextQuestion()">
-            <span id="nextText">Next →</span>
-        </button>
-        <button class="btn btn-red" onclick="exitApp()" style="flex:0 0 auto;padding:12px 14px;">
-            <span id="exitText">✕</span>
-        </button>
-    </div>
+    <button class="btn btn-ghost btn-full" id="showAnswerBtn" style="display:none;" onclick="showAnswer()">
+      <span id="showAnswerLabel">Show answer</span>
+    </button>
+  </div>
+
+  <div class="controls">
+    <button class="btn btn-ghost ctrl-icon" onclick="goToPage(5)" title="Menu">
+      <span id="menuText">☰</span>
+    </button>
+    <button class="btn btn-ghost" id="prevBtn" onclick="prevQuestion()" disabled>
+      <span id="prevText">← Back</span>
+    </button>
+    <button class="btn" onclick="nextQuestion()">
+      <span id="nextText">Next →</span>
+    </button>
+    <button class="btn btn-danger ctrl-icon" onclick="exitApp()" title="Exit">
+      <span id="exitText">✕</span>
+    </button>
+  </div>
 </div>
 
-<!-- ABOUT MODAL -->
+<!-- ═══ ABOUT MODAL ══════════════════════════════════════ -->
 <div class="modal-bg" id="aboutModal" onclick="closeModal('aboutModal')">
-    <div class="modal-box" onclick="event.stopPropagation()">
-        <h3>🏥 TRACER 2025</h3>
-        <p>A mini app for convenient preparation for <strong>periodic accreditation</strong> at the Wolfson Medical Center.</p>
-        <p style="margin-top:10px;">I was always a little scared by the huge number of printed sheets of unstructured text that you need to study and remember in a short time. So it was decided to help myself and colleagues. 🙂</p>
-        <p style="margin-top:10px;">✨ <strong>Features:</strong> light &amp; dark themes, separate question sets for doctors 👨‍⚕️, nurses 👩‍⚕️, and support staff 🧑‍🔬, four languages.</p>
-        <p style="margin-top:10px;">🌐 Translations via Google Translate — may have shortcomings.</p>
-        <p style="margin-top:10px;">🛠 Amateur work — don't judge too harshly.</p>
-        <p style="margin-top:14px;text-align:center;font-size:1.1em;">Good luck! 🍀</p>
-        <button class="btn btn-full" onclick="closeModal('aboutModal')">Close</button>
-    </div>
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <h3>🏥 TRACER 2025</h3>
+    <p>A mini app for convenient preparation for <strong>periodic accreditation</strong> at the Wolfson Medical Center.</p>
+    <p>I was always a little scared by the huge number of printed sheets of unstructured text you need to study in a short time. So it was decided to help myself and colleagues. 🙂</p>
+    <p>✨ <strong>Features:</strong> light &amp; dark themes, question sets for doctors 👨‍⚕️, nurses 👩‍⚕️, and support staff 🧑‍🔬, four languages.</p>
+    <p>🌐 Translations via Google Translate — may have shortcomings.</p>
+    <p>🛠 Amateur work — don't judge too harshly.</p>
+    <p style="text-align:center;font-size:1.15em;margin-top:10px;">Good luck! 🍀</p>
+    <button class="btn btn-full" onclick="closeModal('aboutModal')" style="margin-top:16px;">Close</button>
+  </div>
 </div>
 
-</div><!-- /wrap -->
+</div><!-- /shell -->
+
 <script>
-// ── CONFIG ────────────────────────────────────────────────────────────────────
+/* ── CONFIG ──────────────────────────────────────────────── */
 var DATA_BASE = 'https://raw.githubusercontent.com/StarleyBy/tracer-2025/main/data/';
 
-// ── STATE ─────────────────────────────────────────────────────────────────────
+/* ── STATE ───────────────────────────────────────────────── */
 var lang     = 'en';
 var position = '';
 var mode     = '';
@@ -388,298 +693,328 @@ var qIndex   = 0;
 var qData    = {};
 var qList    = [];
 
-// ── TRANSLATIONS ──────────────────────────────────────────────────────────────
+/* ── TRANSLATIONS ────────────────────────────────────────── */
 var T = {
-    ru: {
-        selectPositionTitle:'Выберите должность',
-        doctorText:'Врач', nurseText:'Медсестра', supportText:'Младший персонал',
-        codeCheckTitle:'Проверка безопасности', codeCheckSubtitle:'Выберите верную фразу:',
-        code1:'🍵 Вольфсон — бразильский чай', code2:'🎬 Вольфсон — немецкий актёр',
-        code3:'🚇 Вольфсон — станция метро',   code4:'🏠 Вольфсон — это дом',
-        spyWarning:'⚠️ Подозрение на шпиона из Ихилов!',
-        settingsTitle:'Режим обучения', sequentialText:'Все вопросы подряд',
-        randomText:'Случайный порядок', quizText:'Квиз (ответ скрыт)',
-        questionHeader:'ВОПРОС', answerLabel:'ОТВЕТ', showAnswerLabel:'Показать ответ',
-        menuText:'≡', prevText:'← Назад', nextText:'Далее →', exitText:'✕'
-    },
-    en: {
-        selectPositionTitle:'Select role',
-        doctorText:'Doctor', nurseText:'Nurse', supportText:'Support staff',
-        codeCheckTitle:'Security check', codeCheckSubtitle:'Choose the correct phrase:',
-        code1:'🍵 Wolfson is Brazilian tea', code2:'🎬 Wolfson is a German actor',
-        code3:'🚇 Wolfson is a metro station', code4:'🏠 Wolfson is home',
-        spyWarning:'⚠️ Suspected spy from Ichilov!',
-        settingsTitle:'Study mode', sequentialText:'All questions in order',
-        randomText:'Random order', quizText:'Quiz (answer hidden)',
-        questionHeader:'QUESTION', answerLabel:'ANSWER', showAnswerLabel:'Show answer',
-        menuText:'≡', prevText:'← Back', nextText:'Next →', exitText:'✕'
-    },
-    he: {
-        selectPositionTitle:'בחר תפקיד',
-        doctorText:'רופא', nurseText:'אחות', supportText:'צוות מקצועי',
-        codeCheckTitle:'בדיקת אבטחה', codeCheckSubtitle:'בחר את הביטוי הנכון:',
-        code1:'🍵 וולפסון זה תה ברזילאי', code2:'🎬 וולפסון שחקן גרמני',
-        code3:'🚇 וולפסון תחנת רכבת תחתית', code4:'🏠 וולפסון זה בית',
-        spyWarning:'⚠️ חשד לחדירת מרגל מאיכילוב!',
-        settingsTitle:'מצב לימוד', sequentialText:'כל השאלות ברצף',
-        randomText:'סדר אקראי', quizText:'חידון (תשובה מוסתרת)',
-        questionHeader:'שאלה', answerLabel:'תשובה', showAnswerLabel:'הצג תשובה',
-        menuText:'≡', prevText:'→ הקודם', nextText:'הבא ←', exitText:'✕'
-    },
-    ar: {
-        selectPositionTitle:'اختر المنصب',
-        doctorText:'طبيب', nurseText:'ممرضة', supportText:'طاقم مساعد',
-        codeCheckTitle:'فحص الأمان', codeCheckSubtitle:'اختر العبارة الصحيحة:',
-        code1:'🍵 وولفسون شاي برازيلي', code2:'🎬 وولفسون ممثل ألماني',
-        code3:'🚇 وولفسون محطة مترو', code4:'🏠 وولفسون هو البيت',
-        spyWarning:'⚠️ اشتباه في تسلل جاسوس من إيخيلوف!',
-        settingsTitle:'وضع الدراسة', sequentialText:'جميع الأسئلة بالترتيب',
-        randomText:'ترتيب عشوائي', quizText:'اختبار (الإجابة مخفية)',
-        questionHeader:'سؤال', answerLabel:'إجابة', showAnswerLabel:'أظهر الإجابة',
-        menuText:'≡', prevText:'→ السابق', nextText:'← التالي', exitText:'✕'
-    }
+  ru: {
+    selectPositionTitle: 'Выберите должность',
+    doctorText: 'Врач', nurseText: 'Медсестра', supportText: 'Младший персонал',
+    codeCheckTitle: 'Проверка безопасности', codeCheckSubtitle: 'Выберите верную фразу:',
+    code1: '🍵 Вольфсон — бразильский чай', code2: '🎬 Вольфсон — немецкий актёр',
+    code3: '🚇 Вольфсон — станция метро',   code4: '🏠 Вольфсон — это дом',
+    spyWarning: '⚠️ Подозрение на шпиона из Ихилов!',
+    settingsTitle: 'Режим обучения', sequentialText: 'Все вопросы подряд',
+    randomText: 'Случайный порядок',         quizText: 'Квиз (ответ скрыт)',
+    questionHeader: 'Вопрос', answerLabel: 'Ответ', showAnswerLabel: 'Показать ответ',
+    menuText: '☰', prevText: '← Назад', nextText: 'Далее →', exitText: '✕'
+  },
+  en: {
+    selectPositionTitle: 'Select role',
+    doctorText: 'Doctor', nurseText: 'Nurse', supportText: 'Support staff',
+    codeCheckTitle: 'Security check', codeCheckSubtitle: 'Choose the correct phrase:',
+    code1: '🍵 Wolfson is Brazilian tea',    code2: '🎬 Wolfson is a German actor',
+    code3: '🚇 Wolfson is a metro station',  code4: '🏠 Wolfson is home',
+    spyWarning: '⚠️ Suspected spy from Ichilov!',
+    settingsTitle: 'Study mode', sequentialText: 'All questions in order',
+    randomText: 'Random order',              quizText: 'Quiz (answer hidden)',
+    questionHeader: 'Question', answerLabel: 'Answer', showAnswerLabel: 'Show answer',
+    menuText: '☰', prevText: '← Back', nextText: 'Next →', exitText: '✕'
+  },
+  he: {
+    selectPositionTitle: 'בחר תפקיד',
+    doctorText: 'רופא', nurseText: 'אחות', supportText: 'צוות מקצועי',
+    codeCheckTitle: 'בדיקת אבטחה', codeCheckSubtitle: 'בחר את הביטוי הנכון:',
+    code1: '🍵 וולפסון זה תה ברזילאי',      code2: '🎬 וולפסון שחקן גרמני',
+    code3: '🚇 וולפסון תחנת רכבת תחתית',    code4: '🏠 וולפסון זה בית',
+    spyWarning: '⚠️ חשד לחדירת מרגל מאיכילוב!',
+    settingsTitle: 'מצב לימוד', sequentialText: 'כל השאלות ברצף',
+    randomText: 'סדר אקראי',                 quizText: 'חידון (תשובה מוסתרת)',
+    questionHeader: 'שאלה', answerLabel: 'תשובה', showAnswerLabel: 'הצג תשובה',
+    menuText: '☰', prevText: 'הקודם →', nextText: '← הבא', exitText: '✕'
+  },
+  ar: {
+    selectPositionTitle: 'اختر المنصب',
+    doctorText: 'طبيب', nurseText: 'ممرضة', supportText: 'طاقم مساعد',
+    codeCheckTitle: 'فحص الأمان', codeCheckSubtitle: 'اختر العبارة الصحيحة:',
+    code1: '🍵 وولفسون شاي برازيلي',        code2: '🎬 وولفسون ممثل ألماني',
+    code3: '🚇 وولفسون محطة مترو',           code4: '🏠 وولفسون هو البيت',
+    spyWarning: '⚠️ اشتباه في تسلل جاسوس من إيخيلوف!',
+    settingsTitle: 'وضع الدراسة', sequentialText: 'جميع الأسئلة بالترتيب',
+    randomText: 'ترتيب عشوائي',              quizText: 'اختبار (الإجابة مخفية)',
+    questionHeader: 'سؤال', answerLabel: 'إجابة', showAnswerLabel: 'أظهر الإجابة',
+    menuText: '☰', prevText: 'السابق →', nextText: '← التالي', exitText: '✕'
+  }
 };
 
-// ── SAMPLE FALLBACK ───────────────────────────────────────────────────────────
+/* ── SAMPLE DATA (fallback) ──────────────────────────────── */
 var SAMPLE = {
-    doctor:  [{ id:1, he:{question:'מה הם הסימפטומים הראשוניים של התקף לב?',answer:'כאב בחזה, קוצר נשימה, בחילות'}, ru:{question:'Каковы первичные симптомы инфаркта?',answer:'Боль в груди, одышка, тошнота'}, en:{question:'Primary symptoms of MI?',answer:'Chest pain, shortness of breath, nausea'}, ar:{question:'أعراض احتشاء عضلة القلب؟',answer:'ألم الصدر وضيق التنفس والغثيان'} }],
-    nurse:   [{ id:1, he:{question:'איך מודדים לחץ דם נכון?',answer:'עם מכשיר תקין, בישיבה, זרוע בגובה הלב'}, ru:{question:'Как правильно измерить АД?',answer:'Тонометром, сидя, рука на уровне сердца'}, en:{question:'How to measure blood pressure?',answer:'With working device, sitting, arm at heart level'}, ar:{question:'كيف تقيس ضغط الدم؟',answer:'بجهاز سليم، جلوسًا، الذراع على مستوى القلب'} }],
-    support: [{ id:1, he:{question:'איך מחטאים ידיים נכון?',answer:'סבון 20 שניות או אלכוהול 70%'}, ru:{question:'Как дезинфицировать руки?',answer:'Мыло 20 секунд или спирт 70%'}, en:{question:'How to disinfect hands?',answer:'Soap 20 sec or 70% alcohol'}, ar:{question:'كيف تطهر يديك؟',answer:'صابون 20 ثانية أو كحول 70%'} }]
+  doctor: [{
+    id: 1,
+    he: { question: 'מה הם הסימפטומים הראשוניים של התקף לב?', answer: 'כאב בחזה, קוצר נשימה, בחילות' },
+    ru: { question: 'Каковы первичные симптомы инфаркта?',       answer: 'Боль в груди, одышка, тошнота' },
+    en: { question: 'Primary symptoms of MI?',                   answer: 'Chest pain, shortness of breath, nausea' },
+    ar: { question: 'أعراض احتشاء عضلة القلب؟',                 answer: 'ألم الصدر وضيق التنفس والغثيان' }
+  }],
+  nurse: [{
+    id: 1,
+    he: { question: 'איך מודדים לחץ דם נכון?',    answer: 'מכשיר תקין, בישיבה, זרוע בגובה הלב' },
+    ru: { question: 'Как правильно измерить АД?',   answer: 'Тонометром, сидя, рука на уровне сердца' },
+    en: { question: 'How to measure blood pressure correctly?', answer: 'Working device, sitting, arm at heart level' },
+    ar: { question: 'كيف تقيس ضغط الدم؟',          answer: 'بجهاز سليم، جلوسًا، الذراع على مستوى القلب' }
+  }],
+  support: [{
+    id: 1,
+    he: { question: 'איך מחטאים ידיים נכון?', answer: 'סבון 20 שניות או אלכוהול 70%' },
+    ru: { question: 'Как дезинфицировать руки?', answer: 'Мыло 20 секунд или спирт 70%' },
+    en: { question: 'How to disinfect hands?',   answer: 'Soap 20 sec or 70% alcohol' },
+    ar: { question: 'كيف تطهر يديك؟',             answer: 'صابون 20 ثانية أو كحول 70%' }
+  }]
 };
 
-// ── NAVIGATION ────────────────────────────────────────────────────────────────
+/* ── NAVIGATION ──────────────────────────────────────────── */
 function goToPage(n) {
-    document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
-    document.getElementById('page' + n).classList.add('active');
+  var pages = document.querySelectorAll('.page');
+  for (var i = 0; i < pages.length; i++) pages[i].classList.remove('active');
+  document.getElementById('page' + n).classList.add('active');
+  window.scrollTo(0, 0);
 }
 
-// ── LANGUAGE ──────────────────────────────────────────────────────────────────
+/* ── LANGUAGE ────────────────────────────────────────────── */
 function selectLanguage(l) {
-    lang = l;
-    var dir = (l === 'he' || l === 'ar') ? 'rtl' : 'ltr';
-    document.documentElement.setAttribute('dir', dir);
-    applyTranslations();
-    loadData();
-    goToPage(2);
+  lang = l;
+  document.documentElement.setAttribute('dir', (l === 'he' || l === 'ar') ? 'rtl' : 'ltr');
+  applyTranslations();
+  loadData();
+  goToPage(2);
 }
 
 function applyTranslations() {
-    var t = T[lang];
-    if (!t) return;
-    Object.keys(t).forEach(function(k) {
-        var el = document.getElementById(k);
-        if (el) el.textContent = t[k];
-    });
+  var t = T[lang];
+  if (!t) return;
+  var keys = Object.keys(t);
+  for (var i = 0; i < keys.length; i++) {
+    var el = document.getElementById(keys[i]);
+    if (el) el.textContent = t[keys[i]];
+  }
 }
 
-// ── DATA LOADING ──────────────────────────────────────────────────────────────
+/* ── DATA LOADING ────────────────────────────────────────── */
 function loadData() {
-    document.getElementById('errorSection').style.display   = 'none';
-    document.getElementById('successSection').style.display = 'none';
-    document.getElementById('progressBar').style.width = '0%';
+  document.getElementById('errorSection').style.display   = 'none';
+  document.getElementById('successSection').style.display = 'none';
+  document.getElementById('progressBar').style.width = '0%';
 
-    var positions = ['doctor','nurse','support'];
-    var ids = { doctor:'doctorStatus', nurse:'nurseStatus', support:'supportStatus' };
-    var loaded = 0, errors = 0;
-    var remaining = positions.length;
+  var positions = ['doctor', 'nurse', 'support'];
+  var statusIds = { doctor: 'doctorStatus', nurse: 'nurseStatus', support: 'supportStatus' };
+  var done = 0, errors = 0;
 
-    positions.forEach(function(pos) {
-        var el = document.getElementById(ids[pos]);
-        var cKey = 'tracer_' + pos;
-        var cached = null;
-        try { cached = JSON.parse(localStorage.getItem(cKey)); } catch(e){}
-
-        if (cached && cached.data && (Date.now() - cached.ts < 86400000)) {
-            qData[pos] = cached.data;
-            loaded++;
-            el.textContent = '✅ ' + cached.data.length + ' questions (cached)';
-            el.className = 'lstat ok';
-            document.getElementById('progressBar').style.width = (loaded / 3 * 100) + '%';
-            remaining--;
-            if (remaining === 0) finishLoad(errors);
-            return;
-        }
-
-        fetch(DATA_BASE + pos + '.json?v=' + Date.now())
-            .then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-            .then(function(data){
-                qData[pos] = data;
-                try { localStorage.setItem(cKey, JSON.stringify({data:data, ts:Date.now()})); } catch(e){}
-                loaded++;
-                el.textContent = '✅ ' + data.length + ' questions';
-                el.className = 'lstat ok';
-                document.getElementById('progressBar').style.width = ((loaded + errors) / 3 * 100) + '%';
-            })
-            .catch(function(e){
-                errors++;
-                el.textContent = '❌ Error loading';
-                el.className = 'lstat err';
-                document.getElementById('progressBar').style.width = ((loaded + errors) / 3 * 100) + '%';
-            })
-            .finally(function(){
-                remaining--;
-                if (remaining === 0) setTimeout(function(){ finishLoad(errors); }, 400);
-            });
-    });
-}
-
-function finishLoad(errors) {
-    if (errors === 3) {
-        document.getElementById('errorSection').style.display = 'block';
-    } else {
-        document.getElementById('successSection').style.display = 'block';
+  function onDone() {
+    done++;
+    document.getElementById('progressBar').style.width = (done / 3 * 100) + '%';
+    if (done === 3) {
+      setTimeout(function() {
+        document.getElementById(errors === 3 ? 'errorSection' : 'successSection').style.display = 'block';
+      }, 300);
     }
-}
+  }
 
-function useSampleData() { qData = SAMPLE; goToPage(3); }
+  positions.forEach(function(pos) {
+    var el = document.getElementById(statusIds[pos]);
+    var cKey = 'tracer_' + pos;
+    var cached = null;
+
+    try { cached = JSON.parse(localStorage.getItem(cKey)); } catch(e) {}
+
+    if (cached && cached.data && cached.ts && (Date.now() - cached.ts < 86400000)) {
+      qData[pos] = cached.data;
+      el.textContent = '✅  ' + cached.data.length + ' questions (cached)';
+      el.className = 'lstat ok';
+      onDone();
+      return;
+    }
+
+    fetch(DATA_BASE + pos + '.json?t=' + Date.now())
+      .then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function(data) {
+        qData[pos] = data;
+        try { localStorage.setItem(cKey, JSON.stringify({ data: data, ts: Date.now() })); } catch(e) {}
+        el.textContent = '✅  ' + data.length + ' questions';
+        el.className = 'lstat ok';
+      })
+      .catch(function() {
+        errors++;
+        el.textContent = '❌  Error loading ' + pos + '.json';
+        el.className = 'lstat err';
+      })
+      .then(function() { onDone(); });
+  });
+}
 
 function clearCacheAndReload() {
-    ['doctor','nurse','support'].forEach(function(p){ localStorage.removeItem('tracer_' + p); });
-    loadData();
+  ['doctor', 'nurse', 'support'].forEach(function(p) { localStorage.removeItem('tracer_' + p); });
+  loadData();
 }
 
-// ── POSITION ──────────────────────────────────────────────────────────────────
+function useSampleData() {
+  qData = SAMPLE;
+  goToPage(3);
+}
+
+/* ── POSITION ────────────────────────────────────────────── */
 function selectPosition(pos, el) {
-    position = pos;
-    document.querySelectorAll('#page3 .opt').forEach(function(b){ b.classList.remove('sel'); });
-    el.classList.add('sel');
-    setTimeout(function(){ goToPage(4); }, 400);
+  position = pos;
+  var opts = document.querySelectorAll('#page3 .opt');
+  for (var i = 0; i < opts.length; i++) opts[i].classList.remove('sel');
+  el.classList.add('sel');
+  setTimeout(function() { goToPage(4); }, 380);
 }
 
-// ── CODE CHECK ────────────────────────────────────────────────────────────────
+/* ── CODE CHECK ──────────────────────────────────────────── */
 function checkCode(correct, el) {
-    document.querySelectorAll('#page4 .opt').forEach(function(b){ b.classList.remove('sel'); });
-    el.classList.add('sel');
-    if (correct) {
-        setTimeout(function(){ goToPage(5); }, 400);
-    } else {
-        var w = document.getElementById('warningMessage');
-        w.style.display = 'block';
-        setTimeout(function(){ w.style.display = 'none'; el.classList.remove('sel'); }, 2500);
-    }
+  var opts = document.querySelectorAll('#page4 .opt');
+  for (var i = 0; i < opts.length; i++) opts[i].classList.remove('sel');
+  el.classList.add('sel');
+  if (correct) {
+    setTimeout(function() { goToPage(5); }, 380);
+  } else {
+    var w = document.getElementById('warningMessage');
+    w.style.display = 'block';
+    setTimeout(function() { w.style.display = 'none'; el.classList.remove('sel'); }, 2500);
+  }
 }
 
-// ── MODE & QUESTIONS ──────────────────────────────────────────────────────────
+/* ── MODE ────────────────────────────────────────────────── */
 function selectMode(m, el) {
-    mode = m;
-    document.querySelectorAll('#page5 .opt').forEach(function(b){ b.classList.remove('sel'); });
-    el.classList.add('sel');
-    setTimeout(function(){ prepareQuestions(); goToPage(6); }, 400);
+  mode = m;
+  var opts = document.querySelectorAll('#page5 .opt');
+  for (var i = 0; i < opts.length; i++) opts[i].classList.remove('sel');
+  el.classList.add('sel');
+  setTimeout(function() { prepareQuestions(); goToPage(6); }, 380);
 }
 
+/* ── QUESTIONS ───────────────────────────────────────────── */
 function prepareQuestions() {
-    var data = qData[position] || SAMPLE[position] || [];
-    qList = data.slice();
-    if (mode !== 'sequential') {
-        for (var i = qList.length - 1; i > 0; i--) {
-            var j = Math.floor(Math.random() * (i + 1));
-            var tmp = qList[i]; qList[i] = qList[j]; qList[j] = tmp;
-        }
+  var data = qData[position] || SAMPLE[position] || [];
+  qList = data.slice();
+  if (mode !== 'sequential') {
+    for (var i = qList.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = qList[i]; qList[i] = qList[j]; qList[j] = tmp;
     }
-    qIndex = 0;
-    showQ();
+  }
+  qIndex = 0;
+  showQ();
 }
 
 function showQ() {
-    if (qIndex >= qList.length) {
-        alert('All questions done! 🎉');
-        goToPage(5);
-        return;
-    }
-    var q = qList[qIndex];
-    var l = q[lang] || q['en'] || {};
+  if (qIndex >= qList.length) {
+    alert('All done! 🎉');
+    goToPage(5);
+    return;
+  }
 
-    document.getElementById('currentQuestion').innerHTML = fmtText(l.question || '—');
-    document.getElementById('currentAnswer').innerHTML   = fmtText(l.answer   || '—');
-    document.getElementById('questionCounter').textContent = (qIndex + 1) + ' / ' + qList.length;
+  var q = qList[qIndex];
+  var l = q[lang] || q.en || {};
+  var t = T[lang] || T.en;
 
-    var t = T[lang];
-    if (t) {
-        document.getElementById('answerLabel').textContent     = t.answerLabel     || 'ANSWER';
-        document.getElementById('showAnswerLabel').textContent = t.showAnswerLabel || 'Show answer';
-    }
+  document.getElementById('currentQuestion').innerHTML = fmtText(l.question || '—');
+  document.getElementById('currentAnswer').innerHTML   = fmtText(l.answer   || '—');
+  document.getElementById('questionCounter').textContent = (qIndex + 1) + ' / ' + qList.length;
+  document.getElementById('answerLabel').textContent     = t.answerLabel     || 'Answer';
+  document.getElementById('showAnswerLabel').textContent = t.showAnswerLabel || 'Show answer';
 
-    var pb = document.getElementById('prevBtn');
-    if (pb) pb.disabled = qIndex === 0;
+  var pb = document.getElementById('prevBtn');
+  pb.disabled = (qIndex === 0);
 
-    renderMedia(q.question_media, 'questionMedia');
-    renderMedia(q.answer_media,   'answerMedia');
+  renderMedia(q.question_media, 'questionMedia');
+  renderMedia(q.answer_media,   'answerMedia');
 
-    var ab = document.getElementById('answerBlock');
-    var sb = document.getElementById('showAnswerBtn');
-    if (mode === 'quiz') {
-        ab.style.display = 'none';
-        sb.style.display = 'block';
-    } else {
-        ab.style.display = 'block';
-        sb.style.display = 'none';
-    }
+  var ab = document.getElementById('answerBlock');
+  var sb = document.getElementById('showAnswerBtn');
+  if (mode === 'quiz') {
+    ab.style.display = 'none';
+    sb.style.display = 'block';
+  } else {
+    ab.style.display = 'block';
+    sb.style.display = 'none';
+  }
 }
 
 function prevQuestion() { if (qIndex > 0) { qIndex--; showQ(); } }
 function nextQuestion() { qIndex++; showQ(); }
+
 function showAnswer() {
-    document.getElementById('answerBlock').style.display = 'block';
-    document.getElementById('showAnswerBtn').style.display = 'none';
+  document.getElementById('answerBlock').style.display = 'block';
+  document.getElementById('showAnswerBtn').style.display = 'none';
 }
 
-// ── MEDIA ─────────────────────────────────────────────────────────────────────
-function renderMedia(arr, containerId) {
-    var c = document.getElementById(containerId);
-    c.innerHTML = '';
-    if (!arr || !arr.length) return;
-    arr.forEach(function(item) {
-        if (item.type === 'image') {
-            var img = document.createElement('img');
-            img.src = item.src; img.alt = item.alt || ''; img.loading = 'lazy';
-            c.appendChild(img);
-        } else if (item.type === 'link') {
-            var a = document.createElement('a');
-            a.href = item.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
-            a.className = 'media-link';
-            a.textContent = '🔗 ' + ((item.labels && (item.labels[lang] || item.labels.en)) || item.url);
-            c.appendChild(a);
-        } else if (item.type === 'note') {
-            var d = document.createElement('div');
-            d.className = 'media-note';
-            d.textContent = (item.text && (item.text[lang] || item.text.en)) || '';
-            if (d.textContent.trim()) c.appendChild(d);
-        }
-    });
-}
-
-// ── TEXT FORMATTING ───────────────────────────────────────────────────────────
-function fmtText(s) {
-    return String(s)
-        .replace(/\[bold\]([\s\S]*?)\[\/bold\]/g, '<strong>$1</strong>')
-        .replace(/\[r\]([\s\S]*?)\[\/r\]/g,       '<span class="tc-r">$1</span>')
-        .replace(/\[b\]([\s\S]*?)\[\/b\]/g,       '<span class="tc-b">$1</span>')
-        .replace(/\[g\]([\s\S]*?)\[\/g\]/g,       '<span class="tc-g">$1</span>')
-        .replace(/\[y\]([\s\S]*?)\[\/y\]/g,       '<span class="tc-y">$1</span>');
-}
-
-// ── EXIT ──────────────────────────────────────────────────────────────────────
 function exitApp() {
-    if (confirm('Exit to start?')) {
-        position = ''; mode = ''; qList = []; qIndex = 0;
-        goToPage(1);
+  if (confirm('Exit to start?')) {
+    position = ''; mode = ''; qList = []; qIndex = 0;
+    goToPage(1);
+  }
+}
+
+/* ── MEDIA ───────────────────────────────────────────────── */
+function renderMedia(arr, id) {
+  var c = document.getElementById(id);
+  c.innerHTML = '';
+  if (!arr || !arr.length) return;
+
+  for (var i = 0; i < arr.length; i++) {
+    var item = arr[i];
+    if (item.type === 'image') {
+      var img = document.createElement('img');
+      img.src = item.src;
+      img.alt = item.alt || '';
+      img.loading = 'lazy';
+      c.appendChild(img);
+
+    } else if (item.type === 'link') {
+      var a = document.createElement('a');
+      a.href = item.url;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      a.className = 'media-link';
+      var label = (item.labels && (item.labels[lang] || item.labels.en)) || item.url;
+      a.textContent = label;
+      c.appendChild(a);
+
+    } else if (item.type === 'note') {
+      var txt = (item.text && (item.text[lang] || item.text.en)) || '';
+      if (txt.trim()) {
+        var d = document.createElement('div');
+        d.className = 'media-note';
+        d.textContent = txt;
+        c.appendChild(d);
+      }
     }
+  }
 }
 
-// ── THEME ─────────────────────────────────────────────────────────────────────
+/* ── TEXT FORMATTING ─────────────────────────────────────── */
+function fmtText(s) {
+  return String(s)
+    .replace(/\[bold\]([\s\S]*?)\[\/bold\]/g, '<strong>$1</strong>')
+    .replace(/\[r\]([\s\S]*?)\[\/r\]/g,       '<span class="tc-r">$1</span>')
+    .replace(/\[b\]([\s\S]*?)\[\/b\]/g,       '<span class="tc-b">$1</span>')
+    .replace(/\[g\]([\s\S]*?)\[\/g\]/g,       '<span class="tc-g">$1</span>')
+    .replace(/\[y\]([\s\S]*?)\[\/y\]/g,       '<span class="tc-y">$1</span>');
+}
+
+/* ── THEME ───────────────────────────────────────────────── */
 function toggleTheme() {
-    dark = !dark;
-    document.body.classList.toggle('light', !dark);
-    document.getElementById('themeBtn').textContent = dark ? '☀️' : '🌙';
+  dark = !dark;
+  document.body.classList.toggle('light', !dark);
+  document.getElementById('themeBtn').textContent = dark ? '☀️' : '🌙';
 }
 
-// ── MODAL ─────────────────────────────────────────────────────────────────────
+/* ── MODAL ───────────────────────────────────────────────── */
 function showModal(id) { document.getElementById(id).classList.add('open'); }
 function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 
-// ── INIT ──────────────────────────────────────────────────────────────────────
+/* ── INIT ────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', function() {
-    applyTranslations();
+  applyTranslations();
 });
 </script>
 </body>
