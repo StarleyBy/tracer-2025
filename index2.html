@@ -42,23 +42,7 @@
             overflow: hidden;
         }
 
-        /* Scanline overlay */
-        .container::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 50%; transform: translateX(-50%);
-            width: 420px;
-            height: 100vh;
-            background: repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 2px,
-                rgba(0,0,0,0.05) 2px,
-                rgba(0,0,0,0.05) 4px
-            );
-            pointer-events: none;
-            z-index: 9999;
-        }
+        /* scanline effect removed */
 
         .page {
             display: none;
@@ -556,4 +540,14 @@
         </div>
     </div>
 
-    <!--
+    <!-- PAGE 6: Questions -->
+    <div class="page" id="page6">
+        <div style="padding-top:66px;">
+            <span class="counter" id="questionCounter">1 / 1</span>
+            <div class="question-card">
+                <div class="q-label" id="questionHeader">QUESTION</div>
+                <div class="q-text" id="currentQuestion">Loading…</div>
+                <div class="q-media" id="questionMedia"></div>
+
+                <div class="answer-block" id="answerBlock">
+            
