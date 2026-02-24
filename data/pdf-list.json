@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "file": "medication-list.pdf",
+    "he": "רשימת תרופות בנות סיקון הדורשות בקרה כפולה",
+    "ru": "Препараты, требующие двойного контроля",
+    "en": "High-alert medications requiring double control",
+    "ar": "الأدوية عالية التنبيه التي تتطلب رقابة مزدوجة",
+    "category": {
+      "he": "תרופות",
+      "ru": "Лекарства",
+      "en": "Medications",
+      "ar": "أدوية"
+    }
+  },
+  {
+    "id": 2,
+    "file": "hand-hygiene-protocol.pdf",
+    "he": "פרוטוקול היגיינת ידיים",
+    "ru": "Протокол гигиены рук",
+    "en": "Hand hygiene protocol",
+    "ar": "بروتوكول نظافة اليدين",
+    "category": {
+      "he": "היגיינה",
+      "ru": "Гигиена",
+      "en": "Hygiene",
+      "ar": "النظافة"
+    }
+  }
+]
