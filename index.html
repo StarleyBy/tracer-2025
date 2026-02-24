@@ -1,554 +1,447 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRACER 2025</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRACER 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Noto+Sans+Hebrew:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-    <!-- PWA -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#7c6af7">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="TRACER 2025">
-    <link rel="apple-touch-icon" href="icons/icon-192.png">
+:root {
+    --bg:      #0d0d14;
+    --surface: #16161f;
+    --sur2:    #1e1e2e;
+    --accent:  #7c6af7;
+    --red:     #e06c75;
+    --cyan:    #56b6c2;
+    --text:    #ced2e0;
+    --dim:     #6b7089;
+    --green:   #98c379;
+    --yellow:  #e5c07b;
+    --border:  rgba(124,106,247,0.2);
+}
 
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Noto+Sans+Hebrew:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Space Mono', monospace;
+    background: var(--bg);
+    min-height: 100vh;
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
 
-        :root {
-            --bg: #0d0d14;
-            --surface: #16161f;
-            --surface2: #1e1e2e;
-            --accent: #7c6af7;
-            --accent2: #e06c75;
-            --accent3: #56b6c2;
-            --text: #ced2e0;
-            --text-dim: #6b7089;
-            --green: #98c379;
-            --yellow: #e5c07b;
-            --border: rgba(124, 106, 247, 0.2);
-            --card-shadow: 0 4px 24px rgba(0,0,0,0.4);
-        }
+.wrap {
+    width: 100%;
+    max-width: 420px;
+    min-height: 100vh;
+    background: var(--surface);
+    position: relative;
+}
 
-        body {
-            font-family: 'Space Mono', monospace;
-            background: var(--bg);
-            min-height: 100vh;
-            color: var(--text);
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-        }
+/* pages */
+.page { display: none; padding: 20px; min-height: 100vh; animation: fi .3s ease; }
+.page.active { display: block; }
+@keyframes fi { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
 
-        .container {
-            width: 100%;
-            max-width: 420px;
-            min-height: 100vh;
-            background: var(--surface);
-            position: relative;
-            overflow: hidden;
-        }
+/* topbar */
+.topbar {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    z-index: 100;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+.tbtn {
+    background: var(--sur2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    width: 38px; height: 38px;
+    font-size: 1.1em;
+    cursor: pointer;
+    color: var(--text);
+    display: flex; align-items: center; justify-content: center;
+    transition: all .2s;
+}
+.tbtn:hover { border-color: var(--accent); }
 
-        /* scanline effect removed */
+/* header */
+.hdr { text-align: center; margin: 28px 0 24px; }
+.logo { font-size: 2.2em; font-weight: 700; color: var(--accent); text-shadow: 0 0 30px rgba(124,106,247,.5); margin-bottom: 6px; }
+.logo-sub { font-size: .72em; color: var(--dim); letter-spacing: .15em; text-transform: uppercase; }
 
-        .page {
-            display: none;
-            padding: 20px;
-            min-height: 100vh;
-            animation: fadeIn 0.3s ease;
-        }
-        .page.active { display: block; }
+/* options */
+.opt-group { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+    background: var(--sur2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    width: 100%;
+    text-align: left;
+    font-size: 1em;
+    font-family: 'Space Mono', monospace;
+    cursor: pointer;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: all .2s;
+}
+.opt::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity .2s;
+}
+.opt:hover { border-color: var(--accent); background: rgba(124,106,247,.08); transform: translateX(4px); }
+.opt:hover::before, .opt.sel::before { opacity: 1; }
+.opt.sel { border-color: var(--accent); background: rgba(124,106,247,.15); }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+.lang-btn { text-align: center; justify-content: center; }
+.lang-he { border-left-color: #4fc3f7; } .lang-he::before { background: #4fc3f7; }
+.lang-en { border-left-color: var(--green); } .lang-en::before { background: var(--green); }
+.lang-ru { border-left-color: var(--red); } .lang-ru::before { background: var(--red); }
+.lang-ar { border-left-color: var(--yellow); } .lang-ar::before { background: var(--yellow); }
+.flag { font-size: 1.4em; }
 
-        /* Top bar */
-        .topbar {
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 14px 16px;
-            z-index: 100;
-            background: var(--surface);
-            border-bottom: 1px solid var(--border);
-        }
+/* buttons */
+.btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 13px 20px;
+    font-size: .9em;
+    font-family: 'Space Mono', monospace;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all .2s;
+}
+.btn:hover { opacity: .85; }
+.btn:disabled { opacity: .35; cursor: not-allowed; }
+.btn-out { background: transparent; border: 1px solid var(--accent); color: var(--accent); }
+.btn-red { background: var(--red); }
+.btn-full { width: 100%; justify-content: center; margin-top: 10px; }
 
-        .topbar-btn {
-            background: var(--surface2);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            width: 38px; height: 38px;
-            font-size: 1.1em;
-            cursor: pointer;
-            color: var(--text);
-            transition: all 0.2s;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .topbar-btn:hover { border-color: var(--accent); background: rgba(124,106,247,0.1); }
+/* question card */
+.qcard {
+    background: var(--sur2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    margin: 12px 0 110px;
+}
+.qlabel { font-size: .7em; color: var(--accent); letter-spacing: .15em; text-transform: uppercase; margin-bottom: 10px; }
+.qtext { font-size: 1.05em; line-height: 1.7; color: #fff; margin-bottom: 14px; white-space: pre-wrap; }
+.qmedia { margin: 10px 0; }
+.qmedia img { max-width: 100%; border-radius: 10px; display: block; border: 1px solid var(--border); margin-bottom: 8px; }
+.media-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--cyan); text-decoration: none; font-size: .9em;
+    border: 1px solid rgba(86,182,194,.3); border-radius: 8px;
+    padding: 8px 14px; margin-top: 8px; transition: all .2s; white-space: normal; word-break: break-all;
+}
+.media-link:hover { background: rgba(86,182,194,.1); }
+.media-note {
+    background: rgba(229,192,123,.1); border: 1px solid rgba(229,192,123,.3);
+    border-radius: 8px; padding: 10px 14px; font-size: .9em;
+    color: var(--yellow); margin-top: 8px; line-height: 1.5;
+}
+.ans-block { border-top: 1px solid var(--border); margin-top: 14px; padding-top: 14px; }
+.alabel { font-size: .7em; color: var(--green); letter-spacing: .15em; text-transform: uppercase; margin-bottom: 8px; }
+.atext { font-size: 1em; line-height: 1.7; color: var(--green); white-space: pre-wrap; }
 
-        /* Header */
-        .header {
-            text-align: center;
-            margin-bottom: 32px;
-            padding-top: 80px;
-        }
+/* counter */
+.counter {
+    display: inline-block;
+    background: var(--sur2); border: 1px solid var(--border);
+    border-radius: 20px; padding: 4px 14px; font-size: .8em; color: var(--dim); margin-bottom: 10px;
+}
 
-        .logo {
-            font-size: 2.2em;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            color: var(--accent);
-            text-shadow: 0 0 30px rgba(124,106,247,0.5);
-            margin-bottom: 8px;
-        }
+/* controls */
+.controls {
+    position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 100%; max-width: 420px;
+    display: flex; gap: 8px;
+    padding: 12px 16px;
+    background: var(--surface); border-top: 1px solid var(--border);
+    z-index: 100;
+}
+.controls .btn { flex: 1; justify-content: center; font-size: .82em; padding: 12px 8px; }
 
-        .logo-sub {
-            font-size: 0.75em;
-            color: var(--text-dim);
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-        }
+/* progress */
+.prog-wrap { background: var(--sur2); border-radius: 4px; height: 4px; margin: 14px 0; overflow: hidden; }
+.prog-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--cyan)); width: 0%; transition: width .4s; }
 
-        /* Options */
-        .option-group { display: flex; flex-direction: column; gap: 10px; }
+/* load status */
+.lstat { font-size: .85em; color: var(--dim); margin: 5px 0; }
+.lstat.ok { color: var(--green); }
+.lstat.err { color: var(--red); }
 
-        .option {
-            background: var(--surface2);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 18px 20px;
-            width: 100%;
-            text-align: left;
-            font-size: 1em;
-            font-family: 'Space Mono', monospace;
-            cursor: pointer;
-            transition: all 0.2s;
-            color: var(--text);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            position: relative;
-            overflow: hidden;
-        }
+/* warning */
+.warn-box {
+    background: rgba(224,108,117,.15); border: 1px solid var(--red);
+    border-radius: 10px; padding: 14px; text-align: center;
+    color: var(--red); margin: 14px 0; animation: shake .4s ease;
+}
+@keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
 
-        .option::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 0; bottom: 0;
-            width: 3px;
-            background: var(--accent);
-            opacity: 0;
-            transition: opacity 0.2s;
-        }
+/* modal */
+.modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,.75); display: none; justify-content: center; align-items: center; z-index: 2000; }
+.modal-bg.open { display: flex; }
+.modal-box { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 26px; max-width: 340px; margin: 20px; line-height: 1.7; font-size: .9em; }
+.modal-box h3 { color: var(--accent); margin-bottom: 12px; }
 
-        .option:hover {
-            border-color: var(--accent);
-            background: rgba(124,106,247,0.08);
-            transform: translateX(4px);
-        }
-        .option:hover::before { opacity: 1; }
+/* colour tags */
+.tc-r { color: #ff5f6d; font-weight: 600; }
+.tc-b { color: #56b6e8; font-weight: 600; }
+.tc-g { color: #5fd987; font-weight: 600; }
+.tc-y { color: #f0c060; font-weight: 600; }
 
-        .option.selected {
-            border-color: var(--accent);
-            background: rgba(124,106,247,0.15);
-        }
-        .option.selected::before { opacity: 1; }
+/* RTL */
+[dir="rtl"] .opt { flex-direction: row-reverse; text-align: right; }
+[dir="rtl"] .opt::before { left: auto; right: 0; }
+[dir="rtl"] .opt:hover { transform: translateX(-4px); }
+[dir="rtl"] .qtext, [dir="rtl"] .atext { direction: rtl; }
 
-        /* Language buttons — centred */
-        .option.lang-btn { text-align: center; justify-content: center; }
-        .option.lang-he { border-left-color: #4fc3f7; }
-        .option.lang-he::before { background: #4fc3f7; }
-        .option.lang-en { border-left-color: var(--green); }
-        .option.lang-en::before { background: var(--green); }
-        .option.lang-ru { border-left-color: var(--accent2); }
-        .option.lang-ru::before { background: var(--accent2); }
-        .option.lang-ar { border-left-color: var(--yellow); }
-        .option.lang-ar::before { background: var(--yellow); }
-
-        .flag { font-size: 1.4em; }
-        .opt-label { flex: 1; }
-        .opt-icon { font-size: 1.4em; }
-
-        /* Buttons */
-        .btn {
-            background: var(--accent);
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            padding: 13px 24px;
-            font-size: 0.95em;
-            font-family: 'Space Mono', monospace;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .btn:hover { opacity: 0.85; transform: translateY(-1px); }
-
-        .btn-outline {
-            background: transparent;
-            border: 1px solid var(--accent);
-            color: var(--accent);
-        }
-        .btn-danger { background: var(--accent2); }
-        .btn-secondary { background: var(--accent3); color: #000; }
-        .btn-full { width: 100%; justify-content: center; margin-top: 10px; }
-
-        /* Question card */
-        .question-card {
-            background: var(--surface2);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 24px;
-            margin: 16px 0 100px;
-        }
-
-        .q-label {
-            font-size: 0.7em;
-            color: var(--accent);
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-        }
-
-        .q-text {
-            font-size: 1.05em;
-            line-height: 1.7;
-            color: #fff;
-            margin-bottom: 16px;
-            white-space: pre-wrap;
-        }
-
-        /* Media block inside question */
-        .q-media { margin: 14px 0; }
-
-        .q-media img {
-            max-width: 100%;
-            border-radius: 10px;
-            display: block;
-            border: 1px solid var(--border);
-        }
-
-        .q-media .media-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: var(--accent3);
-            text-decoration: none;
-            font-size: 0.9em;
-            border: 1px solid rgba(86,182,194,0.3);
-            border-radius: 8px;
-            padding: 8px 14px;
-            transition: all 0.2s;
-            margin-top: 8px;
-        }
-        .q-media .media-link:hover { background: rgba(86,182,194,0.1); }
-
-        .q-media .media-note {
-            background: rgba(229,192,123,0.1);
-            border: 1px solid rgba(229,192,123,0.3);
-            border-radius: 8px;
-            padding: 10px 14px;
-            font-size: 0.9em;
-            color: var(--yellow);
-            margin-top: 8px;
-            line-height: 1.5;
-        }
-
-        .answer-block {
-            border-top: 1px solid var(--border);
-            margin-top: 16px;
-            padding-top: 16px;
-        }
-
-        .a-label {
-            font-size: 0.7em;
-            color: var(--green);
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-
-        .a-text {
-            font-size: 1em;
-            line-height: 1.7;
-            color: var(--green);
-            white-space: pre-wrap;
-        }
-
-        /* Answer media (same styles, green tint) */
-        .a-media img {
-            max-width: 100%;
-            border-radius: 10px;
-            margin-top: 12px;
-            border: 1px solid rgba(152,195,121,0.3);
-        }
-
-        /* Counter badge */
-        .counter {
-            display: inline-block;
-            background: var(--surface2);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 4px 14px;
-            font-size: 0.8em;
-            color: var(--text-dim);
-            margin-bottom: 12px;
-        }
-
-        /* Fixed bottom controls */
-        .controls {
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 420px;
-            display: flex;
-            gap: 8px;
-            padding: 14px 16px;
-            background: var(--surface);
-            border-top: 1px solid var(--border);
-            z-index: 100;
-        }
-        .controls .btn { flex: 1; justify-content: center; font-size: 0.85em; padding: 12px 8px; }
-
-        /* ── Colour tags ─────────────────────────────────────────── */
-        .tc-r { color: #ff5f6d; font-weight: 600; }
-        .tc-b { color: #56b6e8; font-weight: 600; }
-        .tc-g { color: #5fd987; font-weight: 600; }
-        .tc-y { color: #f0c060; font-weight: 600; }
-        body.light .tc-r { color: #c0392b; }
-        body.light .tc-b { color: #1a6fa8; }
-        body.light .tc-g { color: #1e7e34; }
-        body.light .tc-y { color: #8a6200; }
-
-        /* Progress bar */
-        .progress-wrap {
-            background: var(--surface2);
-            border-radius: 4px;
-            height: 4px;
-            margin: 16px 0;
-            overflow: hidden;
-        }
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent), var(--accent3));
-            width: 0%;
-            transition: width 0.4s ease;
-        }
-
-        /* Loading status */
-        .load-status { font-size: 0.85em; color: var(--text-dim); margin: 6px 0; }
-        .load-status.ok { color: var(--green); }
-        .load-status.err { color: var(--accent2); }
-
-        /* Warning */
-        .warning {
-            background: rgba(224,108,117,0.15);
-            border: 1px solid var(--accent2);
-            border-radius: 10px;
-            padding: 16px;
-            text-align: center;
-            color: var(--accent2);
-            margin: 16px 0;
-            animation: shake 0.4s ease;
-        }
-        @keyframes shake {
-            0%,100% { transform: translateX(0); }
-            25% { transform: translateX(-6px); }
-            75% { transform: translateX(6px); }
-        }
-
-        /* Modal */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.75);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-        .modal-overlay.open { display: flex; }
-
-        .modal-content {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 28px;
-            max-width: 340px;
-            margin: 20px;
-            line-height: 1.7;
-            font-size: 0.9em;
-            color: var(--text);
-        }
-        .modal-content h3 { color: var(--accent); margin-bottom: 12px; }
-
-        /* RTL support */
-        [dir="rtl"] .option { flex-direction: row-reverse; text-align: right; }
-        [dir="rtl"] .option::before { left: auto; right: 0; }
-        [dir="rtl"] .option:hover { transform: translateX(-4px); }
-        [dir="rtl"] .q-text, [dir="rtl"] .a-text { direction: rtl; }
-
-        /* Dark/Light toggle — dark is default, light mode override */
-        body.light {
-            --bg: #eef0f7;
-            --surface: #ffffff;
-            --surface2: #f4f5fb;
-            --accent: #5a48e0;
-            --accent2: #c0392b;
-            --accent3: #1a7f8e;
-            --text: #1a1a2e;
-            --text-dim: #5a5a7a;
-            --green: #1e7e34;
-            --yellow: #8a6200;
-            --border: rgba(90, 72, 224, 0.18);
-        }
-        body.light .container::before { display: none; }
-        body.light .logo { text-shadow: none; }
-        body.light .option { color: var(--text); }
-        body.light .q-text { color: #1a1a2e; }
-        body.light .a-text { color: var(--green); }
-        body.light .warning { color: var(--accent2); }
-        body.light .topbar { background: var(--surface); border-color: var(--border); }
-        body.light .controls { background: var(--surface); border-color: var(--border); }
-        body.light .counter { color: var(--text-dim); }
-        body.light .q-label { color: var(--accent); }
-        body.light .a-label { color: var(--green); }
-        body.light .load-status { color: var(--text-dim); }
-        body.light .load-status.ok { color: #1e7e34; }
-        body.light .load-status.err { color: var(--accent2); }
-        body.light .media-note { color: var(--yellow); background: rgba(138, 98, 0, 0.08); border-color: rgba(138,98,0,0.25); }
-        body.light .media-link { color: var(--accent3); border-color: rgba(26,127,142,0.3); }
-        body.light .modal-content { background: var(--surface); color: var(--text); }
-        body.light .btn-outline { border-color: var(--accent); color: var(--accent); }
-    </style>
+/* LIGHT THEME */
+body.light {
+    --bg: #eef0f7; --surface: #fff; --sur2: #f4f5fb;
+    --accent: #5a48e0; --red: #c0392b; --cyan: #1a7f8e;
+    --text: #1a1a2e; --dim: #5a5a7a; --green: #1e7e34; --yellow: #8a6200;
+    --border: rgba(90,72,224,.18);
+}
+body.light .logo { text-shadow: none; }
+body.light .opt  { color: var(--text); }
+body.light .qtext { color: #1a1a2e; }
+body.light .atext { color: var(--green); }
+body.light .tc-r { color: #c0392b; }
+body.light .tc-b { color: #1a6fa8; }
+body.light .tc-g { color: #1e7e34; }
+body.light .tc-y { color: #8a6200; }
+body.light .media-note { color: var(--yellow); background: rgba(138,98,0,.08); border-color: rgba(138,98,0,.25); }
+body.light .media-link { color: var(--cyan); border-color: rgba(26,127,142,.3); }
+body.light .modal-box { background: var(--surface); color: var(--text); }
+</style>
 </head>
 <body>
-<div class="container">
+<div class="wrap">
 
-    <div class="topbar">
-        <button class="topbar-btn" onclick="showModal('readmeModal')" title="About">ℹ️</button>
-        <span style="font-size:0.7em; letter-spacing:0.1em; color:var(--text-dim)">TRACER // 2025</span>
-        <button class="topbar-btn" onclick="toggleTheme()" id="themeBtn" title="Toggle theme">☀️</button>
+<!-- TOPBAR -->
+<div class="topbar">
+    <button class="tbtn" onclick="showModal('aboutModal')" title="About">ℹ️</button>
+    <span style="font-size:.7em;letter-spacing:.1em;color:var(--dim)">TRACER // 2025</span>
+    <button class="tbtn" onclick="toggleTheme()" id="themeBtn" title="Toggle theme">☀️</button>
+</div>
+
+<!-- PAGE 1: Language -->
+<div class="page active" id="page1">
+    <div class="hdr">
+        <div class="logo">TRACER</div>
+        <div class="logo-sub">Healthcare Accreditation · 2025</div>
+    </div>
+    <div class="opt-group">
+        <button class="opt lang-btn lang-he" onclick="selectLanguage('he')"><span class="flag">🇮🇱</span><span>עברית</span></button>
+        <button class="opt lang-btn lang-en" onclick="selectLanguage('en')"><span class="flag">🇺🇸</span><span>English</span></button>
+        <button class="opt lang-btn lang-ru" onclick="selectLanguage('ru')"><span class="flag">🇷🇺</span><span>Русский</span></button>
+        <button class="opt lang-btn lang-ar" onclick="selectLanguage('ar')"><span class="flag">🇸🇦</span><span>عربي</span></button>
+    </div>
+</div>
+
+<!-- PAGE 2: Loading -->
+<div class="page" id="page2">
+    <div class="hdr">
+        <div class="logo" style="font-size:1.4em">Loading</div>
+        <div class="logo-sub">Fetching questions…</div>
+    </div>
+    <div class="prog-wrap"><div class="prog-bar" id="progressBar"></div></div>
+    <div class="lstat" id="doctorStatus">⏳ doctor.json</div>
+    <div class="lstat" id="nurseStatus">⏳ nurse.json</div>
+    <div class="lstat" id="supportStatus">⏳ support.json</div>
+
+    <div style="display:none;margin-top:20px;text-align:center;" id="successSection">
+        <div style="color:var(--green);margin-bottom:14px;">✅ Data loaded</div>
+        <button class="btn btn-full" onclick="goToPage(3)">Continue →</button>
+        <button class="btn btn-out btn-full" onclick="clearCacheAndReload()">🔄 Force reload</button>
+    </div>
+    <div style="display:none;margin-top:20px;text-align:center;" id="errorSection">
+        <div style="color:var(--red);margin-bottom:14px;">❌ Load failed</div>
+        <button class="btn btn-full" onclick="loadData()">Retry</button>
+        <button class="btn btn-out btn-full" onclick="useSampleData()">Use demo data</button>
+    </div>
+</div>
+
+<!-- PAGE 3: Position -->
+<div class="page" id="page3">
+    <div class="hdr">
+        <div class="logo-sub" id="selectPositionTitle">Select role</div>
+    </div>
+    <div class="opt-group">
+        <button class="opt" onclick="selectPosition('doctor',this)"><span class="opt-icon">👨‍⚕️</span><span id="doctorText">Doctor</span></button>
+        <button class="opt" onclick="selectPosition('nurse',this)"><span class="opt-icon">👩‍⚕️</span><span id="nurseText">Nurse</span></button>
+        <button class="opt" onclick="selectPosition('support',this)"><span class="opt-icon">🧑‍🔬</span><span id="supportText">Support staff</span></button>
+    </div>
+</div>
+
+<!-- PAGE 4: Code check -->
+<div class="page" id="page4">
+    <div class="hdr">
+        <div class="logo" style="font-size:1.5em" id="codeCheckTitle">Security check</div>
+        <div class="logo-sub" id="codeCheckSubtitle">Choose the correct phrase:</div>
+    </div>
+    <div class="opt-group">
+        <button class="opt" onclick="checkCode(false,this)"><span id="code1">🍵 Wolfson is Brazilian tea</span></button>
+        <button class="opt" onclick="checkCode(false,this)"><span id="code2">🎬 Wolfson is a German actor</span></button>
+        <button class="opt" onclick="checkCode(false,this)"><span id="code3">🚇 Wolfson is a metro station</span></button>
+        <button class="opt" onclick="checkCode(true,this)"><span id="code4">🏠 Wolfson is home</span></button>
+    </div>
+    <div class="warn-box" id="warningMessage" style="display:none;">
+        <span id="spyWarning">⚠️ Suspected spy from Ichilov!</span>
+    </div>
+</div>
+
+<!-- PAGE 5: Mode -->
+<div class="page" id="page5">
+    <div class="hdr">
+        <div class="logo-sub" id="settingsTitle">Study mode</div>
+    </div>
+    <div class="opt-group">
+        <button class="opt" onclick="selectMode('sequential',this)"><span class="opt-icon">📋</span><span id="sequentialText">All questions in order</span></button>
+        <button class="opt" onclick="selectMode('random',this)"><span class="opt-icon">🔀</span><span id="randomText">Random order</span></button>
+        <button class="opt" onclick="selectMode('quiz',this)"><span class="opt-icon">🧠</span><span id="quizText">Quiz (answer hidden)</span></button>
+    </div>
+</div>
+
+<!-- PAGE 6: Questions -->
+<div class="page" id="page6">
+    <span class="counter" id="questionCounter">1 / 1</span>
+    <div class="qcard">
+        <div class="qlabel" id="questionHeader">QUESTION</div>
+        <div class="qtext" id="currentQuestion">Loading…</div>
+        <div class="qmedia" id="questionMedia"></div>
+
+        <div class="ans-block" id="answerBlock">
+            <div class="alabel" id="answerLabel">ANSWER</div>
+            <div class="atext" id="currentAnswer">Loading…</div>
+            <div class="qmedia" id="answerMedia"></div>
+        </div>
+
+        <button class="btn btn-out btn-full" id="showAnswerBtn" style="display:none;" onclick="showAnswer()">
+            <span id="showAnswerLabel">Show answer</span>
+        </button>
     </div>
 
-    <!-- PAGE 1: Language -->
-    <div class="page active" id="page1">
-        <div class="header">
-            <div class="logo">TRACER</div>
-            <div class="logo-sub">Healthcare Accreditation · 2025</div>
-        </div>
-        <div class="option-group">
-            <button class="option lang-btn lang-he" onclick="selectLanguage('he')">
-                <span class="flag">🇮🇱</span>
-                <span class="opt-label">עברית</span>
-            </button>
-            <button class="option lang-btn lang-en" onclick="selectLanguage('en')">
-                <span class="flag">🇺🇸</span>
-                <span class="opt-label">English</span>
-            </button>
-            <button class="option lang-btn lang-ru" onclick="selectLanguage('ru')">
-                <span class="flag">🇷🇺</span>
-                <span class="opt-label">Русский</span>
-            </button>
-            <button class="option lang-btn lang-ar" onclick="selectLanguage('ar')">
-                <span class="flag">🇸🇦</span>
-                <span class="opt-label">عربي</span>
-            </button>
-        </div>
+    <div class="controls">
+        <button class="btn btn-out" onclick="goToPage(5)" style="flex:0 0 auto;padding:12px 14px;">
+            <span id="menuText">≡</span>
+        </button>
+        <button class="btn btn-out" id="prevBtn" onclick="prevQuestion()" disabled>
+            <span id="prevText">← Back</span>
+        </button>
+        <button class="btn" onclick="nextQuestion()">
+            <span id="nextText">Next →</span>
+        </button>
+        <button class="btn btn-red" onclick="exitApp()" style="flex:0 0 auto;padding:12px 14px;">
+            <span id="exitText">✕</span>
+        </button>
     </div>
+</div>
 
-    <!-- PAGE 2: Loading -->
-    <div class="page" id="page2">
-        <div class="header">
-            <div class="logo" style="font-size:1.4em">Loading data</div>
-            <div class="logo-sub" id="loadingStatus">Fetching questions from GitHub…</div>
-        </div>
-        <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
-        <div class="load-status" id="doctorStatus">⏳ Doctors…</div>
-        <div class="load-status" id="nurseStatus">⏳ Nurses…</div>
-        <div class="load-status" id="supportStatus">⏳ Support staff…</div>
-
-        <div style="display:none; margin-top:24px;" id="errorSection">
-            <div class="warning">⚠️ Could not load data</div>
-            <button class="btn btn-full" onclick="loadData()">Retry</button>
-            <button class="btn btn-outline btn-full" onclick="useSampleData()">Use demo data</button>
-        </div>
-        <div style="display:none; margin-top:24px; text-align:center;" id="successSection">
-            <div style="color:var(--green); margin-bottom:16px;">✅ Data loaded</div>
-            <button class="btn" onclick="goToPage(3)">Continue →</button>
-            <button class="btn btn-outline" style="margin-top:8px; display:block; width:100%;" onclick="clearCacheAndReload()">🔄 Force reload from server</button>
-        </div>
+<!-- ABOUT MODAL -->
+<div class="modal-bg" id="aboutModal" onclick="closeModal('aboutModal')">
+    <div class="modal-box" onclick="event.stopPropagation()">
+        <h3>🏥 TRACER 2025</h3>
+        <p>A mini app for convenient preparation for <strong>periodic accreditation</strong> at the Wolfson Medical Center.</p>
+        <p style="margin-top:10px;">I was always a little scared by the huge number of printed sheets of unstructured text that you need to study and remember in a short time. So it was decided to help myself and colleagues. 🙂</p>
+        <p style="margin-top:10px;">✨ <strong>Features:</strong> light &amp; dark themes, separate question sets for doctors 👨‍⚕️, nurses 👩‍⚕️, and support staff 🧑‍🔬, four languages.</p>
+        <p style="margin-top:10px;">🌐 Translations via Google Translate — may have shortcomings.</p>
+        <p style="margin-top:10px;">🛠 Amateur work — don't judge too harshly.</p>
+        <p style="margin-top:14px;text-align:center;font-size:1.1em;">Good luck! 🍀</p>
+        <button class="btn btn-full" onclick="closeModal('aboutModal')">Close</button>
     </div>
+</div>
 
-    <!-- PAGE 3: Position -->
-    <div class="page" id="page3">
-        <div class="header">
-            <div class="logo" style="font-size:1.4em" id="selectPositionTitle">Select role</div>
-        </div>
-        <div class="option-group">
-            <button class="option" onclick="selectPosition('doctor', this)">
-                <span class="opt-icon">👨‍⚕️</span>
-                <span class="opt-label" id="doctorText">Doctor</span>
-            </button>
-            <button class="option" onclick="selectPosition('nurse', this)">
-                <span class="opt-icon">👩‍⚕️</span>
-                <span class="opt-label" id="nurseText">Nurse</span>
-            </button>
-            <button class="option" onclick="selectPosition('support', this)">
-                <span class="opt-icon">🧑‍🔬</span>
-                <span class="opt-label" id="supportText">Support staff</span>
-            </button>
-        </div>
-    </div>
+</div><!-- /wrap -->
+<script>
+// ── CONFIG ────────────────────────────────────────────────────────────────────
+var DATA_BASE = 'https://raw.githubusercontent.com/StarleyBy/tracer-2025/main/data/';
 
-    <!-- PAGE 4: Code check -->
-    <div class="page" id="page4">
-        <div class="header">
-            <div class="logo" style="font-size:1.4em" id="codeCheckTitle">Security check</div>
-            <div class="logo-sub" id="codeCheckSubtitle">Choose the correct phrase:</div>
-        </div>
-        <div class="option-group">
-            <button class="option" onclick="checkCode(false, this)"><span class="opt-label" id="code1">🍵 Wolfson is Brazilian tea</span></button>
-            <button class="option" onclick="checkCode(false, this)"><span class="opt-label" id="code2">🎬 Wolfson is a German actor</span></button>
-            <button class="option" onclick="checkCode(false, this)"><span class="opt-label" id="code3">🚇 Wolfson is a Moscow metro station</span></button>
-            <button class="option" onclick="checkCode(true, this)"><span class="opt-label" id="code4">🏠 Wolfson is home</span></button>
-        </div>
-        <div id="warningMessage" style="display:none;">
-            <div class="warning" id="spyWarning">⚠️ Suspected spy from Ichilov!</div>
-        </div>
-    </div>
+// ── STATE ─────────────────────────────────────────────────────────────────────
+var lang     = 'en';
+var position = '';
+var mode     = '';
+var dark     = true;
+var qIndex   = 0;
+var qData    = {};
+var qList    = [];
 
-    <!-- PAGE 5: Mode -->
-    <div class="page" id="page5">
-        <div class="header">
-            <div class="logo" style="font-size:1.4em" id="settingsTitle">Study mode</div>
-        </div>
-        <div class="option-group">
-            <button class="option" onclick="selectMode('sequential', this)">
-                <span class="opt-icon">📋</span>
-                <span class="opt-label" id="sequentialText">All questions in order</span>
-            </button>
-            <button class="option" onclick="selectMode('random', this)">
-                <span class="opt-icon">🎲</span>
-                <span class="opt-label" id="randomText">Random order</span>
-            </button>
-            <button class="option" onclick="selectMode('quiz', this)">
-                <span class="opt-icon">🧠</span>
-                <span class="opt-label" id="quizText">Quiz (answer hidden)</span>
-            </button>
-        </div>
-    </div>
+// ── TRANSLATIONS ──────────────────────────────────────────────────────────────
+var T = {
+    ru: {
+        selectPositionTitle:'Выберите должность',
+        doctorText:'Врач', nurseText:'Медсестра', supportText:'Младший персонал',
+        codeCheckTitle:'Проверка безопасности', codeCheckSubtitle:'Выберите верную фразу:',
+        code1:'🍵 Вольфсон — бразильский чай', code2:'🎬 Вольфсон — немецкий актёр',
+        code3:'🚇 Вольфсон — станция метро',   code4:'🏠 Вольфсон — это дом',
+        spyWarning:'⚠️ Подозрение на шпиона из Ихилов!',
+        settingsTitle:'Режим обучения', sequentialText:'Все вопросы подряд',
+        randomText:'Случайный порядок', quizText:'Квиз (ответ скрыт)',
+        questionHeader:'ВОПРОС', answerLabel:'ОТВЕТ', showAnswerLabel:'Показать ответ',
+        menuText:'≡', prevText:'← Назад', nextText:'Далее →', exitText:'✕'
+    },
+    en: {
+        selectPositionTitle:'Select role',
+        doctorText:'Doctor', nurseText:'Nurse', supportText:'Support staff',
+        codeCheckTitle:'Security check', codeCheckSubtitle:'Choose the correct phrase:',
+        code1:'🍵 Wolfson is Brazilian tea', code2:'🎬 Wolfson is a German actor',
+        code3:'🚇 Wolfson is a metro station', code4:'🏠 Wolfson is home',
+        spyWarning:'⚠️ Suspected spy from Ichilov!',
+        settingsTitle:'Study mode', sequentialText:'All questions in order',
+        randomText:'Random order', quizText:'Quiz (answer hidden)',
+        questionHeader:'QUESTION', answerLabel:'ANSWER', showAnswerLabel:'Show answer',
+        menuText:'≡', prevText:'← Back', nextText:'Next →', exitText:'✕'
+    },
+    he: {
+        selectPositionTitle:'בחר תפקיד',
+        doctorText:'רופא', nurseText:'אחות', supportText:'צוות מקצועי',
+        codeCheckTitle:'בדיקת אבטחה', codeCheckSubtitle:'בחר את הביטוי הנכון:',
+        code1:'🍵 וולפסון זה תה ברזילאי', code2:'🎬 וולפסון שחקן גרמני',
+        code3:'🚇 וולפסון תחנת רכבת תחתית', code4:'🏠 וולפסון זה בית',
+        spyWarning:'⚠️ חשד לחדירת מרגל מאיכילוב!',
+        settingsTitle:'מצב לימוד', sequentialText:'כל השאלות ברצף',
+        randomText:'סדר אקראי', quizText:'חידון (תשובה מוסתרת)',
+        questionHeader:'שאלה', answerLabel:'תשובה', showAnswerLabel:'הצג תשובה',
+        menuText:'≡', prevText:'→ הקודם', nextText:'הבא ←', exitText:'✕'
+    },
+    ar: {
+        selectPositionTitle:'اختر المنصب',
+        doctorText:'طبيب', nurseText:'ممرضة', supportText:'طاقم مساعد',
+        codeCheckTitle:'فحص الأمان', codeCheckSubtitle:'اختر العبارة الصحيحة:',
+        code1:'🍵 وولفسون شاي برازيلي', code2:'🎬 وولفسون ممثل ألماني',
+        code3:'🚇 وولفسون محطة مترو', code4:'🏠 وولفسون هو البيت',
+        spyWarning:'⚠️ اشتباه في تسلل جاسوس من إيخيلوف!',
+        settingsTitle:'وضع الدراسة', sequentialText:'جميع الأسئلة بالترتيب',
+        randomText:'ترتيب عشوائي', quizText:'اختبار (الإجابة مخفية)',
+        questionHeader:'سؤال', answerLabel:'إجابة', showAnswerLabel:'أظهر الإجابة',
+        menuText:'≡', prevText:'→ السابق', nextText:'← التالي', exitText:'✕'
+    }
+};
 
-    <!-- PAGE 6: Questions -->
-    <div class="page"
+// ── SAMPLE FALLBACK ───────────────────────────────────────────────────────────
+var SAMPLE = {
+    doctor:  [{ id:1, he:{question:'מה הם הסימפטומים הראשוניים של התקף לב?',answer:'כאב בחזה, קוצר נשימה, בחילות'}, ru:{question:'Каковы первичные симптомы инфаркта?',answer:'Боль в груди, одышка, тошнота'}, en:{question:'Primary symptoms of MI?',answer:'Chest pain, shortness of breath, nausea'}, ar:{question:'أعراض احتشاء عضلة القلب؟',answer:'ألم الصدر وضيق التنفس والغثيان'} }],
+    nurse:   [{ id:1, he:{question:'איך מודדים לחץ דם נכון?',answer:'עם מכשיר תקין, בישיבה, זרוע בגובה הלב'}, ru:{question:'Как правильно измерить АД?',answer:'Тонометром, сидя, рука на уровне сердца'}, en:{question:'How to measure blood pressure?',answer:'With working device, sitting, arm at heart level'}, ar:{question:'كيف تقيس ضغط الدم؟',answer:'بجهاز سليم، جلوسًا، الذراع على مستوى القلب'} }],
+    support: [{ id:1, he:{questio
