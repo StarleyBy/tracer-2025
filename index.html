@@ -444,4 +444,243 @@ var T = {
 var SAMPLE = {
     doctor:  [{ id:1, he:{question:'מה הם הסימפטומים הראשוניים של התקף לב?',answer:'כאב בחזה, קוצר נשימה, בחילות'}, ru:{question:'Каковы первичные симптомы инфаркта?',answer:'Боль в груди, одышка, тошнота'}, en:{question:'Primary symptoms of MI?',answer:'Chest pain, shortness of breath, nausea'}, ar:{question:'أعراض احتشاء عضلة القلب؟',answer:'ألم الصدر وضيق التنفس والغثيان'} }],
     nurse:   [{ id:1, he:{question:'איך מודדים לחץ דם נכון?',answer:'עם מכשיר תקין, בישיבה, זרוע בגובה הלב'}, ru:{question:'Как правильно измерить АД?',answer:'Тонометром, сидя, рука на уровне сердца'}, en:{question:'How to measure blood pressure?',answer:'With working device, sitting, arm at heart level'}, ar:{question:'كيف تقيس ضغط الدم؟',answer:'بجهاز سليم، جلوسًا، الذراع على مستوى القلب'} }],
-    support: [{ id:1, he:{questio
+    support: [{ id:1, he:{question:'איך מחטאים ידיים נכון?',answer:'סבון 20 שניות או אלכוהול 70%'}, ru:{question:'Как дезинфицировать руки?',answer:'Мыло 20 секунд или спирт 70%'}, en:{question:'How to disinfect hands?',answer:'Soap 20 sec or 70% alcohol'}, ar:{question:'كيف تطهر يديك؟',answer:'صابون 20 ثانية أو كحول 70%'} }]
+};
+
+// ── NAVIGATION ────────────────────────────────────────────────────────────────
+function goToPage(n) {
+    document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+    document.getElementById('page' + n).classList.add('active');
+}
+
+// ── LANGUAGE ──────────────────────────────────────────────────────────────────
+function selectLanguage(l) {
+    lang = l;
+    var dir = (l === 'he' || l === 'ar') ? 'rtl' : 'ltr';
+    document.documentElement.setAttribute('dir', dir);
+    applyTranslations();
+    loadData();
+    goToPage(2);
+}
+
+function applyTranslations() {
+    var t = T[lang];
+    if (!t) return;
+    Object.keys(t).forEach(function(k) {
+        var el = document.getElementById(k);
+        if (el) el.textContent = t[k];
+    });
+}
+
+// ── DATA LOADING ──────────────────────────────────────────────────────────────
+function loadData() {
+    document.getElementById('errorSection').style.display   = 'none';
+    document.getElementById('successSection').style.display = 'none';
+    document.getElementById('progressBar').style.width = '0%';
+
+    var positions = ['doctor','nurse','support'];
+    var ids = { doctor:'doctorStatus', nurse:'nurseStatus', support:'supportStatus' };
+    var loaded = 0, errors = 0;
+    var remaining = positions.length;
+
+    positions.forEach(function(pos) {
+        var el = document.getElementById(ids[pos]);
+        var cKey = 'tracer_' + pos;
+        var cached = null;
+        try { cached = JSON.parse(localStorage.getItem(cKey)); } catch(e){}
+
+        if (cached && cached.data && (Date.now() - cached.ts < 86400000)) {
+            qData[pos] = cached.data;
+            loaded++;
+            el.textContent = '✅ ' + cached.data.length + ' questions (cached)';
+            el.className = 'lstat ok';
+            document.getElementById('progressBar').style.width = (loaded / 3 * 100) + '%';
+            remaining--;
+            if (remaining === 0) finishLoad(errors);
+            return;
+        }
+
+        fetch(DATA_BASE + pos + '.json?v=' + Date.now())
+            .then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+            .then(function(data){
+                qData[pos] = data;
+                try { localStorage.setItem(cKey, JSON.stringify({data:data, ts:Date.now()})); } catch(e){}
+                loaded++;
+                el.textContent = '✅ ' + data.length + ' questions';
+                el.className = 'lstat ok';
+                document.getElementById('progressBar').style.width = ((loaded + errors) / 3 * 100) + '%';
+            })
+            .catch(function(e){
+                errors++;
+                el.textContent = '❌ Error loading';
+                el.className = 'lstat err';
+                document.getElementById('progressBar').style.width = ((loaded + errors) / 3 * 100) + '%';
+            })
+            .finally(function(){
+                remaining--;
+                if (remaining === 0) setTimeout(function(){ finishLoad(errors); }, 400);
+            });
+    });
+}
+
+function finishLoad(errors) {
+    if (errors === 3) {
+        document.getElementById('errorSection').style.display = 'block';
+    } else {
+        document.getElementById('successSection').style.display = 'block';
+    }
+}
+
+function useSampleData() { qData = SAMPLE; goToPage(3); }
+
+function clearCacheAndReload() {
+    ['doctor','nurse','support'].forEach(function(p){ localStorage.removeItem('tracer_' + p); });
+    loadData();
+}
+
+// ── POSITION ──────────────────────────────────────────────────────────────────
+function selectPosition(pos, el) {
+    position = pos;
+    document.querySelectorAll('#page3 .opt').forEach(function(b){ b.classList.remove('sel'); });
+    el.classList.add('sel');
+    setTimeout(function(){ goToPage(4); }, 400);
+}
+
+// ── CODE CHECK ────────────────────────────────────────────────────────────────
+function checkCode(correct, el) {
+    document.querySelectorAll('#page4 .opt').forEach(function(b){ b.classList.remove('sel'); });
+    el.classList.add('sel');
+    if (correct) {
+        setTimeout(function(){ goToPage(5); }, 400);
+    } else {
+        var w = document.getElementById('warningMessage');
+        w.style.display = 'block';
+        setTimeout(function(){ w.style.display = 'none'; el.classList.remove('sel'); }, 2500);
+    }
+}
+
+// ── MODE & QUESTIONS ──────────────────────────────────────────────────────────
+function selectMode(m, el) {
+    mode = m;
+    document.querySelectorAll('#page5 .opt').forEach(function(b){ b.classList.remove('sel'); });
+    el.classList.add('sel');
+    setTimeout(function(){ prepareQuestions(); goToPage(6); }, 400);
+}
+
+function prepareQuestions() {
+    var data = qData[position] || SAMPLE[position] || [];
+    qList = data.slice();
+    if (mode !== 'sequential') {
+        for (var i = qList.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var tmp = qList[i]; qList[i] = qList[j]; qList[j] = tmp;
+        }
+    }
+    qIndex = 0;
+    showQ();
+}
+
+function showQ() {
+    if (qIndex >= qList.length) {
+        alert('All questions done! 🎉');
+        goToPage(5);
+        return;
+    }
+    var q = qList[qIndex];
+    var l = q[lang] || q['en'] || {};
+
+    document.getElementById('currentQuestion').innerHTML = fmtText(l.question || '—');
+    document.getElementById('currentAnswer').innerHTML   = fmtText(l.answer   || '—');
+    document.getElementById('questionCounter').textContent = (qIndex + 1) + ' / ' + qList.length;
+
+    var t = T[lang];
+    if (t) {
+        document.getElementById('answerLabel').textContent     = t.answerLabel     || 'ANSWER';
+        document.getElementById('showAnswerLabel').textContent = t.showAnswerLabel || 'Show answer';
+    }
+
+    var pb = document.getElementById('prevBtn');
+    if (pb) pb.disabled = qIndex === 0;
+
+    renderMedia(q.question_media, 'questionMedia');
+    renderMedia(q.answer_media,   'answerMedia');
+
+    var ab = document.getElementById('answerBlock');
+    var sb = document.getElementById('showAnswerBtn');
+    if (mode === 'quiz') {
+        ab.style.display = 'none';
+        sb.style.display = 'block';
+    } else {
+        ab.style.display = 'block';
+        sb.style.display = 'none';
+    }
+}
+
+function prevQuestion() { if (qIndex > 0) { qIndex--; showQ(); } }
+function nextQuestion() { qIndex++; showQ(); }
+function showAnswer() {
+    document.getElementById('answerBlock').style.display = 'block';
+    document.getElementById('showAnswerBtn').style.display = 'none';
+}
+
+// ── MEDIA ─────────────────────────────────────────────────────────────────────
+function renderMedia(arr, containerId) {
+    var c = document.getElementById(containerId);
+    c.innerHTML = '';
+    if (!arr || !arr.length) return;
+    arr.forEach(function(item) {
+        if (item.type === 'image') {
+            var img = document.createElement('img');
+            img.src = item.src; img.alt = item.alt || ''; img.loading = 'lazy';
+            c.appendChild(img);
+        } else if (item.type === 'link') {
+            var a = document.createElement('a');
+            a.href = item.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+            a.className = 'media-link';
+            a.textContent = '🔗 ' + ((item.labels && (item.labels[lang] || item.labels.en)) || item.url);
+            c.appendChild(a);
+        } else if (item.type === 'note') {
+            var d = document.createElement('div');
+            d.className = 'media-note';
+            d.textContent = (item.text && (item.text[lang] || item.text.en)) || '';
+            if (d.textContent.trim()) c.appendChild(d);
+        }
+    });
+}
+
+// ── TEXT FORMATTING ───────────────────────────────────────────────────────────
+function fmtText(s) {
+    return String(s)
+        .replace(/\[bold\]([\s\S]*?)\[\/bold\]/g, '<strong>$1</strong>')
+        .replace(/\[r\]([\s\S]*?)\[\/r\]/g,       '<span class="tc-r">$1</span>')
+        .replace(/\[b\]([\s\S]*?)\[\/b\]/g,       '<span class="tc-b">$1</span>')
+        .replace(/\[g\]([\s\S]*?)\[\/g\]/g,       '<span class="tc-g">$1</span>')
+        .replace(/\[y\]([\s\S]*?)\[\/y\]/g,       '<span class="tc-y">$1</span>');
+}
+
+// ── EXIT ──────────────────────────────────────────────────────────────────────
+function exitApp() {
+    if (confirm('Exit to start?')) {
+        position = ''; mode = ''; qList = []; qIndex = 0;
+        goToPage(1);
+    }
+}
+
+// ── THEME ─────────────────────────────────────────────────────────────────────
+function toggleTheme() {
+    dark = !dark;
+    document.body.classList.toggle('light', !dark);
+    document.getElementById('themeBtn').textContent = dark ? '☀️' : '🌙';
+}
+
+// ── MODAL ─────────────────────────────────────────────────────────────────────
+function showModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+    applyTranslations();
+});
+</script>
+</body>
+</html>
