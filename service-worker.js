@@ -7,7 +7,9 @@ const APP_SHELL = [
   '/tracer-2025/',
   '/tracer-2025/index.html',
   '/tracer-2025/manifest.json',
-  'https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Noto+Sans+Hebrew:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&display=swap',
+  '/tracer-2025/icons/icon-192.png',
+  '/tracer-2025/icons/icon-512.png',
+  'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Hebrew:wght@400;600&family=Noto+Sans+Arabic:wght@400;600&display=swap',
 ];
 
 // Данные вопросов — кэшируются при первом открытии
