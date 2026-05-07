@@ -1,0 +1,26 @@
+{
+  "name": "TRACER 2025 — Wolfson Accreditation",
+  "short_name": "TRACER 2025",
+  "description": "Preparation tool for periodic accreditation at Wolfson Medical Center",
+  "start_url": "/tracer-2025/",
+  "scope": "/tracer-2025/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0d0d14",
+  "theme_color": "#7c6af7",
+  "lang": "he",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Icon Generator</title></head>
+<body>
+<h3>TRACER 2025 — Icon Generator</h3>
+<p>Нажми кнопки чтобы скачать иконки. Положи их в папку <code>icons/</code> репозитория.</p>
+<br>
+<button onclick="generate(192)">Скачать icon-192.png</button>
+<button onclick="generate(512)">Скачать icon-512.png</button>
+
+<canvas id="c" style="display:none"></canvas>
+
+<script>
+function generate(size) {
+    const canvas = document.getElementById('c');
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+
+    // Background
+    const grad = ctx.createLinearGradient(0, 0, size, size);
+    grad.addColorStop(0, '#0d0d14');
+    grad.addColorStop(1, '#1e1e2e');
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.roundRect(0, 0, size, size, size * 0.2);
+    ctx.fill();
+
+    // Accent circle
+    ctx.fillStyle = 'rgba(124, 106, 247, 0.15)';
+    ctx.beginPath();
+    ctx.arc(size * 0.5, size * 0.45, size * 0.35, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Cross (medical)
+    const cx = size * 0.5;
+    const cy = size * 0.42;
+    const arm = size * 0.18;
+    const thick = size * 0.07;
+    ctx.fillStyle = '#7c6af7';
+    ctx.beginPath();
+    ctx.roundRect(cx - thick/2, cy - arm, thick, arm*2, thick*0.4);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.roundRect(cx - arm, cy - thick/2, arm*2, thick, thick*0.4);
+    ctx.fill();
+
+    // Text
+    const fontSize = size * 0.1;
+    ctx.fillStyle = '#ced2e0';
+    ctx.font = `700 ${fontSize}px "Space Mono", monospace`;
+    ctx.textAlign = 'center';
+    ctx.fillText('TRACER', cx, cy + arm + fontSize * 1.6);
+
+    const fontSize2 = size * 0.075;
+    ctx.fillStyle = '#7c6af7';
+    ctx.font = `400 ${fontSize2}px "Space Mono", monospace`;
+    ctx.fillText('2025', cx, cy + arm + fontSize * 1.6 + fontSize2 * 1.3);
+
+    // Download
+    canvas.toBlob(blob => {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `icon-${size}.png`;
+        a.click();
+    });
+}
+</script>
+</body>
+</html>
