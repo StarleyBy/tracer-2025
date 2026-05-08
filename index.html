@@ -506,7 +506,9 @@ body.light .tc-y { color: #b45309; }
 [dir="rtl"] .lang-he          { border-right: 3px solid #38bdf8; }
 [dir="rtl"] .lang-ar          { border-right: 3px solid #f59e0b; }
 [dir="rtl"] .qtext,
-[dir="rtl"] .atext            { direction: rtl; text-align: right; }
+[dir="rtl"] .atext,
+[dir="rtl"] .list-q,
+[dir="rtl"] .list-a           { direction: rtl; text-align: right; }
 [dir="rtl"] .qlabel,
 [dir="rtl"] .alabel           { flex-direction: row-reverse; }
 [dir="rtl"] .media-link       { flex-direction: row-reverse; }
@@ -601,6 +603,32 @@ body.light .pdf-item-cat { color: #92400e; background: rgba(245,158,11,.12); }
   flex-shrink: 0;
   align-self: center;
 }
+
+/* ── FULL LIST MODE ──────────────────────────────────────── */
+.list-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 18px;
+  background: var(--grad-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  cursor: pointer;
+  transition: all .2s;
+}
+.list-item:hover { border-color: var(--accent); }
+.list-q { font-weight: 500; font-size: .95em; line-height: 1.5; color: var(--text); }
+.list-a {
+  display: none;
+  font-size: .95em;
+  color: var(--success);
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+.list-item.open { border-color: var(--accent); box-shadow: var(--shadow-sm); }
+.list-item.open .list-a { display: block; }
 </style>
 </head>
 <body>
@@ -662,6 +690,33 @@ body.light .pdf-item-cat { color: #92400e; background: rgba(245,158,11,.12); }
   </div>
   <div id="pdfListWrap" style="display:none;">
     <div id="pdfList" class="opt-group"></div>
+  </div>
+</div>
+
+<!-- ═══ PAGE 8 · Full List ═══════════════════════════════ -->
+<div class="page" id="page8">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-top:4px;">
+    <button class="icon-btn" onclick="goToPage(5)" title="Back">←</button>
+    <div>
+      <div style="font-weight:700;font-size:1.05em;" id="listPageTitle">Full List</div>
+      <div style="font-size:.75em;color:var(--muted);" id="listPageSub">Tap a question to see the answer</div>
+    </div>
+  </div>
+
+  <div id="fullList" class="opt-group" style="padding-bottom:120px;">
+    <!-- Questions injected here -->
+  </div>
+
+  <div class="controls">
+    <button class="btn btn-ghost ctrl-icon" onclick="goToPage(5)" title="Menu">
+      <span>☰</span>
+    </button>
+    <button class="btn btn-ghost" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+      <span>↑</span>
+    </button>
+    <button class="btn btn-danger ctrl-icon" onclick="exitApp()" title="Exit">
+      <span>✕</span>
+    </button>
   </div>
 </div>
 
@@ -737,6 +792,9 @@ body.light .pdf-item-cat { color: #92400e; background: rgba(245,158,11,.12); }
     </button>
     <button class="opt" onclick="selectMode('quiz',this)">
       <span class="opt-icon">🧠</span><span id="quizText">Quiz (answer hidden)</span>
+    </button>
+    <button class="opt" onclick="selectMode('list',this)">
+      <span class="opt-icon">📖</span><span id="listText">Full list</span>
     </button>
   </div>
 </div>
@@ -814,11 +872,13 @@ var T = {
     selectPositionTitle: 'Выберите должность',
     doctorText: 'Врач', nurseText: 'Медсестра', supportText: 'Младший персонал',
     codeCheckTitle: 'Проверка безопасности', codeCheckSubtitle: 'Выберите верную фразу:',
-    code1: '🍵 Вольфсон — бразильский чай', code2: '🎬 Вольфсон — немецкий актёр',
+    code1: '🍵 Вольфсон — бразильский чай', code2: '🎬 Вольфсон — немецкий actor',
     code3: '🚇 Вольфсон — станция метро',   code4: '🏠 Вольфсон — это дом',
     spyWarning: '⚠️ Подозрение на шпиона из Ихилов!',
     settingsTitle: 'Режим обучения', sequentialText: 'Все вопросы подряд',
     randomText: 'Случайный порядок',         quizText: 'Квиз (ответ скрыт)',
+    listText: 'Полный список вопросов',
+    listPageSub: 'Нажмите на вопрос, чтобы увидеть ответ',
     questionHeader: 'Вопрос', answerLabel: 'Ответ', showAnswerLabel: 'Показать ответ',
     menuText: '☰', prevText: '← Назад', nextText: 'Далее →', exitText: '✕'
   },
@@ -831,6 +891,8 @@ var T = {
     spyWarning: '⚠️ Suspected spy from Ichilov!',
     settingsTitle: 'Study mode', sequentialText: 'All questions in order',
     randomText: 'Random order',              quizText: 'Quiz (answer hidden)',
+    listText: 'Full question list',
+    listPageSub: 'Tap a question to see the answer',
     questionHeader: 'Question', answerLabel: 'Answer', showAnswerLabel: 'Show answer',
     menuText: '☰', prevText: '← Back', nextText: 'Next →', exitText: '✕'
   },
@@ -843,6 +905,8 @@ var T = {
     spyWarning: '⚠️ חשד לחדירת מרגל מאיכילוב!',
     settingsTitle: 'מצב לימוד', sequentialText: 'כל השאלות ברצף',
     randomText: 'סדר אקראי',                 quizText: 'חידון (תשובה מוסתרת)',
+    listText: 'רשימת שאלות מלאה',
+    listPageSub: 'לחץ על שאלה כדי לראות את התשובה',
     questionHeader: 'שאלה', answerLabel: 'תשובה', showAnswerLabel: 'הצג תשובה',
     menuText: '☰', prevText: 'הקודם →', nextText: '← הבא', exitText: '✕'
   },
@@ -855,6 +919,8 @@ var T = {
     spyWarning: '⚠️ اشتباه في تسلل جاسوس من إيخيلوف!',
     settingsTitle: 'وضع الدراسة', sequentialText: 'جميع الأسئلة بالترتيب',
     randomText: 'ترتيب عشوائي',              quizText: 'اختبار (الإجابة مخفية)',
+    listText: 'قائمة الأسئلة الكاملة',
+    listPageSub: 'اضغط على السؤال لرؤية الإجابة',
     questionHeader: 'سؤال', answerLabel: 'إجابة', showAnswerLabel: 'أظهر الإجابة',
     menuText: '☰', prevText: 'السابق →', nextText: '← التالي', exitText: '✕'
   }
@@ -1003,7 +1069,11 @@ function selectMode(m, el) {
   var opts = document.querySelectorAll('#page5 .opt');
   for (var i = 0; i < opts.length; i++) opts[i].classList.remove('sel');
   el.classList.add('sel');
-  setTimeout(function() { prepareQuestions(); goToPage(6); }, 380);
+  if (mode === 'list') {
+    setTimeout(function() { prepareList(); goToPage(8); }, 380);
+  } else {
+    setTimeout(function() { prepareQuestions(); goToPage(6); }, 380);
+  }
 }
 
 /* ── QUESTIONS ───────────────────────────────────────────── */
@@ -1018,6 +1088,54 @@ function prepareQuestions() {
   }
   qIndex = 0;
   showQ();
+}
+
+function prepareList() {
+  var data = qData[position] || SAMPLE[position] || [];
+  var listWrap = document.getElementById('fullList');
+  listWrap.innerHTML = '';
+
+  var t = T[lang] || T.en;
+  document.getElementById('listPageTitle').textContent = t.listText;
+  document.getElementById('listPageSub').textContent   = t.listPageSub;
+
+  data.forEach(function(q) {
+    var l = q[lang] || q.en || {};
+    var item = document.createElement('div');
+    item.className = 'list-item';
+    item.onclick = function() { this.classList.toggle('open'); };
+
+    var qDiv = document.createElement('div');
+    qDiv.className = 'list-q';
+    qDiv.innerHTML = fmtText(l.question || '—');
+    item.appendChild(qDiv);
+
+    // Question media
+    if (q.question_media && q.question_media.length) {
+      var qm = document.createElement('div');
+      qm.className = 'qmedia';
+      renderMedia(q.question_media, qm);
+      item.appendChild(qm);
+    }
+
+    var aDiv = document.createElement('div');
+    aDiv.className = 'list-a';
+
+    var aText = document.createElement('div');
+    aText.innerHTML = fmtText(l.answer || '—');
+    aDiv.appendChild(aText);
+
+    // Answer media
+    if (q.answer_media && q.answer_media.length) {
+      var am = document.createElement('div');
+      am.className = 'qmedia';
+      renderMedia(q.answer_media, am);
+      aDiv.appendChild(am);
+    }
+
+    item.appendChild(aDiv);
+    listWrap.appendChild(item);
+  });
 }
 
 function showQ() {
@@ -1070,8 +1188,9 @@ function exitApp() {
 }
 
 /* ── MEDIA ───────────────────────────────────────────────── */
-function renderMedia(arr, id) {
-  var c = document.getElementById(id);
+function renderMedia(arr, target) {
+  var c = (typeof target === 'string') ? document.getElementById(target) : target;
+  if (!c) return;
   c.innerHTML = '';
   if (!arr || !arr.length) return;
 
